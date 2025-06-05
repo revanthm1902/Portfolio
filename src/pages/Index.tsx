@@ -1,11 +1,52 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState, useEffect } from 'react';
+import LoadingAnimation from '@/components/LoadingAnimation';
+import CursorTrail from '@/components/CursorTrail';
+import Navigation from '@/components/Navigation';
+import HeroSection from '@/components/HeroSection';
+import InProcessSection from '@/components/InProcessSection';
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentSection, setCurrentSection] = useState('home');
+
+  useEffect(() => {
+    // Simulate initial loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const renderSection = () => {
+    switch (currentSection) {
+      case 'home':
+        return <HeroSection />;
+      case 'about':
+      case 'skills':
+      case 'projects':
+      case 'experience':
+      case 'blog':
+      case 'contact':
+        return <InProcessSection />;
+      default:
+        return <HeroSection />;
+    }
+  };
+
+  if (isLoading) {
+    return <LoadingAnimation onComplete={() => setIsLoading(false)} />;
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-dark-bg text-foreground dark">
+      <CursorTrail />
+      <Navigation currentSection={currentSection} setCurrentSection={setCurrentSection} />
+      
+      {/* Main Content with proper spacing for fixed nav */}
+      <div className="pt-16">
+        {renderSection()}
       </div>
     </div>
   );
