@@ -6,6 +6,10 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
+import ProjectsSection from '@/components/ProjectsSection';
+import ExperienceSection from '@/components/ExperienceSection';
+import BlogSection from '@/components/BlogSection';
+import ContactSection from '@/components/ContactSection';
 import InProcessSection from '@/components/InProcessSection';
 
 const Index = () => {
@@ -30,10 +34,13 @@ const Index = () => {
       case 'skills':
         return <SkillsSection />;
       case 'projects':
+        return <ProjectsSection />;
       case 'experience':
+        return <ExperienceSection />;
       case 'blog':
+        return <BlogSection />;
       case 'contact':
-        return <InProcessSection />;
+        return <ContactSection />;
       default:
         return <HeroSection />;
     }
@@ -49,7 +56,7 @@ const Index = () => {
       <Navigation currentSection={currentSection} setCurrentSection={setCurrentSection} />
       
       {/* Main Content with proper spacing for fixed nav */}
-      <div className="pt-16">
+      <div className="pt-20">
         {renderSection()}
       </div>
     </div>
