@@ -334,7 +334,7 @@ const ContactSection = () => {
             {/* Quick Response Time */}
             <Card className="glass-card hover:bg-white/20 transition-all duration-500">
               <CardContent className="p-6 text-center space-y-4">
-                <div className="text-4xl font-bold text-neon-green">< 24h</div>
+                <div className="text-4xl font-bold text-neon-green">{"< 24h"}</div>
                 <div className="text-lg font-space text-foreground">Response Time</div>
                 <div className="text-sm text-muted-foreground">
                   I typically respond to all messages within 24 hours.
