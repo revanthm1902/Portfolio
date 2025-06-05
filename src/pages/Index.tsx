@@ -4,6 +4,8 @@ import LoadingAnimation from '@/components/LoadingAnimation';
 import CursorTrail from '@/components/CursorTrail';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
+import SkillsSection from '@/components/SkillsSection';
 import InProcessSection from '@/components/InProcessSection';
 
 const Index = () => {
@@ -24,7 +26,9 @@ const Index = () => {
       case 'home':
         return <HeroSection />;
       case 'about':
+        return <AboutSection />;
       case 'skills':
+        return <SkillsSection />;
       case 'projects':
       case 'experience':
       case 'blog':
@@ -40,7 +44,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-dark-bg text-foreground dark">
+    <div className="min-h-screen bg-background text-foreground">
       <CursorTrail />
       <Navigation currentSection={currentSection} setCurrentSection={setCurrentSection} />
       
