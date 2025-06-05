@@ -11,53 +11,44 @@ interface TypingAnimationProps {
 
 const TypingAnimation = ({ 
   texts, 
-  typingSpeed = 100, 
-  deletingSpeed = 50, 
+  typingSpeed = 150, 
+  deletingSpeed = 75, 
   pauseDuration = 2000,
   className = ""
 }: TypingAnimationProps) => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isTyping, setIsTyping] = useState(true);
+  const [speed, setSpeed] = useState(typingSpeed);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const handleTyping = () => {
       const fullText = texts[currentTextIndex];
-
-      if (isTyping && !isDeleting) {
-        // Typing
-        if (currentText.length < fullText.length) {
-          setCurrentText(fullText.substring(0, currentText.length + 1));
-        } else {
-          // Finished typing, pause then start deleting
-          setTimeout(() => {
-            setIsDeleting(true);
-            setIsTyping(false);
-          }, pauseDuration);
-        }
-      } else if (isDeleting) {
-        // Deleting
-        if (currentText.length > 0) {
-          setCurrentText(currentText.substring(0, currentText.length - 1));
-        } else {
-          // Finished deleting, move to next text
-          setIsDeleting(false);
-          setIsTyping(true);
-          setCurrentTextIndex((prevIndex) => 
-            prevIndex === texts.length - 1 ? 0 : prevIndex + 1
-          );
-        }
+      
+      if (isDeleting) {
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        setSpeed(deletingSpeed);
+      } else {
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        setSpeed(typingSpeed);
       }
-    }, isDeleting ? deletingSpeed : typingSpeed);
 
-    return () => clearTimeout(timeout);
-  }, [currentText, currentTextIndex, isDeleting, isTyping, texts, typingSpeed, deletingSpeed, pauseDuration]);
+      if (!isDeleting && currentText === fullText) {
+        setTimeout(() => setIsDeleting(true), pauseDuration);
+      } else if (isDeleting && currentText === '') {
+        setIsDeleting(false);
+        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, speed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentTextIndex, texts, typingSpeed, deletingSpeed, pauseDuration, speed]);
 
   return (
     <span className={className}>
       {currentText}
-      <span className="animate-pulse">|</span>
+      <span className="animate-blink">|</span>
     </span>
   );
 };

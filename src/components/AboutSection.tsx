@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Heart, Target, Lightbulb, Rocket } from 'lucide-react';
+import { Heart, Target, Lightbulb, Rocket, User, GraduationCap, MapPin, Calendar, Phone } from 'lucide-react';
 
 const AboutSection = () => {
   const values = [
@@ -39,6 +39,32 @@ const AboutSection = () => {
     { year: '2024', event: 'Freelance & Consulting', description: 'Started helping startups build amazing products' }
   ];
 
+  const personalInfo = {
+    name: 'Revanth M',
+    age: '24',
+    location: 'Bangalore, India',
+    phone: '+91 9876543210',
+    email: 'revanthm051@gmail.com',
+    languages: ['English', 'Hindi', 'Telugu', 'Kannada']
+  };
+
+  const education = [
+    {
+      degree: 'Master of Computer Applications (MCA)',
+      institution: 'Bangalore Institute of Technology',
+      year: '2022-2024',
+      grade: '8.5 CGPA',
+      description: 'Specialized in Full Stack Development and Cloud Computing'
+    },
+    {
+      degree: 'Bachelor of Computer Applications (BCA)',
+      institution: 'St. Joseph\'s College',
+      year: '2019-2022',
+      grade: '8.2 CGPA',
+      description: 'Foundation in Computer Science and Programming'
+    }
+  ];
+
   return (
     <section className="min-h-screen py-20 px-4 hero-gradient bg-grid relative overflow-hidden">
       {/* Background Animation */}
@@ -57,7 +83,7 @@ const AboutSection = () => {
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10 space-y-16">
+      <div className="max-w-7xl mx-auto relative z-10 space-y-16">
         {/* Header */}
         <div className="text-center space-y-6">
           <h2 className="text-5xl md:text-6xl font-space font-bold text-neon-purple animate-glow">
@@ -67,6 +93,75 @@ const AboutSection = () => {
             I'm a passionate full-stack developer who loves turning complex problems into simple, beautiful solutions. 
             With a strong foundation in modern web technologies and a keen eye for design.
           </p>
+        </div>
+
+        {/* Personal Info & Education Grid */}
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          {/* Personal Information */}
+          <Card className="glass-card border-neon-cyan/30 hover:border-neon-cyan/50 transition-all duration-300">
+            <CardHeader>
+              <CardTitle className="text-2xl text-neon-cyan flex items-center gap-2">
+                <User className="h-6 w-6" />
+                Personal Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-neon-purple font-semibold">Name:</span>
+                  <span className="text-foreground">{personalInfo.name}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-neon-purple font-semibold">Age:</span>
+                  <span className="text-foreground">{personalInfo.age}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <MapPin className="h-4 w-4 text-neon-green" />
+                  <span className="text-foreground">{personalInfo.location}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="h-4 w-4 text-neon-green" />
+                  <span className="text-foreground">{personalInfo.phone}</span>
+                </div>
+              </div>
+              <div className="pt-4">
+                <span className="text-neon-purple font-semibold">Languages:</span>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {personalInfo.languages.map((lang, index) => (
+                    <Badge key={index} variant="secondary" className="bg-neon-green/20 text-neon-green border-neon-green/30">
+                      {lang}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Education */}
+          <Card className="glass-card border-neon-green/30 hover:border-neon-green/50 transition-all duration-300">
+            <CardHeader>
+              <CardTitle className="text-2xl text-neon-green flex items-center gap-2">
+                <GraduationCap className="h-6 w-6" />
+                Education
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {education.map((edu, index) => (
+                <div key={index} className="glass-card p-4 hover:bg-white/5 transition-all duration-300">
+                  <h4 className="text-lg font-semibold text-foreground">{edu.degree}</h4>
+                  <p className="text-neon-cyan font-medium">{edu.institution}</p>
+                  <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {edu.year}
+                    </div>
+                    <span className="text-neon-green font-semibold">{edu.grade}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">{edu.description}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
         </div>
 
         {/* Main Content */}

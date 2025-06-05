@@ -1,8 +1,19 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Code, Server, Palette, Database, Cloud, Zap } from 'lucide-react';
+import CertificateModal from './CertificateModal';
+import { Button } from '@/components/ui/button';
+import { 
+  Code, 
+  Database, 
+  Cloud, 
+  Smartphone, 
+  Palette, 
+  Settings,
+  Award,
+  ExternalLink
+} from 'lucide-react';
 
 const SkillsSection = () => {
   const skillCategories = [
@@ -11,119 +22,145 @@ const SkillsSection = () => {
       title: 'Frontend Development',
       color: 'neon-purple',
       skills: [
-        { name: 'React/Next.js', level: 95, description: 'Advanced component architecture & state management' },
-        { name: 'TypeScript', level: 90, description: 'Type-safe development & complex type definitions' },
-        { name: 'Tailwind CSS', level: 88, description: 'Responsive design & custom component systems' },
-        { name: 'Vue.js', level: 75, description: 'Component composition & reactive systems' }
-      ]
-    },
-    {
-      icon: Server,
-      title: 'Backend Development',
-      color: 'neon-cyan',
-      skills: [
-        { name: 'Node.js', level: 92, description: 'RESTful APIs & microservices architecture' },
-        { name: 'Python', level: 85, description: 'Django, FastAPI & data processing' },
-        { name: 'GraphQL', level: 80, description: 'Schema design & query optimization' },
-        { name: 'Java', level: 70, description: 'Spring Boot & enterprise applications' }
+        { name: 'React/Next.js', level: 95 },
+        { name: 'TypeScript', level: 90 },
+        { name: 'Tailwind CSS', level: 92 },
+        { name: 'Vue.js', level: 85 },
       ]
     },
     {
       icon: Database,
-      title: 'Database & Storage',
-      color: 'neon-green',
+      title: 'Backend Development',
+      color: 'neon-cyan',
       skills: [
-        { name: 'PostgreSQL', level: 88, description: 'Complex queries & performance optimization' },
-        { name: 'MongoDB', level: 82, description: 'Document modeling & aggregation pipelines' },
-        { name: 'Redis', level: 78, description: 'Caching strategies & session management' },
-        { name: 'Supabase', level: 85, description: 'Real-time features & authentication' }
+        { name: 'Node.js', level: 88 },
+        { name: 'Python/Django', level: 85 },
+        { name: 'PostgreSQL', level: 82 },
+        { name: 'MongoDB', level: 80 },
       ]
     },
     {
       icon: Cloud,
-      title: 'DevOps & Cloud',
+      title: 'Cloud & DevOps',
+      color: 'neon-green',
+      skills: [
+        { name: 'AWS', level: 85 },
+        { name: 'Docker', level: 80 },
+        { name: 'Kubernetes', level: 75 },
+        { name: 'CI/CD', level: 78 },
+      ]
+    },
+    {
+      icon: Smartphone,
+      title: 'Mobile Development',
       color: 'neon-purple',
       skills: [
-        { name: 'AWS', level: 83, description: 'EC2, S3, Lambda & CloudFormation' },
-        { name: 'Docker', level: 87, description: 'Containerization & multi-stage builds' },
-        { name: 'Kubernetes', level: 72, description: 'Container orchestration & scaling' },
-        { name: 'CI/CD', level: 80, description: 'GitHub Actions & automated deployments' }
+        { name: 'React Native', level: 82 },
+        { name: 'Flutter', level: 75 },
+        { name: 'iOS/Swift', level: 65 },
+        { name: 'Android/Kotlin', level: 70 },
       ]
     }
   ];
 
   const tools = [
-    'VS Code', 'Git', 'Figma', 'Postman', 'Jira', 'Slack',
-    'Adobe XD', 'Chrome DevTools', 'ESLint', 'Prettier'
+    'VS Code', 'Git', 'GitHub', 'Figma', 'Postman', 'Jira', 'Slack', 'Notion',
+    'Firebase', 'Supabase', 'Vercel', 'Netlify', 'Heroku', 'Digital Ocean'
   ];
 
-  const certifications = [
-    { name: 'AWS Certified Developer', org: 'Amazon Web Services', year: '2023' },
-    { name: 'React Developer Certificate', org: 'Meta', year: '2022' },
-    { name: 'MongoDB University', org: 'MongoDB Inc.', year: '2023' },
-    { name: 'Google Cloud Platform', org: 'Google', year: '2024' }
+  const certificates = [
+    {
+      id: '1',
+      title: 'AWS Certified Solutions Architect',
+      issuer: 'Amazon Web Services',
+      date: 'March 2024',
+      image: '/placeholder.svg?height=400&width=600&text=AWS+Certificate',
+      verificationUrl: 'https://aws.amazon.com/verification/ABC123',
+      skills: ['AWS', 'Cloud Architecture', 'EC2', 'S3', 'Lambda'],
+      description: 'Comprehensive certification covering AWS cloud architecture, security, and best practices for designing distributed systems.'
+    },
+    {
+      id: '2',
+      title: 'Google Cloud Professional Developer',
+      issuer: 'Google Cloud',
+      date: 'January 2024',
+      image: '/placeholder.svg?height=400&width=600&text=GCP+Certificate',
+      verificationUrl: 'https://cloud.google.com/certification/verify/XYZ789',
+      skills: ['GCP', 'Kubernetes', 'Cloud Functions', 'BigQuery'],
+      description: 'Advanced certification demonstrating expertise in developing scalable and reliable applications on Google Cloud Platform.'
+    },
+    {
+      id: '3',
+      title: 'React Advanced Patterns',
+      issuer: 'Meta',
+      date: 'December 2023',
+      image: '/placeholder.svg?height=400&width=600&text=React+Certificate',
+      skills: ['React', 'Hooks', 'Context API', 'Performance Optimization'],
+      description: 'Deep dive into advanced React patterns, performance optimization, and modern development practices.'
+    }
   ];
 
   return (
     <section className="min-h-screen py-20 px-4 hero-gradient bg-grid relative overflow-hidden">
-      {/* Background Elements */}
+      {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(25)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute opacity-20"
+            className="absolute w-1 h-1 bg-neon-green rounded-full opacity-40 animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${5 + Math.random() * 3}s`
             }}
-          >
-            <Code className="h-4 w-4 text-neon-purple animate-float" />
-          </div>
+          />
         ))}
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10 space-y-16">
         {/* Header */}
         <div className="text-center space-y-6">
-          <h2 className="text-5xl md:text-6xl font-space font-bold text-neon-cyan animate-glow">
+          <h2 className="text-5xl md:text-6xl font-space font-bold text-neon-green animate-glow">
             Skills & Expertise
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A comprehensive toolkit built through years of hands-on experience and continuous learning
+            A comprehensive overview of my technical skills, tools, and certifications 
+            that I use to build amazing digital experiences.
           </p>
         </div>
 
         {/* Skills Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {skillCategories.map((category, index) => (
             <Card 
               key={category.title}
-              className="glass-card border-white/20 hover:border-white/30 transition-all duration-300 group"
-              style={{ animationDelay: `${categoryIndex * 0.1}s` }}
+              className="glass-card hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/20"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader>
-                <CardTitle className={`flex items-center gap-3 text-xl text-${category.color}`}>
-                  <category.icon className="h-6 w-6 group-hover:animate-bounce-slow" />
+                <CardTitle className={`text-2xl text-${category.color} flex items-center gap-3`}>
+                  <category.icon className="h-8 w-8" />
                   {category.title}
                 </CardTitle>
+                <CardDescription>
+                  Core technologies and frameworks I work with
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 {category.skills.map((skill, skillIndex) => (
-                  <div 
-                    key={skill.name}
-                    className="space-y-3"
-                    style={{ animationDelay: `${(categoryIndex * 0.1) + (skillIndex * 0.05)}s` }}
-                  >
+                  <div key={skill.name} className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="font-medium text-foreground">{skill.name}</span>
-                      <span className={`font-mono text-sm text-${category.color}`}>{skill.level}%</span>
+                      <span className={`font-bold text-${category.color}`}>{skill.level}%</span>
                     </div>
                     <Progress 
                       value={skill.level} 
-                      className="h-2 bg-white/10"
+                      className="h-2 bg-secondary"
+                      style={{
+                        animationDelay: `${(index * 4 + skillIndex) * 0.1}s`
+                      }}
                     />
-                    <p className="text-sm text-muted-foreground">{skill.description}</p>
                   </div>
                 ))}
               </CardContent>
@@ -132,70 +169,113 @@ const SkillsSection = () => {
         </div>
 
         {/* Tools & Technologies */}
-        <div className="space-y-8">
-          <h3 className="text-3xl font-space font-bold text-center text-neon-green">
-            Tools & Technologies
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {tools.map((tool, index) => (
-              <Badge
-                key={tool}
-                variant="secondary"
-                className="glass-card px-4 py-2 text-sm hover:scale-110 transition-all duration-300 hover:bg-neon-purple/20 hover:text-neon-purple border-white/20"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                {tool}
-              </Badge>
-            ))}
-          </div>
-        </div>
+        <Card className="glass-card border-neon-cyan/30">
+          <CardHeader className="text-center">
+            <CardTitle className="text-3xl text-neon-cyan flex items-center justify-center gap-3">
+              <Settings className="h-8 w-8" />
+              Tools & Technologies
+            </CardTitle>
+            <CardDescription className="text-lg">
+              Development tools and platforms I use daily
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-wrap justify-center gap-4">
+              {tools.map((tool, index) => (
+                <Badge
+                  key={tool}
+                  variant="secondary"
+                  className="text-base px-4 py-2 glass-card hover:bg-neon-cyan/20 hover:text-neon-cyan hover:border-neon-cyan/50 transition-all duration-300 hover:scale-110 cursor-pointer"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  {tool}
+                </Badge>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Certifications */}
-        <div className="space-y-8">
-          <h3 className="text-3xl font-space font-bold text-center text-neon-purple">
-            Certifications & Achievements
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {certifications.map((cert, index) => (
-              <Card 
-                key={cert.name}
-                className="glass-card text-center hover:scale-105 transition-all duration-300 group"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-full flex items-center justify-center group-hover:animate-pulse">
-                    <Zap className="h-6 w-6 text-white" />
-                  </div>
-                  <h4 className="font-semibold text-foreground mb-1">{cert.name}</h4>
-                  <p className="text-sm text-neon-cyan mb-1">{cert.org}</p>
-                  <p className="text-xs text-muted-foreground font-mono">{cert.year}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+        <Card className="glass-card border-neon-purple/30">
+          <CardHeader className="text-center">
+            <CardTitle className="text-3xl text-neon-purple flex items-center justify-center gap-3">
+              <Award className="h-8 w-8" />
+              Certifications
+            </CardTitle>
+            <CardDescription className="text-lg">
+              Professional certifications and achievements
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {certificates.map((cert, index) => (
+                <div 
+                  key={cert.id}
+                  className="glass-card p-6 hover:bg-white/10 transition-all duration-300 hover:scale-105 group"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="text-center space-y-4">
+                    <Award className="h-12 w-12 mx-auto text-neon-purple group-hover:animate-bounce-slow" />
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground mb-1">{cert.title}</h4>
+                      <p className="text-neon-cyan font-medium">{cert.issuer}</p>
+                      <p className="text-sm text-muted-foreground">{cert.date}</p>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {cert.skills.slice(0, 3).map((skill, skillIndex) => (
+                        <Badge
+                          key={skillIndex}
+                          variant="secondary"
+                          className="text-xs bg-neon-purple/20 text-neon-purple border-neon-purple/30"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
 
-        {/* Experience Highlight */}
-        <Card className="glass-card border-neon-green/30 hover:border-neon-green/50 transition-all duration-300">
-          <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-space font-bold text-neon-green mb-4">
-              What Makes Me Different?
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div className="space-y-3">
-                <Palette className="h-12 w-12 mx-auto text-neon-purple animate-glow" />
-                <h4 className="text-lg font-semibold text-foreground">Design-First Approach</h4>
-                <p className="text-muted-foreground">I believe great functionality starts with great design. Every component I build considers both aesthetics and usability.</p>
+                    <CertificateModal certificate={cert}>
+                      <Button
+                        variant="outline"
+                        className="w-full ui-btn border-neon-green text-neon-green hover:bg-neon-green/10"
+                      >
+                        <span className="flex items-center gap-2">
+                          <ExternalLink className="h-4 w-4" />
+                          View Certificate
+                        </span>
+                      </Button>
+                    </CertificateModal>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Learning Journey */}
+        <Card className="glass-card border-neon-green/30">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl text-neon-green">Continuous Learning</CardTitle>
+            <CardDescription>
+              Currently exploring and learning new technologies
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="space-y-2">
+                <div className="text-3xl">🤖</div>
+                <h4 className="font-semibold text-foreground">AI/ML Integration</h4>
+                <p className="text-sm text-muted-foreground">Exploring TensorFlow.js and OpenAI APIs</p>
               </div>
-              <div className="space-y-3">
-                <Server className="h-12 w-12 mx-auto text-neon-cyan animate-glow" />
-                <h4 className="text-lg font-semibold text-foreground">Performance Obsessed</h4>
-                <p className="text-muted-foreground">I optimize for speed and efficiency at every level - from database queries to bundle sizes and rendering performance.</p>
+              <div className="space-y-2">
+                <div className="text-3xl">🔗</div>
+                <h4 className="font-semibold text-foreground">Web3 Development</h4>
+                <p className="text-sm text-muted-foreground">Learning Solidity and DApp development</p>
               </div>
-              <div className="space-y-3">
-                <Zap className="h-12 w-12 mx-auto text-neon-green animate-glow" />
-                <h4 className="text-lg font-semibold text-foreground">Future-Ready Code</h4>
-                <p className="text-muted-foreground">I write maintainable, scalable code using modern patterns and best practices that stand the test of time.</p>
+              <div className="space-y-2">
+                <div className="text-3xl">⚡</div>
+                <h4 className="font-semibold text-foreground">Edge Computing</h4>
+                <p className="text-sm text-muted-foreground">Optimizing performance with edge functions</p>
               </div>
             </div>
           </CardContent>

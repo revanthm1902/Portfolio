@@ -1,6 +1,7 @@
 
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail, Download, Code, Zap, Award, Coffee } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Github, Linkedin, Mail, Download, Code, Zap, Award, Coffee, ArrowRight, User, Briefcase, BookOpen, MessageCircle } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
 
 const HeroSection = () => {
@@ -29,15 +30,54 @@ const HeroSection = () => {
   const skills = ['React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'Docker'];
   
   const typingTexts = [
-    'Full Stack Developer',
-    'Digital Architect', 
-    'UI/UX Enthusiast',
-    'Problem Solver',
-    'Tech Innovator'
+    'Full_Stack_Developer',
+    'Digital_Architect', 
+    'UI/UX_Enthusiast',
+    'Problem_Solver',
+    'Tech_Innovator',
+    'Code_Craftsman'
+  ];
+
+  const quickLinks = [
+    {
+      icon: User,
+      title: 'About Me',
+      description: 'Learn about my journey and passion',
+      color: 'neon-purple',
+      section: 'about'
+    },
+    {
+      icon: Code,
+      title: 'My Skills',
+      description: 'Technologies I work with',
+      color: 'neon-cyan',
+      section: 'skills'
+    },
+    {
+      icon: Briefcase,
+      title: 'Projects',
+      description: 'Check out my latest work',
+      color: 'neon-green',
+      section: 'projects'
+    },
+    {
+      icon: BookOpen,
+      title: 'Blog',
+      description: 'Read my thoughts on tech',
+      color: 'neon-purple',
+      section: 'blog'
+    },
+    {
+      icon: MessageCircle,
+      title: 'Contact',
+      description: 'Let\'s work together',
+      color: 'neon-cyan',
+      section: 'contact'
+    }
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center hero-gradient bg-grid relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center hero-gradient bg-grid relative overflow-hidden py-20">
       {/* Floating Background Shapes */}
       <div className="floating-shapes">
         {[...Array(20)].map((_, i) => (
@@ -82,13 +122,13 @@ const HeroSection = () => {
         ))}
       </div>
 
-      <div className="relative z-10 text-center space-y-12 px-4 max-w-6xl">
+      <div className="relative z-10 text-center space-y-16 px-4 max-w-7xl">
         {/* Main Title */}
         <div className="space-y-8">
           <div className="inline-block">
             <h1 className="text-6xl md:text-8xl font-space font-bold animate-fade-in">
               <span className="text-foreground">Hello, I'm </span>
-              <span className="text-neon-purple text-glow animate-glow">Alex</span>
+              <span className="text-neon-purple text-glow animate-glow">Revanth</span>
             </h1>
             <div className="h-1 bg-gradient-to-r from-neon-purple via-neon-cyan to-neon-green rounded-full mt-4 animate-pulse"></div>
           </div>
@@ -139,6 +179,31 @@ const HeroSection = () => {
           ))}
         </div>
 
+        {/* Quick Links */}
+        <div className="space-y-8">
+          <h3 className="text-3xl font-space font-bold text-neon-cyan animate-glow">Quick Links</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {quickLinks.map((link, index) => (
+              <Card 
+                key={link.title}
+                className="glass-card hover:bg-white/10 transition-all duration-300 hover:scale-105 group cursor-pointer border border-white/20"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardHeader className="text-center">
+                  <link.icon className={`h-12 w-12 mx-auto mb-4 text-${link.color} group-hover:animate-bounce-slow`} />
+                  <CardTitle className="text-xl text-foreground">{link.title}</CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    {link.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <ArrowRight className={`h-5 w-5 mx-auto text-${link.color} group-hover:translate-x-2 transition-transform duration-300`} />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-8 justify-center animate-scale-in">
           <Button 
@@ -167,17 +232,17 @@ const HeroSection = () => {
         <div className="flex justify-center space-x-10 animate-fade-in">
           {[{
             icon: Github,
-            href: '#',
+            href: 'https://github.com/revanthm051',
             label: 'GitHub',
             color: 'hover:text-neon-purple'
           }, {
             icon: Linkedin,
-            href: '#',
+            href: 'https://linkedin.com/in/revanthm051',
             label: 'LinkedIn',
             color: 'hover:text-neon-cyan'
           }, {
             icon: Mail,
-            href: '#',
+            href: 'mailto:revanthm051@gmail.com',
             label: 'Email',
             color: 'hover:text-neon-green'
           }].map((social, index) => (
