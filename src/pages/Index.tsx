@@ -10,23 +10,20 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
 import InProcessSection from '@/components/InProcessSection';
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentSection, setCurrentSection] = useState('home');
 
   useEffect(() => {
-    // Show loading animation when changing sections (except initial load)
-    if (currentSection !== 'home') {
-      setIsLoading(true);
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [currentSection]);
+    // Simulate initial loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const renderSection = () => {
     switch (currentSection) {
@@ -59,11 +56,9 @@ const Index = () => {
       <Navigation currentSection={currentSection} setCurrentSection={setCurrentSection} />
       
       {/* Main Content with proper spacing for fixed nav */}
-      <div className="pt-24">
+      <div className="pt-20">
         {renderSection()}
       </div>
-      
-      <Footer />
     </div>
   );
 };
