@@ -2,8 +2,13 @@
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, Download, Code, Zap, Award, Coffee } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
+import SlidingLogos from './SlidingLogos';
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  setCurrentSection: (section: string) => void;
+}
+
+const HeroSection = ({ setCurrentSection }: HeroSectionProps) => {
   const stats = [{
     icon: Code,
     value: '50+',
@@ -26,7 +31,14 @@ const HeroSection = () => {
     color: 'neon-purple'
   }];
 
-  const skills = ['React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'Docker'];
+  const funnyFacts = [
+    "🎮 I debug my code better after playing video games",
+    "☕ My code quality is directly proportional to my coffee intake",
+    "🌙 I'm a night owl - my best code happens at 2 AM",
+    "🎵 I code to music and believe every bug has its own rhythm",
+    "🍕 Pizza is my debugging rubber duck",
+    "🚀 I dream in JavaScript and wake up thinking in TypeScript"
+  ];
   
   const typingTexts = [
     'Full Stack Developer',
@@ -88,7 +100,7 @@ const HeroSection = () => {
           <div className="inline-block">
             <h1 className="text-6xl md:text-8xl font-space font-bold animate-fade-in">
               <span className="text-foreground">Hello, I'm </span>
-              <span className="text-neon-purple text-glow animate-glow">Alex</span>
+              <span className="text-neon-purple text-glow animate-glow">Revanth</span>
             </h1>
             <div className="h-1 bg-gradient-to-r from-neon-purple via-neon-cyan to-neon-green rounded-full mt-4 animate-pulse"></div>
           </div>
@@ -111,17 +123,26 @@ const HeroSection = () => {
           </p>
         </div>
 
-        {/* Skills Tags */}
-        <div className="flex flex-wrap justify-center gap-4 animate-scale-in">
-          {skills.map((skill, index) => (
-            <span 
-              key={skill} 
-              className="px-6 py-3 glass-card text-sm font-mono text-neon-cyan hover:bg-neon-cyan/20 transition-all duration-300 hover:scale-110 cursor-pointer border border-neon-cyan/30"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {skill}
-            </span>
-          ))}
+        {/* Sliding Tech Logos */}
+        <div className="animate-scale-in">
+          <h3 className="text-xl font-space text-neon-cyan mb-6">Technologies I Work With</h3>
+          <SlidingLogos />
+        </div>
+
+        {/* Funny Facts Section */}
+        <div className="animate-fade-in">
+          <h3 className="text-2xl font-space text-neon-green mb-6">Fun Facts About Me</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {funnyFacts.map((fact, index) => (
+              <div 
+                key={index}
+                className="glass-card p-4 text-sm text-muted-foreground hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {fact}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Stats Cards */}
@@ -144,6 +165,7 @@ const HeroSection = () => {
           <Button 
             size="lg" 
             className="ui-btn bg-neon-purple hover:bg-neon-purple/80 text-white border border-neon-purple/50 neon-glow transition-all duration-300 hover:scale-105 group px-8 py-4"
+            onClick={() => setCurrentSection('contact')}
           >
             <span className="flex items-center gap-3">
               <Mail className="h-6 w-6 group-hover:animate-wave" />
