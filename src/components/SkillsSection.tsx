@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Code, Server, Palette, Database, Cloud, Zap } from 'lucide-react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
 const SkillsSection = () => {
   const skillCategories = [
@@ -15,6 +16,12 @@ const SkillsSection = () => {
         { name: 'TypeScript', level: 90, description: 'Type-safe development & complex type definitions' },
         { name: 'Tailwind CSS', level: 88, description: 'Responsive design & custom component systems' },
         { name: 'Vue.js', level: 75, description: 'Component composition & reactive systems' }
+      ],
+      chartData: [
+        { name: 'React/Next.js', value: 95, color: '#8b5cf6' },
+        { name: 'TypeScript', value: 90, color: '#06b6d4' },
+        { name: 'Tailwind CSS', value: 88, color: '#10b981' },
+        { name: 'Vue.js', value: 75, color: '#f59e0b' }
       ]
     },
     {
@@ -26,6 +33,12 @@ const SkillsSection = () => {
         { name: 'Python', level: 85, description: 'Django, FastAPI & data processing' },
         { name: 'GraphQL', level: 80, description: 'Schema design & query optimization' },
         { name: 'Java', level: 70, description: 'Spring Boot & enterprise applications' }
+      ],
+      chartData: [
+        { name: 'Node.js', value: 92, color: '#8b5cf6' },
+        { name: 'Python', value: 85, color: '#06b6d4' },
+        { name: 'GraphQL', value: 80, color: '#10b981' },
+        { name: 'Java', value: 70, color: '#f59e0b' }
       ]
     },
     {
@@ -37,6 +50,12 @@ const SkillsSection = () => {
         { name: 'MongoDB', level: 82, description: 'Document modeling & aggregation pipelines' },
         { name: 'Redis', level: 78, description: 'Caching strategies & session management' },
         { name: 'Supabase', level: 85, description: 'Real-time features & authentication' }
+      ],
+      chartData: [
+        { name: 'PostgreSQL', value: 88, color: '#8b5cf6' },
+        { name: 'MongoDB', value: 82, color: '#06b6d4' },
+        { name: 'Redis', value: 78, color: '#10b981' },
+        { name: 'Supabase', value: 85, color: '#f59e0b' }
       ]
     },
     {
@@ -48,6 +67,12 @@ const SkillsSection = () => {
         { name: 'Docker', level: 87, description: 'Containerization & multi-stage builds' },
         { name: 'Kubernetes', level: 72, description: 'Container orchestration & scaling' },
         { name: 'CI/CD', level: 80, description: 'GitHub Actions & automated deployments' }
+      ],
+      chartData: [
+        { name: 'AWS', value: 83, color: '#8b5cf6' },
+        { name: 'Docker', value: 87, color: '#06b6d4' },
+        { name: 'Kubernetes', value: 72, color: '#10b981' },
+        { name: 'CI/CD', value: 80, color: '#f59e0b' }
       ]
     }
   ];
@@ -63,6 +88,21 @@ const SkillsSection = () => {
     { name: 'MongoDB University', org: 'MongoDB Inc.', year: '2023' },
     { name: 'Google Cloud Platform', org: 'Google', year: '2024' }
   ];
+
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const data = payload[0];
+      return (
+        <div className="glass-card p-3 border border-white/20">
+          <p className="text-neon-cyan font-mono">{data.name}</p>
+          <p className="text-white">
+            <span className="text-neon-green">{data.value}%</span> proficiency
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <section className="min-h-screen py-20 px-4 hero-gradient bg-grid relative overflow-hidden">
@@ -94,7 +134,7 @@ const SkillsSection = () => {
           </p>
         </div>
 
-        {/* Skills Grid */}
+        {/* Skills Grid with Pie Charts */}
         <div className="grid lg:grid-cols-2 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <Card 
@@ -109,23 +149,61 @@ const SkillsSection = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                {category.skills.map((skill, skillIndex) => (
-                  <div 
-                    key={skill.name}
-                    className="space-y-3"
-                    style={{ animationDelay: `${(categoryIndex * 0.1) + (skillIndex * 0.05)}s` }}
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium text-foreground">{skill.name}</span>
-                      <span className={`font-mono text-sm text-${category.color}`}>{skill.level}%</span>
+                {/* Interactive Pie Chart */}
+                <div className="h-64 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={category.chartData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={40}
+                        outerRadius={80}
+                        paddingAngle={2}
+                        dataKey="value"
+                        animationBegin={categoryIndex * 200}
+                        animationDuration={1000}
+                      >
+                        {category.chartData.map((entry, index) => (
+                          <Cell 
+                            key={`cell-${index}`} 
+                            fill={entry.color}
+                            className="hover:opacity-80 transition-opacity cursor-pointer"
+                          />
+                        ))}
+                      </Pie>
+                      <Tooltip content={<CustomTooltip />} />
+                      <Legend 
+                        wrapperStyle={{ 
+                          fontSize: '12px',
+                          color: '#a1a1aa',
+                          fontFamily: 'monospace'
+                        }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+
+                {/* Skill Details */}
+                <div className="space-y-4">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div 
+                      key={skill.name}
+                      className="space-y-2"
+                      style={{ animationDelay: `${(categoryIndex * 0.1) + (skillIndex * 0.05)}s` }}
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-foreground text-sm">{skill.name}</span>
+                        <span className={`font-mono text-xs text-${category.color}`}>{skill.level}%</span>
+                      </div>
+                      <Progress 
+                        value={skill.level} 
+                        className="h-1.5 bg-white/10"
+                      />
+                      <p className="text-xs text-muted-foreground">{skill.description}</p>
                     </div>
-                    <Progress 
-                      value={skill.level} 
-                      className="h-2 bg-white/10"
-                    />
-                    <p className="text-sm text-muted-foreground">{skill.description}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </CardContent>
             </Card>
           ))}

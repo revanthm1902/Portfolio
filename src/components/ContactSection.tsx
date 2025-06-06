@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,7 +7,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -21,6 +20,7 @@ const formSchema = z.object({
 
 const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -35,10 +35,13 @@ const ContactSection = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
+    setSubmissionStatus('idle');
     
     try {
+      console.log('Attempting to send email with values:', values);
+      
       // Call Supabase Edge Function to send email
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
           name: values.name,
           email: values.email,
@@ -48,21 +51,36 @@ const ContactSection = () => {
         }
       });
 
+      console.log('Email function response:', { data, error });
+
       if (error) {
+        console.error('Supabase function error:', error);
         throw error;
       }
 
+      setSubmissionStatus('success');
       toast({
         title: "Message sent successfully! 🚀",
         description: "Thank you for reaching out. I'll get back to you as soon as possible.",
       });
 
       form.reset();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending message:', error);
+      setSubmissionStatus('error');
+      
+      // Provide more specific error messages
+      let errorMessage = "Please try again or contact me directly at revanthm051@gmail.com";
+      
+      if (error?.message?.includes('Missing API key')) {
+        errorMessage = "Email service is currently being configured. Please contact me directly at revanthm051@gmail.com";
+      } else if (error?.message?.includes('Failed to fetch')) {
+        errorMessage = "Network error. Please check your connection and try again.";
+      }
+      
       toast({
         title: "Failed to send message",
-        description: "Please try again or contact me directly at revanthm051@gmail.com",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -166,6 +184,21 @@ const ContactSection = () => {
               </CardHeader>
               
               <CardContent className="space-y-6">
+                {/* Status Indicators */}
+                {submissionStatus === 'success' && (
+                  <div className="p-4 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                    <span className="text-green-400">Message sent successfully!</span>
+                  </div>
+                )}
+                
+                {submissionStatus === 'error' && (
+                  <div className="p-4 rounded-lg bg-red-500/20 border border-red-500/30 flex items-center gap-3">
+                    <AlertCircle className="h-5 w-5 text-red-400" />
+                    <span className="text-red-400">Failed to send message. Please try again.</span>
+                  </div>
+                )}
+
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
