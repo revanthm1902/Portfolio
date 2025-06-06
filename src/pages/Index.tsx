@@ -10,7 +10,6 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
 import InProcessSection from '@/components/InProcessSection';
 
 const Index = () => {
@@ -41,11 +40,7 @@ const Index = () => {
       case 'blog':
         return <BlogSection />;
       case 'contact':
-        return (
-          <div data-section="contact">
-            <ContactSection />
-          </div>
-        );
+        return <ContactSection />;
       default:
         return <HeroSection />;
     }
@@ -64,8 +59,6 @@ const Index = () => {
       <div className="pt-20">
         {renderSection()}
       </div>
-      
-      <Footer />
     </div>
   );
 };
