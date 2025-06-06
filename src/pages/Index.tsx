@@ -10,7 +10,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
-import InProcessSection from '@/components/InProcessSection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +28,7 @@ const Index = () => {
   const renderSection = () => {
     switch (currentSection) {
       case 'home':
-        return <HeroSection />;
+        return <HeroSection setCurrentSection={setCurrentSection} />;
       case 'about':
         return <AboutSection />;
       case 'skills':
@@ -42,7 +42,7 @@ const Index = () => {
       case 'contact':
         return <ContactSection />;
       default:
-        return <HeroSection />;
+        return <HeroSection setCurrentSection={setCurrentSection} />;
     }
   };
 
@@ -59,6 +59,9 @@ const Index = () => {
       <div className="pt-20">
         {renderSection()}
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
