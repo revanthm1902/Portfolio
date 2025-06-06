@@ -38,9 +38,8 @@ const ContactSection = () => {
     setSubmissionStatus('idle');
     
     try {
-      console.log('Attempting to send email with values:', values);
+      console.log('Sending contact email with values:', values);
       
-      // Call Supabase Edge Function to send email
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
           name: values.name,
@@ -51,17 +50,17 @@ const ContactSection = () => {
         }
       });
 
-      console.log('Email function response:', { data, error });
+      console.log('Email response:', { data, error });
 
       if (error) {
-        console.error('Supabase function error:', error);
-        throw error;
+        console.error('Email sending error:', error);
+        throw new Error(error.message || 'Failed to send email');
       }
 
       setSubmissionStatus('success');
       toast({
         title: "Message sent successfully! 🚀",
-        description: "Thank you for reaching out. I'll get back to you as soon as possible.",
+        description: "Thank you for reaching out. I'll get back to you within 24 hours.",
       });
 
       form.reset();
@@ -69,18 +68,9 @@ const ContactSection = () => {
       console.error('Error sending message:', error);
       setSubmissionStatus('error');
       
-      // Provide more specific error messages
-      let errorMessage = "Please try again or contact me directly at revanthm051@gmail.com";
-      
-      if (error?.message?.includes('Missing API key')) {
-        errorMessage = "Email service is currently being configured. Please contact me directly at revanthm051@gmail.com";
-      } else if (error?.message?.includes('Failed to fetch')) {
-        errorMessage = "Network error. Please check your connection and try again.";
-      }
-      
       toast({
         title: "Failed to send message",
-        description: errorMessage,
+        description: error.message || "Something went wrong. Please try again or contact me directly.",
         variant: "destructive",
       });
     } finally {
@@ -212,6 +202,7 @@ const ContactSection = () => {
                               <Input 
                                 placeholder="Your full name" 
                                 className="glass-card border-neon-purple/30 focus:border-neon-cyan transition-colors"
+                                disabled={isSubmitting}
                                 {...field} 
                               />
                             </FormControl>
@@ -231,6 +222,7 @@ const ContactSection = () => {
                                 placeholder="your.email@example.com" 
                                 type="email"
                                 className="glass-card border-neon-purple/30 focus:border-neon-cyan transition-colors"
+                                disabled={isSubmitting}
                                 {...field} 
                               />
                             </FormControl>
@@ -250,6 +242,7 @@ const ContactSection = () => {
                             <Input 
                               placeholder="What's this about?" 
                               className="glass-card border-neon-purple/30 focus:border-neon-cyan transition-colors"
+                              disabled={isSubmitting}
                               {...field} 
                             />
                           </FormControl>
@@ -268,6 +261,7 @@ const ContactSection = () => {
                             <Textarea 
                               placeholder="Tell me about your project or just say hi!"
                               className="glass-card border-neon-purple/30 focus:border-neon-cyan transition-colors min-h-[120px]"
+                              disabled={isSubmitting}
                               {...field} 
                             />
                           </FormControl>
