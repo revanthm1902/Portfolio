@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, Download, Code, Zap, Award, Coffee } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
 
-const HeroSection = ({ setCurrentSection }: { setCurrentSection: (section: string) => void }) => {
+const HeroSection = () => {
   const stats = [{
     icon: Code,
     value: '50+',
@@ -26,21 +26,7 @@ const HeroSection = ({ setCurrentSection }: { setCurrentSection: (section: strin
     color: 'neon-purple'
   }];
 
-  // Technology logos for sliding animation
-  const technologies = [
-    { name: 'React', logo: '⚛️' },
-    { name: 'TypeScript', logo: '📘' },
-    { name: 'Node.js', logo: '🟢' },
-    { name: 'Python', logo: '🐍' },
-    { name: 'AWS', logo: '☁️' },
-    { name: 'Docker', logo: '🐳' },
-    { name: 'MongoDB', logo: '🍃' },
-    { name: 'PostgreSQL', logo: '🐘' },
-    { name: 'Git', logo: '📦' },
-    { name: 'Firebase', logo: '🔥' },
-    { name: 'Next.js', logo: '▲' },
-    { name: 'Vue.js', logo: '💚' }
-  ];
+  const skills = ['React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'Docker'];
   
   const typingTexts = [
     'Full Stack Developer',
@@ -48,14 +34,6 @@ const HeroSection = ({ setCurrentSection }: { setCurrentSection: (section: strin
     'UI/UX Enthusiast',
     'Problem Solver',
     'Tech Innovator'
-  ];
-
-  const funnyFacts = [
-    "I debug code faster than I debug my life 🐛",
-    "Coffee-to-code converter since 2020 ☕",
-    "I speak fluent JavaScript and broken English 😄",
-    "Turning caffeine into clean code daily ⚡",
-    "Professional googler of error messages 🔍"
   ];
 
   return (
@@ -110,7 +88,7 @@ const HeroSection = ({ setCurrentSection }: { setCurrentSection: (section: strin
           <div className="inline-block">
             <h1 className="text-6xl md:text-8xl font-space font-bold animate-fade-in">
               <span className="text-foreground">Hello, I'm </span>
-              <span className="text-neon-purple text-glow animate-glow">Revanth</span>
+              <span className="text-neon-purple text-glow animate-glow">Alex</span>
             </h1>
             <div className="h-1 bg-gradient-to-r from-neon-purple via-neon-cyan to-neon-green rounded-full mt-4 animate-pulse"></div>
           </div>
@@ -133,31 +111,17 @@ const HeroSection = ({ setCurrentSection }: { setCurrentSection: (section: strin
           </p>
         </div>
 
-        {/* Funny Facts */}
-        <div className="bg-neon-purple/10 border border-neon-purple/30 rounded-lg p-6 animate-scale-in">
-          <h3 className="text-xl font-space text-neon-cyan mb-4">Fun Facts About Me</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {funnyFacts.map((fact, index) => (
-              <div key={index} className="text-sm text-muted-foreground bg-background/20 p-3 rounded-lg border border-neon-cyan/20">
-                {fact}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Technology Logos Slider */}
-        <div className="overflow-hidden w-full animate-scale-in">
-          <div className="flex space-x-8 animate-slide-infinite">
-            {[...technologies, ...technologies].map((tech, index) => (
-              <div 
-                key={index} 
-                className="flex-shrink-0 flex flex-col items-center gap-2 p-4 glass-card hover:bg-white/10 transition-all duration-300 hover:scale-110 group border border-white/20"
-              >
-                <span className="text-3xl group-hover:animate-bounce-slow">{tech.logo}</span>
-                <span className="text-xs font-mono text-muted-foreground">{tech.name}</span>
-              </div>
-            ))}
-          </div>
+        {/* Skills Tags */}
+        <div className="flex flex-wrap justify-center gap-4 animate-scale-in">
+          {skills.map((skill, index) => (
+            <span 
+              key={skill} 
+              className="px-6 py-3 glass-card text-sm font-mono text-neon-cyan hover:bg-neon-cyan/20 transition-all duration-300 hover:scale-110 cursor-pointer border border-neon-cyan/30"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {skill}
+            </span>
+          ))}
         </div>
 
         {/* Stats Cards */}
@@ -179,7 +143,6 @@ const HeroSection = ({ setCurrentSection }: { setCurrentSection: (section: strin
         <div className="flex flex-col sm:flex-row gap-8 justify-center animate-scale-in">
           <Button 
             size="lg" 
-            onClick={() => setCurrentSection('contact')}
             className="ui-btn bg-neon-purple hover:bg-neon-purple/80 text-white border border-neon-purple/50 neon-glow transition-all duration-300 hover:scale-105 group px-8 py-4"
           >
             <span className="flex items-center gap-3">
@@ -204,25 +167,23 @@ const HeroSection = ({ setCurrentSection }: { setCurrentSection: (section: strin
         <div className="flex justify-center space-x-10 animate-fade-in">
           {[{
             icon: Github,
-            href: 'https://github.com/revanthm051',
+            href: '#',
             label: 'GitHub',
             color: 'hover:text-neon-purple'
           }, {
             icon: Linkedin,
-            href: 'https://linkedin.com/in/revanth-m',
+            href: '#',
             label: 'LinkedIn',
             color: 'hover:text-neon-cyan'
           }, {
             icon: Mail,
-            href: 'mailto:revanthm051@gmail.com',
+            href: '#',
             label: 'Email',
             color: 'hover:text-neon-green'
           }].map((social, index) => (
             <a 
               key={social.label} 
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={social.href} 
               className={`p-6 glass-card ${social.color} transition-all duration-300 hover:scale-110 group relative overflow-hidden border border-white/20`}
               style={{ animationDelay: `${index * 0.15}s` }}
             >

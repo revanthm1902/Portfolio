@@ -1,231 +1,206 @@
-import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Code, Database, Palette, Cloud, Wrench, Brain, Award } from 'lucide-react';
-import CertificationPopup from './CertificationPopup';
+import { Badge } from '@/components/ui/badge';
+import { Code, Server, Palette, Database, Cloud, Zap } from 'lucide-react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
 const SkillsSection = () => {
-  const [selectedCertification, setSelectedCertification] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const openCertificationPopup = (cert) => {
-    setSelectedCertification(cert);
-    setIsPopupOpen(true);
-  };
-
   const skillCategories = [
     {
-      title: 'Frontend Development',
       icon: Code,
+      title: 'Frontend Development',
       color: 'neon-purple',
       skills: [
-        { name: 'React', level: 95, color: '#8B5CF6' },
-        { name: 'TypeScript', level: 90, color: '#06B6D4' },
-        { name: 'Next.js', level: 85, color: '#10B981' },
-        { name: 'Vue.js', level: 80, color: '#F59E0B' },
-        { name: 'HTML/CSS', level: 95, color: '#EF4444' }
+        { name: 'React/Next.js', level: 95, description: 'Advanced component architecture & state management' },
+        { name: 'TypeScript', level: 90, description: 'Type-safe development & complex type definitions' },
+        { name: 'Tailwind CSS', level: 88, description: 'Responsive design & custom component systems' },
+        { name: 'Vue.js', level: 75, description: 'Component composition & reactive systems' }
+      ],
+      chartData: [
+        { name: 'React/Next.js', value: 95, color: '#8b5cf6' },
+        { name: 'TypeScript', value: 90, color: '#06b6d4' },
+        { name: 'Tailwind CSS', value: 88, color: '#10b981' },
+        { name: 'Vue.js', value: 75, color: '#f59e0b' }
       ]
     },
     {
+      icon: Server,
       title: 'Backend Development',
-      icon: Database,
       color: 'neon-cyan',
       skills: [
-        { name: 'Node.js', level: 90, color: '#8B5CF6' },
-        { name: 'Python', level: 85, color: '#06B6D4' },
-        { name: 'Express.js', level: 88, color: '#10B981' },
-        { name: 'PostgreSQL', level: 82, color: '#F59E0B' },
-        { name: 'MongoDB', level: 87, color: '#EF4444' }
+        { name: 'Node.js', level: 92, description: 'RESTful APIs & microservices architecture' },
+        { name: 'Python', level: 85, description: 'Django, FastAPI & data processing' },
+        { name: 'GraphQL', level: 80, description: 'Schema design & query optimization' },
+        { name: 'Java', level: 70, description: 'Spring Boot & enterprise applications' }
+      ],
+      chartData: [
+        { name: 'Node.js', value: 92, color: '#8b5cf6' },
+        { name: 'Python', value: 85, color: '#06b6d4' },
+        { name: 'GraphQL', value: 80, color: '#10b981' },
+        { name: 'Java', value: 70, color: '#f59e0b' }
       ]
     },
     {
-      title: 'Cloud & DevOps',
+      icon: Database,
+      title: 'Database & Storage',
+      color: 'neon-green',
+      skills: [
+        { name: 'PostgreSQL', level: 88, description: 'Complex queries & performance optimization' },
+        { name: 'MongoDB', level: 82, description: 'Document modeling & aggregation pipelines' },
+        { name: 'Redis', level: 78, description: 'Caching strategies & session management' },
+        { name: 'Supabase', level: 85, description: 'Real-time features & authentication' }
+      ],
+      chartData: [
+        { name: 'PostgreSQL', value: 88, color: '#8b5cf6' },
+        { name: 'MongoDB', value: 82, color: '#06b6d4' },
+        { name: 'Redis', value: 78, color: '#10b981' },
+        { name: 'Supabase', value: 85, color: '#f59e0b' }
+      ]
+    },
+    {
       icon: Cloud,
-      color: 'neon-green',
+      title: 'DevOps & Cloud',
+      color: 'neon-purple',
       skills: [
-        { name: 'AWS', level: 85, color: '#8B5CF6' },
-        { name: 'Docker', level: 90, color: '#06B6D4' },
-        { name: 'Kubernetes', level: 80, color: '#10B981' },
-        { name: 'CI/CD', level: 85, color: '#F59E0B' },
-        { name: 'Terraform', level: 75, color: '#EF4444' }
-      ]
-    },
-    {
-      title: 'Tools & Others',
-      icon: Wrench,
-      color: 'neon-green',
-      skills: [
-        { name: 'Git', level: 95, color: '#8B5CF6' },
-        { name: 'Linux', level: 85, color: '#06B6D4' },
-        { name: 'Figma', level: 80, color: '#10B981' },
-        { name: 'Jest', level: 85, color: '#F59E0B' },
-        { name: 'GraphQL', level: 78, color: '#EF4444' }
+        { name: 'AWS', level: 83, description: 'EC2, S3, Lambda & CloudFormation' },
+        { name: 'Docker', level: 87, description: 'Containerization & multi-stage builds' },
+        { name: 'Kubernetes', level: 72, description: 'Container orchestration & scaling' },
+        { name: 'CI/CD', level: 80, description: 'GitHub Actions & automated deployments' }
+      ],
+      chartData: [
+        { name: 'AWS', value: 83, color: '#8b5cf6' },
+        { name: 'Docker', value: 87, color: '#06b6d4' },
+        { name: 'Kubernetes', value: 72, color: '#10b981' },
+        { name: 'CI/CD', value: 80, color: '#f59e0b' }
       ]
     }
+  ];
+
+  const tools = [
+    'VS Code', 'Git', 'Figma', 'Postman', 'Jira', 'Slack',
+    'Adobe XD', 'Chrome DevTools', 'ESLint', 'Prettier'
   ];
 
   const certifications = [
-    {
-      id: 1,
-      title: 'AWS Certified Solutions Architect',
-      issuer: 'Amazon Web Services',
-      date: 'March 2024',
-      description: 'Demonstrated expertise in designing distributed systems on AWS platform with best practices for security, reliability, and cost optimization.',
-      skills: ['AWS', 'Cloud Architecture', 'EC2', 'S3', 'Lambda', 'CloudFormation'],
-      credentialId: 'AWS-SAA-2024-REV001',
-      verificationUrl: 'https://aws.amazon.com/verification'
-    },
-    {
-      id: 2,
-      title: 'Meta Frontend Developer Professional',
-      issuer: 'Meta (Facebook)',
-      date: 'January 2024',
-      description: 'Comprehensive program covering React, advanced JavaScript, version control, responsive design, and UI/UX fundamentals.',
-      skills: ['React', 'JavaScript', 'HTML/CSS', 'Git', 'Responsive Design', 'UI/UX'],
-      credentialId: 'META-FED-2024-REV002'
-    },
-    {
-      id: 3,
-      title: 'Google Cloud Professional Developer',
-      issuer: 'Google Cloud',
-      date: 'December 2023',
-      description: 'Expertise in developing scalable and highly available applications on Google Cloud Platform using modern development practices.',
-      skills: ['GCP', 'Kubernetes', 'Docker', 'CI/CD', 'Microservices'],
-      credentialId: 'GCP-PD-2023-REV003',
-      verificationUrl: 'https://cloud.google.com/certification/verify'
-    },
-    {
-      id: 4,
-      title: 'MongoDB Certified Developer',
-      issuer: 'MongoDB University',
-      date: 'November 2023',
-      description: 'Advanced knowledge of MongoDB database design, queries, indexing, and performance optimization.',
-      skills: ['MongoDB', 'NoSQL', 'Database Design', 'Aggregation', 'Performance Tuning'],
-      credentialId: 'MONGO-DEV-2023-REV004'
-    },
-    {
-      id: 5,
-      title: 'Docker Certified Associate',
-      issuer: 'Docker Inc.',
-      date: 'October 2023',
-      description: 'Comprehensive understanding of containerization, Docker architecture, and container orchestration.',
-      skills: ['Docker', 'Containerization', 'DevOps', 'Linux', 'Container Security'],
-      credentialId: 'DOCKER-DCA-2023-REV005'
-    },
-    {
-      id: 6,
-      title: 'Kubernetes Administrator (CKA)',
-      issuer: 'Cloud Native Computing Foundation',
-      date: 'September 2023',
-      description: 'Hands-on experience with Kubernetes cluster administration, troubleshooting, and best practices.',
-      skills: ['Kubernetes', 'Container Orchestration', 'DevOps', 'YAML', 'Cluster Management'],
-      credentialId: 'CKA-2023-REV006',
-      verificationUrl: 'https://training.linuxfoundation.org/certification/verify'
-    }
+    { name: 'AWS Certified Developer', org: 'Amazon Web Services', year: '2023' },
+    { name: 'React Developer Certificate', org: 'Meta', year: '2022' },
+    { name: 'MongoDB University', org: 'MongoDB Inc.', year: '2023' },
+    { name: 'Google Cloud Platform', org: 'Google', year: '2024' }
   ];
 
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const data = payload[0];
+      return (
+        <div className="glass-card p-3 border border-white/20">
+          <p className="text-neon-cyan font-mono">{data.name}</p>
+          <p className="text-white">
+            <span className="text-neon-green">{data.value}%</span> proficiency
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <section className="min-h-screen py-24 px-4 hero-gradient bg-grid relative overflow-hidden">
-      {/* Background Animation */}
+    <section className="min-h-screen py-20 px-4 hero-gradient bg-grid relative overflow-hidden">
+      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(25)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-neon-green/20 animate-float"
+            className="absolute opacity-20"
             style={{
-              width: `${Math.random() * 6 + 4}px`,
-              height: `${Math.random() * 6 + 4}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${8 + Math.random() * 12}s`
             }}
-          />
+          >
+            <Code className="h-4 w-4 text-neon-purple animate-float" />
+          </div>
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 space-y-6">
-          <h2 className="text-5xl md:text-6xl font-space font-bold animate-fade-in">
-            <span className="text-foreground">My </span>
-            <span className="text-neon-green text-glow animate-glow">Skills</span>
+      <div className="max-w-7xl mx-auto relative z-10 space-y-16">
+        {/* Header */}
+        <div className="text-center space-y-6">
+          <h2 className="text-5xl md:text-6xl font-space font-bold text-neon-cyan animate-glow">
+            Skills & Expertise
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-in-left">
-            A comprehensive overview of my technical expertise across different domains of software development.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            A comprehensive toolkit built through years of hands-on experience and continuous learning
           </p>
         </div>
 
         {/* Skills Grid with Pie Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          {skillCategories.map((category, index) => (
+        <div className="grid lg:grid-cols-2 gap-8">
+          {skillCategories.map((category, categoryIndex) => (
             <Card 
               key={category.title}
-              className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-[1.02] border-white/20"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="glass-card border-white/20 hover:border-white/30 transition-all duration-300 group"
+              style={{ animationDelay: `${categoryIndex * 0.1}s` }}
             >
-              <CardHeader className="text-center">
-                <CardTitle className={`text-2xl font-space text-${category.color} flex items-center justify-center gap-3`}>
-                  <category.icon className="h-7 w-7" />
+              <CardHeader>
+                <CardTitle className={`flex items-center gap-3 text-xl text-${category.color}`}>
+                  <category.icon className="h-6 w-6 group-hover:animate-bounce-slow" />
                   {category.title}
                 </CardTitle>
-                <CardDescription className="text-muted-foreground">
-                  Proficiency levels across key technologies
-                </CardDescription>
               </CardHeader>
-              
               <CardContent className="space-y-6">
-                {/* Pie Chart */}
+                {/* Interactive Pie Chart */}
                 <div className="h-64 w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
-                        data={category.skills}
+                        data={category.chartData}
                         cx="50%"
                         cy="50%"
                         innerRadius={40}
                         outerRadius={80}
-                        paddingAngle={5}
-                        dataKey="level"
+                        paddingAngle={2}
+                        dataKey="value"
+                        animationBegin={categoryIndex * 200}
+                        animationDuration={1000}
                       >
-                        {category.skills.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        {category.chartData.map((entry, index) => (
+                          <Cell 
+                            key={`cell-${index}`} 
+                            fill={entry.color}
+                            className="hover:opacity-80 transition-opacity cursor-pointer"
+                          />
                         ))}
                       </Pie>
-                      <Tooltip 
-                        formatter={(value) => [`${value}%`, 'Proficiency']}
-                        labelStyle={{ color: '#fff' }}
-                        contentStyle={{ 
-                          backgroundColor: 'rgba(0,0,0,0.8)', 
-                          border: '1px solid rgba(139, 92, 246, 0.3)',
-                          borderRadius: '8px'
-                        }}
-                      />
+                      <Tooltip content={<CustomTooltip />} />
                       <Legend 
-                        wrapperStyle={{ fontSize: '12px' }}
-                        iconType="circle"
+                        wrapperStyle={{ 
+                          fontSize: '12px',
+                          color: '#a1a1aa',
+                          fontFamily: 'monospace'
+                        }}
                       />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
 
-                {/* Progress Bars */}
+                {/* Skill Details */}
                 <div className="space-y-4">
-                  {category.skills.map((skill) => (
-                    <div key={skill.name} className="space-y-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div 
+                      key={skill.name}
+                      className="space-y-2"
+                      style={{ animationDelay: `${(categoryIndex * 0.1) + (skillIndex * 0.05)}s` }}
+                    >
                       <div className="flex justify-between items-center">
-                        <span className="text-sm font-mono text-foreground">{skill.name}</span>
-                        <span className={`text-sm font-bold text-${category.color}`}>{skill.level}%</span>
+                        <span className="font-medium text-foreground text-sm">{skill.name}</span>
+                        <span className={`font-mono text-xs text-${category.color}`}>{skill.level}%</span>
                       </div>
                       <Progress 
                         value={skill.level} 
-                        className="h-2 bg-background/50" 
-                        style={{ 
-                          background: `linear-gradient(90deg, ${skill.color} 0%, ${skill.color}80 100%)`
-                        }}
+                        className="h-1.5 bg-white/10"
                       />
+                      <p className="text-xs text-muted-foreground">{skill.description}</p>
                     </div>
                   ))}
                 </div>
@@ -234,80 +209,76 @@ const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Certifications Section */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-            <h3 className="text-4xl font-space font-bold text-neon-cyan mb-4 flex items-center justify-center gap-3">
-              <Award className="h-8 w-8" />
-              Certifications
-            </h3>
-            <p className="text-lg text-muted-foreground">
-              Industry-recognized certifications that validate my expertise
-            </p>
+        {/* Tools & Technologies */}
+        <div className="space-y-8">
+          <h3 className="text-3xl font-space font-bold text-center text-neon-green">
+            Tools & Technologies
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {tools.map((tool, index) => (
+              <Badge
+                key={tool}
+                variant="secondary"
+                className="glass-card px-4 py-2 text-sm hover:scale-110 transition-all duration-300 hover:bg-neon-purple/20 hover:text-neon-purple border-white/20"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                {tool}
+              </Badge>
+            ))}
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Certifications */}
+        <div className="space-y-8">
+          <h3 className="text-3xl font-space font-bold text-center text-neon-purple">
+            Certifications & Achievements
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert, index) => (
               <Card 
-                key={cert.id}
-                className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-105 cursor-pointer group border-neon-purple/30"
+                key={cert.name}
+                className="glass-card text-center hover:scale-105 transition-all duration-300 group"
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => openCertificationPopup(cert)}
               >
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-neon-purple/20 to-neon-cyan/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Award className="h-8 w-8 text-neon-green" />
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-full flex items-center justify-center group-hover:animate-pulse">
+                    <Zap className="h-6 w-6 text-white" />
                   </div>
-                  <CardTitle className="text-lg font-space text-foreground group-hover:text-neon-purple transition-colors line-clamp-2">
-                    {cert.title}
-                  </CardTitle>
-                  <CardDescription className="text-neon-cyan font-medium">
-                    {cert.issuer}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  <div className="text-center">
-                    <Badge variant="outline" className="text-neon-green border-neon-green/50">
-                      {cert.date}
-                    </Badge>
-                  </div>
-                  
-                  <p className="text-sm text-muted-foreground text-center line-clamp-3">
-                    {cert.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-1 justify-center">
-                    {cert.skills.slice(0, 3).map((skill) => (
-                      <span 
-                        key={skill}
-                        className="px-2 py-1 text-xs font-mono bg-neon-cyan/20 text-neon-cyan rounded border border-neon-cyan/30"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                    {cert.skills.length > 3 && (
-                      <span className="px-2 py-1 text-xs font-mono bg-neon-purple/20 text-neon-purple rounded border border-neon-purple/30">
-                        +{cert.skills.length - 3} more
-                      </span>
-                    )}
-                  </div>
-                  
-                  <div className="text-center text-xs text-muted-foreground opacity-70 group-hover:opacity-100 transition-opacity">
-                    Click to view details
-                  </div>
+                  <h4 className="font-semibold text-foreground mb-1">{cert.name}</h4>
+                  <p className="text-sm text-neon-cyan mb-1">{cert.org}</p>
+                  <p className="text-xs text-muted-foreground font-mono">{cert.year}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
-      </div>
 
-      <CertificationPopup 
-        certification={selectedCertification}
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-      />
+        {/* Experience Highlight */}
+        <Card className="glass-card border-neon-green/30 hover:border-neon-green/50 transition-all duration-300">
+          <CardContent className="p-8 text-center">
+            <h3 className="text-2xl font-space font-bold text-neon-green mb-4">
+              What Makes Me Different?
+            </h3>
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div className="space-y-3">
+                <Palette className="h-12 w-12 mx-auto text-neon-purple animate-glow" />
+                <h4 className="text-lg font-semibold text-foreground">Design-First Approach</h4>
+                <p className="text-muted-foreground">I believe great functionality starts with great design. Every component I build considers both aesthetics and usability.</p>
+              </div>
+              <div className="space-y-3">
+                <Server className="h-12 w-12 mx-auto text-neon-cyan animate-glow" />
+                <h4 className="text-lg font-semibold text-foreground">Performance Obsessed</h4>
+                <p className="text-muted-foreground">I optimize for speed and efficiency at every level - from database queries to bundle sizes and rendering performance.</p>
+              </div>
+              <div className="space-y-3">
+                <Zap className="h-12 w-12 mx-auto text-neon-green animate-glow" />
+                <h4 className="text-lg font-semibold text-foreground">Future-Ready Code</h4>
+                <p className="text-muted-foreground">I write maintainable, scalable code using modern patterns and best practices that stand the test of time.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </section>
   );
 };
