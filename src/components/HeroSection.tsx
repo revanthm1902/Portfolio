@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, Download, Code, Zap, Award, Coffee } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
+import SlidingLogos from './SlidingLogos';
 
 const HeroSection = () => {
   const stats = [{
@@ -26,7 +27,14 @@ const HeroSection = () => {
     color: 'neon-purple'
   }];
 
-  const skills = ['React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'Docker'];
+  const funFacts = [
+    "🚀 I debug with console.log and I'm not ashamed!",
+    "☕ My code-to-coffee ratio is perfectly balanced",
+    "🎮 I learned problem-solving from video games",
+    "🌙 My best ideas come at 2 AM (don't ask why)",
+    "🔥 I can center a div... most of the time",
+    "🎯 Turning 'it works on my machine' into production magic"
+  ];
   
   const typingTexts = [
     'Full Stack Developer',
@@ -35,6 +43,13 @@ const HeroSection = () => {
     'Problem Solver',
     'Tech Innovator'
   ];
+
+  const scrollToContact = () => {
+    const contactSection = document.querySelector('[data-section="contact"]');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center hero-gradient bg-grid relative overflow-hidden">
@@ -88,7 +103,7 @@ const HeroSection = () => {
           <div className="inline-block">
             <h1 className="text-6xl md:text-8xl font-space font-bold animate-fade-in">
               <span className="text-foreground">Hello, I'm </span>
-              <span className="text-neon-purple text-glow animate-glow">Alex</span>
+              <span className="text-neon-purple text-glow animate-glow">Revanth</span>
             </h1>
             <div className="h-1 bg-gradient-to-r from-neon-purple via-neon-cyan to-neon-green rounded-full mt-4 animate-pulse"></div>
           </div>
@@ -111,17 +126,26 @@ const HeroSection = () => {
           </p>
         </div>
 
-        {/* Skills Tags */}
-        <div className="flex flex-wrap justify-center gap-4 animate-scale-in">
-          {skills.map((skill, index) => (
-            <span 
-              key={skill} 
-              className="px-6 py-3 glass-card text-sm font-mono text-neon-cyan hover:bg-neon-cyan/20 transition-all duration-300 hover:scale-110 cursor-pointer border border-neon-cyan/30"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {skill}
-            </span>
-          ))}
+        {/* Fun Facts Section */}
+        <div className="space-y-6 animate-fade-in">
+          <h3 className="text-2xl font-space text-neon-cyan">Random Dev Facts About Me</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {funFacts.map((fact, index) => (
+              <div 
+                key={index}
+                className="glass-card p-4 text-sm text-muted-foreground hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {fact}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Sliding Tech Logos */}
+        <div className="space-y-4 animate-fade-in">
+          <h3 className="text-2xl font-space text-neon-green">Technologies I Work With</h3>
+          <SlidingLogos />
         </div>
 
         {/* Stats Cards */}
@@ -144,6 +168,7 @@ const HeroSection = () => {
           <Button 
             size="lg" 
             className="ui-btn bg-neon-purple hover:bg-neon-purple/80 text-white border border-neon-purple/50 neon-glow transition-all duration-300 hover:scale-105 group px-8 py-4"
+            onClick={scrollToContact}
           >
             <span className="flex items-center gap-3">
               <Mail className="h-6 w-6 group-hover:animate-wave" />
