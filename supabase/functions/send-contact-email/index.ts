@@ -19,35 +19,13 @@ interface ContactEmailRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  console.log("Contact email function called with method:", req.method);
-  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
-    console.log("Handling CORS preflight request");
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const requestBody = await req.text();
-    console.log("Request body received:", requestBody);
-    
-    const { name, email, subject, message, to }: ContactEmailRequest = JSON.parse(requestBody);
-
-    console.log("Parsed request data:", { name, email, subject, to });
-
-    // Validate required fields
-    if (!name || !email || !subject || !message || !to) {
-      console.error("Missing required fields");
-      return new Response(
-        JSON.stringify({ error: "Missing required fields" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
-    }
-
-    console.log("Sending email to portfolio owner:", to);
+    const { name, email, subject, message, to }: ContactEmailRequest = await req.json();
 
     // Send email to the portfolio owner
     const emailResponse = await resend.emails.send({
@@ -88,17 +66,8 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Email sent to portfolio owner, response:", emailResponse);
-
-    if (emailResponse.error) {
-      console.error("Error sending email to portfolio owner:", emailResponse.error);
-      throw new Error(emailResponse.error.message || 'Failed to send email to portfolio owner');
-    }
-
-    console.log("Sending confirmation email to sender:", email);
-
     // Send confirmation email to the sender
-    const confirmationResponse = await resend.emails.send({
+    await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
       to: [email],
       subject: "Thank you for reaching out!",
@@ -114,12 +83,12 @@ const handler = async (req: Request): Promise<Response> => {
           <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #333; margin-top: 0;">Your message summary:</h3>
             <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Message:</strong> ${message.substring(0, 100)}${message.length > 100 ? '...' : ''}</p>
+            <p><strong>Message:</strong> ${message.substring(0, 100)}...</p>
           </div>
           
           <p style="color: #555;">
             Best regards,<br>
-            <strong>Alex (Portfolio Developer)</strong>
+            <strong>Your Portfolio Developer</strong>
           </p>
           
           <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;">
@@ -131,19 +100,9 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Confirmation email sent, response:", confirmationResponse);
+    console.log("Emails sent successfully:", emailResponse);
 
-    if (confirmationResponse.error) {
-      console.error("Error sending confirmation email:", confirmationResponse.error);
-      // Don't throw here as the main email was successful
-    }
-
-    console.log("Both emails sent successfully");
-
-    return new Response(JSON.stringify({ 
-      success: true,
-      message: "Emails sent successfully"
-    }), {
+    return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
@@ -152,13 +111,8 @@ const handler = async (req: Request): Promise<Response> => {
     });
   } catch (error: any) {
     console.error("Error in send-contact-email function:", error);
-    console.error("Error stack:", error.stack);
-    
     return new Response(
-      JSON.stringify({ 
-        error: error.message || "An unexpected error occurred",
-        details: error.stack
-      }),
+      JSON.stringify({ error: error.message }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

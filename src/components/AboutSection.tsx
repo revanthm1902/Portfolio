@@ -1,89 +1,33 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Heart, Target, Lightbulb, Rocket, Award } from 'lucide-react';
-import { useState } from 'react';
-import CertificationPopup from './CertificationPopup';
-
-const values = [
-  {
-    icon: Heart,
-    title: 'Passion-Driven',
-    description: 'I believe great code comes from genuine passion for solving problems and creating meaningful experiences.',
-    color: 'text-red-400'
-  },
-  {
-    icon: Target,
-    title: 'Goal-Oriented',
-    description: 'Every line of code serves a purpose. I focus on delivering results that matter to users and businesses.',
-    color: 'text-neon-cyan'
-  },
-  {
-    icon: Lightbulb,
-    title: 'Innovation-Focused',
-    description: 'I constantly explore new technologies and methodologies to stay ahead of the curve.',
-    color: 'text-neon-green'
-  },
-  {
-    icon: Rocket,
-    title: 'Performance-Minded',
-    description: 'Building fast, scalable, and efficient solutions is not just a goal—it\'s a commitment.',
-    color: 'text-neon-purple'
-  }
-];
+import { Heart, Target, Lightbulb, Rocket } from 'lucide-react';
 
 const AboutSection = () => {
-  const [selectedCert, setSelectedCert] = useState<string | null>(null);
-
-  const certifications = [
+  const values = [
     {
-      id: 'aws-cloud-practitioner',
-      title: 'AWS Cloud Practitioner',
-      issuer: 'Amazon Web Services',
-      date: '2024-03-15',
-      credentialId: 'AWS-CCP-001234',
-      description: 'Foundational understanding of AWS Cloud services, security, architecture, pricing, and support.',
-      skills: ['Cloud Computing', 'AWS Services', 'Security', 'Architecture'],
-      verifyUrl: '#',
-      certificateUrl: '#'
+      icon: Heart,
+      title: 'Passion-Driven',
+      description: 'I believe great code comes from genuine passion for solving problems and creating meaningful experiences.',
+      color: 'text-red-400'
     },
     {
-      id: 'react-developer',
-      title: 'Professional React Developer',
-      issuer: 'Meta',
-      date: '2023-11-20',
-      credentialId: 'META-RD-005678',
-      description: 'Advanced React development skills including hooks, state management, and performance optimization.',
-      skills: ['React', 'JavaScript', 'State Management', 'Performance'],
-      verifyUrl: '#',
-      certificateUrl: '#'
+      icon: Target,
+      title: 'Goal-Oriented',
+      description: 'Every line of code serves a purpose. I focus on delivering results that matter to users and businesses.',
+      color: 'text-neon-cyan'
     },
     {
-      id: 'docker-certified',
-      title: 'Docker Certified Associate',
-      issuer: 'Docker Inc.',
-      date: '2023-08-10',
-      credentialId: 'DCA-009876',
-      description: 'Containerization expertise using Docker for application deployment and orchestration.',
-      skills: ['Docker', 'Containerization', 'DevOps', 'Orchestration'],
-      verifyUrl: '#',
-      certificateUrl: '#'
-    }
-  ];
-
-  const education = [
-    {
-      degree: 'Bachelor of Science in Computer Science',
-      institution: 'University of Technology',
-      year: '2020-2024',
-      gpa: '3.8/4.0',
-      achievements: ['Dean\'s List', 'Outstanding Student in Software Engineering', 'Hackathon Winner 2023']
+      icon: Lightbulb,
+      title: 'Innovation-Focused',
+      description: 'I constantly explore new technologies and methodologies to stay ahead of the curve.',
+      color: 'text-neon-green'
     },
     {
-      degree: 'Full Stack Web Development Bootcamp',
-      institution: 'TechCamp Institute',
-      year: '2023',
-      gpa: 'Certificate of Excellence',
-      achievements: ['Top 5% of Class', 'Best Final Project Award', 'Peer Leadership Recognition']
+      icon: Rocket,
+      title: 'Performance-Minded',
+      description: 'Building fast, scalable, and efficient solutions is not just a goal—it\'s a commitment.',
+      color: 'text-neon-purple'
     }
   ];
 
@@ -127,21 +71,8 @@ const AboutSection = () => {
 
         {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Personal Story and Photo */}
+          {/* Personal Story */}
           <div className="space-y-8">
-            {/* Profile Image */}
-            <div className="flex justify-center lg:justify-start">
-              <div className="relative">
-                <div className="w-48 h-48 rounded-full glass-card border-4 border-neon-purple/50 flex items-center justify-center overflow-hidden">
-                  <div className="text-6xl">👨‍💻</div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-neon-green rounded-full flex items-center justify-center text-2xl">
-                  ✨
-                </div>
-              </div>
-            </div>
-
-            {/* Personal Story */}
             <Card className="glass-card border-neon-purple/30 hover:border-neon-purple/50 transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-2xl text-neon-purple">My Story</CardTitle>
@@ -173,74 +104,6 @@ const AboutSection = () => {
               </CardContent>
             </Card>
 
-            {/* Education Section */}
-            <Card className="glass-card border-neon-cyan/30 hover:border-neon-cyan/50 transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-2xl text-neon-cyan">Education</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {education.map((edu, index) => (
-                  <div key={index} className="space-y-3">
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground">{edu.degree}</h4>
-                      <p className="text-neon-purple font-medium">{edu.institution}</p>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span>{edu.year}</span>
-                        <span>•</span>
-                        <span>{edu.gpa}</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 className="text-sm font-medium text-neon-green mb-2">Key Achievements:</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
-                        {edu.achievements.map((achievement, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <span className="text-neon-green">•</span>
-                            {achievement}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    {index < education.length - 1 && (
-                      <div className="h-px bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent"></div>
-                    )}
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Certifications */}
-            <Card className="glass-card border-neon-green/30 hover:border-neon-green/50 transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-2xl text-neon-green flex items-center gap-2">
-                  <Award className="h-6 w-6" />
-                  Certifications
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-4">
-                  {certifications.map((cert) => (
-                    <div
-                      key={cert.id}
-                      onClick={() => setSelectedCert(cert.id)}
-                      className="p-4 glass-card hover:bg-white/10 transition-all duration-300 cursor-pointer hover:scale-105 group border border-neon-green/20 hover:border-neon-green/50"
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-foreground group-hover:text-neon-green transition-colors">
-                            {cert.title}
-                          </h4>
-                          <p className="text-sm text-neon-cyan">{cert.issuer}</p>
-                          <p className="text-xs text-muted-foreground">{cert.date}</p>
-                        </div>
-                        <Award className="h-5 w-5 text-neon-green group-hover:animate-bounce-slow" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Values */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {values.map((value, index) => (
@@ -259,7 +122,7 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Right Column - Journey Timeline */}
+          {/* Journey Timeline */}
           <div className="space-y-8">
             <h3 className="text-3xl font-space font-bold text-neon-cyan text-center">My Journey</h3>
             <div className="space-y-6">
@@ -314,15 +177,6 @@ const AboutSection = () => {
           </CardContent>
         </Card>
       </div>
-
-      {/* Certification Popup */}
-      {selectedCert && (
-        <CertificationPopup
-          certification={certifications.find(cert => cert.id === selectedCert)!}
-          isOpen={!!selectedCert}
-          onClose={() => setSelectedCert(null)}
-        />
-      )}
     </section>
   );
 };
