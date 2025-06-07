@@ -1,31 +1,62 @@
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, Download, Code, Zap, Award, Coffee } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
+import SlidingLogos from './SlidingLogos';
+
 const HeroSection = () => {
-  const stats = [{
-    icon: Code,
-    value: '50+',
-    label: 'Projects Built',
-    color: 'neon-purple'
-  }, {
-    icon: Zap,
-    value: '3+',
-    label: 'Years Experience',
-    color: 'neon-cyan'
-  }, {
-    icon: Award,
-    value: '15+',
-    label: 'Certifications',
-    color: 'neon-green'
-  }, {
-    icon: Coffee,
-    value: '∞',
-    label: 'Cups of Coffee',
-    color: 'neon-purple'
-  }];
-  const skills = ['React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'Docker'];
-  const typingTexts = ['Full Stack Developer', 'Digital Architect', 'UI/UX Enthusiast', 'Problem Solver', 'Tech Innovator'];
-  return <section className="min-h-screen flex items-center justify-center hero-gradient bg-grid relative overflow-hidden">
+  const stats = [
+    {
+      icon: Code,
+      value: '50+',
+      label: 'Projects Built',
+      color: 'neon-purple'
+    },
+    {
+      icon: Zap,
+      value: '3+',
+      label: 'Years Experience',
+      color: 'neon-cyan'
+    },
+    {
+      icon: Award,
+      value: '15+',
+      label: 'Certifications',
+      color: 'neon-green'
+    },
+    {
+      icon: Coffee,
+      value: '∞',
+      label: 'Cups of Coffee',
+      color: 'neon-purple'
+    }
+  ];
+
+  const typingTexts = [
+    'Full Stack Developer',
+    'Digital Architect', 
+    'UI/UX Enthusiast',
+    'Problem Solver',
+    'Tech Innovator'
+  ];
+
+  const funFacts = [
+    "🎮 I debug code better after a good gaming session",
+    "☕ My code quality is directly proportional to my coffee intake",
+    "🌙 I'm a night owl - my best code happens at 2 AM",
+    "🎵 I code to lo-fi beats and epic movie soundtracks",
+    "🍕 Pizza is my debugging fuel of choice"
+  ];
+
+  const handleConnectClick = () => {
+    // Find contact section and scroll to it
+    const contactSection = document.querySelector('[data-section="contact"]');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="min-h-screen flex items-center justify-center hero-gradient bg-grid relative overflow-hidden">
       {/* Floating Background Shapes */}
       <div className="floating-shapes">
         {[...Array(20)].map((_, i) => <div key={i} className="shape w-4 h-4 bg-neon-purple rounded-full" style={{
@@ -75,13 +106,26 @@ const HeroSection = () => {
           </p>
         </div>
 
-        {/* Skills Tags */}
-        <div className="flex flex-wrap justify-center gap-4 animate-scale-in">
-          {skills.map((skill, index) => <span key={skill} className="px-6 py-3 glass-card text-sm font-mono text-neon-cyan hover:bg-neon-cyan/20 transition-all duration-300 hover:scale-110 cursor-pointer border border-neon-cyan/30" style={{
-          animationDelay: `${index * 0.1}s`
-        }}>
-              {skill}
-            </span>)}
+        {/* Fun Facts Section */}
+        <div className="space-y-4 animate-fade-in">
+          <h3 className="text-lg font-mono text-neon-cyan">// Fun facts about me</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {funFacts.map((fact, index) => (
+              <div
+                key={index}
+                className="p-4 glass-card text-sm text-muted-foreground hover:bg-white/10 transition-all duration-300 hover:scale-105 border border-white/20"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {fact}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Sliding Tech Logos */}
+        <div className="space-y-4 animate-scale-in">
+          <h3 className="text-lg font-mono text-neon-green">// Technologies I work with</h3>
+          <SlidingLogos />
         </div>
 
         {/* Stats Cards */}
@@ -97,7 +141,11 @@ const HeroSection = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-8 justify-center animate-scale-in">
-          <Button size="lg" className="ui-btn bg-neon-purple hover:bg-neon-purple/80 text-white border border-neon-purple/50 neon-glow transition-all duration-300 hover:scale-105 group px-8 py-4">
+          <Button 
+            size="lg" 
+            className="ui-btn bg-neon-purple hover:bg-neon-purple/80 text-white border border-neon-purple/50 neon-glow transition-all duration-300 hover:scale-105 group px-8 py-4"
+            onClick={handleConnectClick}
+          >
             <span className="flex items-center gap-3">
               <Mail className="h-6 w-6 group-hover:animate-wave" />
               Let's Connect
@@ -137,6 +185,8 @@ const HeroSection = () => {
             </a>)}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
