@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Home, User, Code, Briefcase, BookOpen, Mail } from 'lucide-react';
@@ -29,8 +28,8 @@ const Navigation = ({ currentSection, setCurrentSection }: NavigationProps) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <div className="text-2xl font-space font-bold text-neon-purple animate-glow cursor-pointer hover:scale-110 transition-transform duration-300">
-              &lt;Alex.dev/&gt;
+            <div className="text-2xl font-space font-bold text-neon-purple animate-glow cursor-pointer logo-hover">
+              &lt;rev.dev/&gt;
             </div>
 
             {/* Desktop Menu */}
@@ -76,8 +75,8 @@ const Navigation = ({ currentSection, setCurrentSection }: NavigationProps) => {
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
           <div className="fixed top-0 right-0 h-full w-64 glass-card border-l border-white/20 p-6 animate-slide-in-right">
             <div className="flex justify-between items-center mb-8">
-              <div className="text-xl font-space font-bold text-neon-purple animate-glow">
-                &lt;Alex.dev/&gt;
+              <div className="text-xl font-space font-bold text-neon-purple animate-glow logo-hover">
+                &lt;Rev.dev/&gt;
               </div>
               <Button
                 variant="ghost"

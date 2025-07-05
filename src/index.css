@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
@@ -114,6 +113,15 @@
     box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.3), 0 0 40px hsl(var(--neon-purple) / 0.2);
   }
 
+  /* Enhanced dark mode neon glow */
+  .dark .neon-glow {
+    box-shadow: 
+      0 0 20px hsl(var(--neon-purple)), 
+      0 0 40px hsl(var(--neon-purple)), 
+      0 0 60px hsl(var(--neon-purple)),
+      0 0 80px hsl(var(--neon-purple) / 0.3);
+  }
+
   /* UI Button Styles */
   .ui-btn {
     --btn-default-bg: rgb(41, 41, 41);
@@ -205,6 +213,7 @@
     100% { content: ""; right: 0; }
   }
 
+  /* Enhanced cursor trail for dark mode */
   .cursor-trail {
     pointer-events: none;
     position: fixed;
@@ -217,6 +226,104 @@
     transform: translate(-50%, -50%);
     z-index: 9999;
     transition: opacity 0.3s ease;
+    filter: blur(0.5px);
+  }
+
+  /* Secondary cursor trail for enhanced effect */
+  .cursor-trail-secondary {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, hsl(var(--neon-purple) / 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    transition: opacity 0.4s ease;
+    filter: blur(1px);
+  }
+
+  /* Enhanced dark mode cursor trail */
+  .dark .cursor-trail {
+    background: radial-gradient(
+      circle, 
+      hsl(var(--neon-cyan)) 0%, 
+      hsl(var(--neon-purple) / 0.8) 30%, 
+      transparent 70%
+    );
+    box-shadow: 
+      0 0 10px hsl(var(--neon-cyan)),
+      0 0 20px hsl(var(--neon-purple) / 0.5);
+    filter: blur(0.3px);
+  }
+
+  /* Enhanced dark mode secondary cursor trail */
+  .dark .cursor-trail-secondary {
+    background: radial-gradient(
+      circle, 
+      hsl(var(--neon-purple) / 0.4) 0%, 
+      hsl(var(--neon-cyan) / 0.2) 50%, 
+      transparent 70%
+    );
+    box-shadow: 
+      0 0 15px hsl(var(--neon-purple) / 0.3),
+      0 0 30px hsl(var(--neon-cyan) / 0.2);
+    filter: blur(1.5px);
+  }
+
+  /* Light mode cursor trail */
+  .light .cursor-trail {
+    background: radial-gradient(
+      circle, 
+      hsl(var(--neon-purple) / 0.8) 0%, 
+      hsl(var(--neon-cyan) / 0.6) 50%, 
+      transparent 70%
+    );
+    box-shadow: 0 0 8px hsl(var(--neon-purple) / 0.4);
+  }
+
+  /* Light mode secondary cursor trail */
+  .light .cursor-trail-secondary {
+    background: radial-gradient(
+      circle, 
+      hsl(var(--neon-cyan) / 0.3) 0%, 
+      hsl(var(--neon-green) / 0.2) 50%, 
+      transparent 70%
+    );
+    box-shadow: 0 0 12px hsl(var(--neon-cyan) / 0.2);
+  }
+
+  /* Hide cursor trail on mobile devices */
+  @media (max-width: 768px), (hover: none) {
+    .cursor-trail,
+    .cursor-trail-secondary {
+      display: none !important;
+    }
+  }
+
+  /* Improved cursor trail animations */
+  .cursor-trail,
+  .cursor-trail-secondary {
+    will-change: transform, opacity;
+  }
+
+  /* Smooth scaling for cursor trail */
+  .cursor-trail.scale-100 {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .cursor-trail.scale-75 {
+    transform: translate(-50%, -50%) scale(0.75);
+  }
+
+  .cursor-trail-secondary.scale-125 {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+
+  .cursor-trail-secondary.scale-100 {
+    transform: translate(-50%, -50%) scale(1);
   }
 
   .font-space {
@@ -228,11 +335,18 @@
   }
 
   .text-glow {
-    text-shadow: 0 0 10px currentColor;
+    text-shadow: 0 0 5px currentColor;
   }
 
   .light .text-glow {
-    text-shadow: 0 0 10px hsl(var(--neon-purple) / 0.4);
+    text-shadow: 0 0 5px hsl(var(--neon-purple) / 0.3);
+  }
+
+  /* Enhanced dark mode text glow - reduced intensity */
+  .dark .text-glow {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor;
   }
 
   .bg-grid {
@@ -248,6 +362,14 @@
       linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
   }
 
+  /* Enhanced dark mode grid */
+  .dark .bg-grid {
+    background-image: 
+      linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -260,8 +382,18 @@
     animation: glow 3s ease-in-out infinite alternate;
   }
 
+  /* Enhanced dark mode glow animation */
+  .dark .animate-glow {
+    animation: glow-dark 3s ease-in-out infinite alternate;
+  }
+
   .animate-bounce-slow {
     animation: bounce-slow 3s ease-in-out infinite;
+  }
+
+  /* Fixed bounce animation to prevent excessive movement */
+  .animate-bounce-slow {
+    animation: bounce-slow-fixed 3s ease-in-out infinite;
   }
 
   .animate-rotate-slow {
@@ -279,6 +411,13 @@
     75% { transform: translateY(20px) translateX(10px); }
   }
 
+  /* Fixed bounce animation with reduced movement */
+  @keyframes bounce-slow-fixed {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Original bounce animation (keeping for reference) */
   @keyframes bounce-slow {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-30px); }
@@ -298,6 +437,18 @@
   @keyframes glow {
     from { filter: drop-shadow(0 0 20px hsl(var(--neon-purple))); }
     to { filter: drop-shadow(0 0 30px hsl(var(--neon-cyan))); }
+  }
+
+  /* Enhanced dark mode glow */
+  @keyframes glow-dark {
+    from { 
+      filter: drop-shadow(0 0 20px hsl(var(--neon-purple))) 
+              drop-shadow(0 0 40px hsl(var(--neon-purple) / 0.5));
+    }
+    to { 
+      filter: drop-shadow(0 0 30px hsl(var(--neon-cyan))) 
+              drop-shadow(0 0 60px hsl(var(--neon-cyan) / 0.5));
+    }
   }
 
   .hero-gradient {
@@ -338,6 +489,12 @@
     opacity: 0.05;
   }
 
+  /* Enhanced dark mode shapes */
+  .dark .shape {
+    opacity: 0.15;
+    filter: blur(0.5px);
+  }
+
   @keyframes float-random {
     0% {
       transform: translateY(100vh) rotate(0deg);
@@ -358,5 +515,202 @@
     50% { content: '..'; }
     75% { content: '...'; }
     100% { content: ''; }
+  }
+
+  /* Logo hover effect - reduced scale to prevent excessive movement */
+  .logo-hover {
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .logo-hover:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 15px hsl(var(--neon-purple)));
+  }
+
+  /* Enhanced dark mode logo hover */
+  .dark .logo-hover:hover {
+    transform: scale(1.05);
+    filter: 
+      drop-shadow(0 0 15px hsl(var(--neon-purple))) 
+      drop-shadow(0 0 25px hsl(var(--neon-cyan) / 0.5));
+  }
+
+  /* Smooth slide-in animation for mobile nav */
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Enhanced particle effects for dark mode */
+  .dark .animate-float {
+    animation: float-dark 6s ease-in-out infinite;
+  }
+
+  @keyframes float-dark {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px); 
+      filter: drop-shadow(0 0 5px hsl(var(--neon-cyan) / 0.3));
+    }
+    25% { 
+      transform: translateY(-20px) translateX(10px); 
+      filter: drop-shadow(0 0 8px hsl(var(--neon-purple) / 0.4));
+    }
+    50% { 
+      transform: translateY(0px) translateX(20px); 
+      filter: drop-shadow(0 0 6px hsl(var(--neon-green) / 0.3));
+    }
+    75% { 
+      transform: translateY(20px) translateX(10px); 
+      filter: drop-shadow(0 0 7px hsl(var(--neon-cyan) / 0.4));
+    }
+  }
+
+  /* Horizontal auto-scrolling animation */
+  .animate-scroll-x {
+    animation: scroll-x 30s linear infinite;
+  }
+
+  @keyframes scroll-x {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pause animation on hover */
+  .animate-scroll-x:hover {
+    animation-play-state: paused;
+  }
+
+  /* Enhanced glass card effects for dark mode */
+  .dark .glass-card {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      0 0 20px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Enhanced button hover effects for dark mode */
+  .dark .ui-btn:hover {
+    box-shadow: 
+      0 4px 20px rgba(139, 92, 246, 0.3),
+      0 0 30px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Improved text selection for dark mode */
+  .dark ::selection {
+    background: hsl(var(--neon-purple) / 0.3);
+    color: hsl(var(--neon-cyan));
+  }
+
+  .dark ::-moz-selection {
+    background: hsl(var(--neon-purple) / 0.3);
+    color: hsl(var(--neon-cyan));
+  }
+
+  /* Enhanced scrollbar for dark mode */
+  .dark ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: hsl(var(--dark-bg));
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--neon-purple)),
+      hsl(var(--neon-cyan))
+    );
+    border-radius: 4px;
+  }
+
+  /* Modal animations */
+  .modal-enter {
+    animation: modal-enter 0.3s ease-out;
+  }
+
+  .modal-exit {
+    animation: modal-exit 0.2s ease-in;
+  }
+
+  @keyframes modal-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes modal-exit {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+  }
+
+  /* Enhanced modal backdrop */
+  .modal-backdrop {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Modal content glow effect */
+  .modal-content-glow {
+    box-shadow: 
+      0 0 20px hsl(var(--neon-purple) / 0.3),
+      0 0 40px hsl(var(--neon-purple) / 0.1),
+      0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--neon-cyan)),
+      hsl(var(--neon-purple))
+    );
+  }
+
+  /* Smooth transitions for theme switching */
+  * {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Enhanced focus states for dark mode */
+  .dark *:focus-visible {
+    outline: 2px solid hsl(var(--neon-cyan));
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px hsl(var(--neon-cyan) / 0.2);
   }
 }

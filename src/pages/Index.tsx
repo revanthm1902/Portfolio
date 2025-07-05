@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import LoadingAnimation from '@/components/LoadingAnimation';
 import CursorTrail from '@/components/CursorTrail';
@@ -11,6 +10,7 @@ import ExperienceSection from '@/components/ExperienceSection';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
 import InProcessSection from '@/components/InProcessSection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,10 +25,14 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleNavigateToContact = () => {
+    setCurrentSection('contact');
+  };
+
   const renderSection = () => {
     switch (currentSection) {
       case 'home':
-        return <HeroSection />;
+        return <HeroSection onNavigateToContact={handleNavigateToContact} />;
       case 'about':
         return <AboutSection />;
       case 'skills':
@@ -42,7 +46,7 @@ const Index = () => {
       case 'contact':
         return <ContactSection />;
       default:
-        return <HeroSection />;
+        return <HeroSection onNavigateToContact={handleNavigateToContact} />;
     }
   };
 
@@ -59,6 +63,9 @@ const Index = () => {
       <div className="pt-20">
         {renderSection()}
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

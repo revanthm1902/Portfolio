@@ -52,10 +52,10 @@ const LoadingAnimation = ({ onComplete }: LoadingAnimationProps) => {
         {/* Animated Logo */}
         <div className="relative">
           <div className="text-6xl font-space font-bold text-neon-purple animate-glow">
-            &lt;DEV/&gt;
+            &lt;REV/&gt;
           </div>
           <div className="absolute inset-0 text-6xl font-space font-bold text-neon-cyan opacity-50 animate-pulse-slow">
-            &lt;DEV/&gt;
+            &lt;REV/&gt;
           </div>
         </div>
 

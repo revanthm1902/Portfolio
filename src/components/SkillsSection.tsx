@@ -1,11 +1,20 @@
-
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Code, Server, Palette, Database, Cloud, Zap } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import Modal from './Modal';
+import SkillsCarousel from './SkillsCarousel';
 
 const SkillsSection = () => {
+  const [selectedCertificate, setSelectedCertificate] = useState<{
+    name: string;
+    org: string;
+    year: string;
+    image: string;
+  } | null>(null);
+
   const skillCategories = [
     {
       icon: Code,
@@ -77,16 +86,31 @@ const SkillsSection = () => {
     }
   ];
 
-  const tools = [
-    'VS Code', 'Git', 'Figma', 'Postman', 'Jira', 'Slack',
-    'Adobe XD', 'Chrome DevTools', 'ESLint', 'Prettier'
-  ];
-
   const certifications = [
-    { name: 'AWS Certified Developer', org: 'Amazon Web Services', year: '2023' },
-    { name: 'React Developer Certificate', org: 'Meta', year: '2022' },
-    { name: 'MongoDB University', org: 'MongoDB Inc.', year: '2023' },
-    { name: 'Google Cloud Platform', org: 'Google', year: '2024' }
+    { 
+      name: 'AWS Certified Developer', 
+      org: 'Amazon Web Services', 
+      year: '2023',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&crop=center'
+    },
+    { 
+      name: 'React Developer Certificate', 
+      org: 'Meta', 
+      year: '2022',
+      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&crop=center'
+    },
+    { 
+      name: 'MongoDB University', 
+      org: 'MongoDB Inc.', 
+      year: '2023',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center'
+    },
+    { 
+      name: 'Google Cloud Platform', 
+      org: 'Google', 
+      year: '2024',
+      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center'
+    }
   ];
 
   const CustomTooltip = ({ active, payload }: any) => {
@@ -209,22 +233,13 @@ const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Tools & Technologies */}
+        {/* Tools & Technologies Carousel */}
         <div className="space-y-8">
           <h3 className="text-3xl font-space font-bold text-center text-neon-green">
             Tools & Technologies
           </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {tools.map((tool, index) => (
-              <Badge
-                key={tool}
-                variant="secondary"
-                className="glass-card px-4 py-2 text-sm hover:scale-110 transition-all duration-300 hover:bg-neon-purple/20 hover:text-neon-purple border-white/20"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                {tool}
-              </Badge>
-            ))}
+          <div className="px-4">
+            <SkillsCarousel />
           </div>
         </div>
 
@@ -237,8 +252,9 @@ const SkillsSection = () => {
             {certifications.map((cert, index) => (
               <Card 
                 key={cert.name}
-                className="glass-card text-center hover:scale-105 transition-all duration-300 group"
+                className="glass-card text-center hover:scale-105 transition-all duration-300 group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => setSelectedCertificate(cert)}
               >
                 <CardContent className="p-6">
                   <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-full flex items-center justify-center group-hover:animate-pulse">
@@ -279,6 +295,46 @@ const SkillsSection = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Certificate Modal */}
+      <Modal
+        isOpen={!!selectedCertificate}
+        onClose={() => setSelectedCertificate(null)}
+        title={selectedCertificate?.name || ''}
+        size="lg"
+      >
+        {selectedCertificate && (
+          <div className="space-y-6">
+            <div className="text-center space-y-2">
+              <p className="text-neon-cyan font-semibold">{selectedCertificate.org}</p>
+              <p className="text-muted-foreground font-mono">{selectedCertificate.year}</p>
+            </div>
+            
+            <div className="relative overflow-hidden rounded-lg">
+              <img 
+                src={selectedCertificate.image} 
+                alt={selectedCertificate.name}
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+            
+            <div className="text-center space-y-4">
+              <p className="text-muted-foreground">
+                This certificate demonstrates proficiency in {selectedCertificate.name.toLowerCase()} technologies and best practices.
+              </p>
+              <div className="flex justify-center gap-4">
+                <Badge variant="secondary" className="bg-neon-purple/20 text-neon-purple border-neon-purple/30">
+                  Verified
+                </Badge>
+                <Badge variant="secondary" className="bg-neon-cyan/20 text-neon-cyan border-neon-cyan/30">
+                  {selectedCertificate.year}
+                </Badge>
+              </div>
+            </div>
+          </div>
+        )}
+      </Modal>
     </section>
   );
 };
