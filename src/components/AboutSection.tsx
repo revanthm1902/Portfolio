@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Heart, Target, Lightbulb, Rocket } from 'lucide-react';
@@ -41,6 +40,21 @@ const AboutSection = () => {
 
   return (
     <section className="min-h-screen py-20 px-4 hero-gradient bg-grid relative overflow-hidden">
+      {/* Profile Image */}
+      <div className="flex justify-center mb-12 relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-tr from-neon-purple via-neon-cyan to-neon-green blur-2xl opacity-60 z-0"></div>
+        <div className="relative z-10 p-1 rounded-full bg-gradient-to-tr from-neon-purple via-neon-cyan to-neon-green shadow-2xl">
+          <div className="bg-white/10 backdrop-blur-lg rounded-full p-2">
+            <img
+              src="./public/rev2.0.jpg"
+              alt="Profile"
+              className="w-40 h-40 rounded-full object-cover shadow-xl border-4 border-white/20"
+              style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)' }}
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(15)].map((_, i) => (

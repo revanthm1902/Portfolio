@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Building, Calendar, MapPin, Award } from 'lucide-react';
@@ -7,71 +6,143 @@ const ExperienceSection = () => {
   const experiences = [
     {
       id: 1,
-      company: "TechCorp Solutions",
-      position: "Senior Full Stack Developer",
-      duration: "2022 - Present",
-      location: "San Francisco, CA",
-      type: "Full-time",
-      description: "Leading a team of 5 developers in building scalable web applications using React, Node.js, and AWS. Implemented microservices architecture resulting in 40% performance improvement.",
+      company: "Purple Techno Solutions",
+      position: "Intern",
+      duration: "Jan 2025 – Apr 2025",
+      location: "",
+      type: "Internship",
+      description: "Worked on Full Stack Development and AI/ML-based solutions. and practical deployment of applications.",
       achievements: [
-        "Reduced application load time by 60% through optimization",
-        "Mentored 3 junior developers to senior level",
-        "Led migration from monolithic to microservices architecture",
-        "Implemented CI/CD pipelines reducing deployment time by 80%"
+        "Developed and deployed AI/ML-based solutions for real-world applications.",
+        "Collaborated with cross-functional teams to deliver production-ready features.",
+        "Enhanced backend and frontend integration for seamless user experience."
       ],
-      technologies: ["React", "Node.js", "AWS", "Docker", "Kubernetes", "MongoDB"],
+      technologies: ["React", "Node.js", "Python", "Machine Learning", "MongoDB", "REST APIs"],
       icon: Building
     },
     {
       id: 2,
-      company: "StartupXYZ",
-      position: "Full Stack Developer",
-      duration: "2020 - 2022",
-      location: "Austin, TX",
-      type: "Full-time",
-      description: "Developed and maintained multiple client-facing applications using modern web technologies. Collaborated with design and product teams to deliver pixel-perfect user experiences.",
+      company: "TechtoGreen",
+      position: "R&D Intern",
+      duration: "Aug 2024 – Present",
+      location: "",
+      type: "Internship",
+      description: "Research and Development intern at TechtoGreen, a VIT-AP university-backed startup.",
       achievements: [
-        "Built 5+ production applications from scratch",
-        "Integrated payment systems processing $1M+ monthly",
-        "Improved code coverage from 30% to 90%",
-        "Reduced customer support tickets by 45% through UX improvements"
+        "Contributed to Agri Drone innovation for precision farming (see: AI Autonomous Hackathon post)",
+        "Worked on smart wearable project 'SafeFit' for health, fitness, and safety (see: HACKSAGON 2025 post)",
+        "Participated in LLM Security Bootcamp, gaining hands-on experience in GenAI, MLOps, LangChain, RAG, and cybersecurity."
       ],
-      technologies: ["Vue.js", "Python", "PostgreSQL", "Redis", "Stripe", "GCP"],
+      technologies: ["IoT", "Drones", "AI/ML", "GenAI", "LangChain", "MLOps", "Python", "React"],
       icon: Building
     },
     {
       id: 3,
-      company: "InnovateLabs",
-      position: "Frontend Developer",
-      duration: "2019 - 2020",
-      location: "Remote",
-      type: "Contract",
-      description: "Specialized in creating responsive, accessible web applications with focus on performance and user experience. Worked with multiple clients across different industries.",
-      achievements: [
-        "Delivered 10+ client projects on time and budget",
-        "Achieved 95+ Lighthouse scores on all projects",
-        "Implemented accessibility standards (WCAG 2.1)",
-        "Created reusable component library used across projects"
-      ],
-      technologies: ["React", "TypeScript", "Sass", "Webpack", "Jest", "Figma"],
+      company: "HackAP Hackathon 2024",
+      position: "Winner",
+      duration: "2024",
+      location: "",
+      type: "Competition",
+      description: "Secured 1st place for developing a portable safety device (helmet) for MEWP operators.",
+      achievements: [],
+      technologies: ["IoT", "Embedded Systems", "Safety Devices"],
       icon: Award
     },
     {
       id: 4,
-      company: "Digital Agency Pro",
-      position: "Junior Developer",
-      duration: "2018 - 2019",
-      location: "New York, NY",
-      type: "Full-time",
-      description: "Started my professional journey as a junior developer, working on various client projects and learning industry best practices. Gained experience in both frontend and backend technologies.",
-      achievements: [
-        "Completed 20+ client websites successfully",
-        "Learned 5 new technologies in first 6 months",
-        "Contributed to company's internal tool development",
-        "Received 'Fast Learner' award in first year"
-      ],
-      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "WordPress"],
-      icon: Building
+      company: "NASA Space Apps Challenge 2024",
+      position: "Global Nominee",
+      duration: "2024",
+      location: "",
+      type: "Competition",
+      description: "Contributed to real-world space problem-solving as a global nominee.",
+      achievements: [],
+      technologies: ["Problem Solving", "Space Tech", "Collaboration"],
+      icon: Award
+    },
+    {
+      id: 5,
+      company: "AppFusion Hackathon",
+      position: "Winner",
+      duration: "2024",
+      location: "",
+      type: "Competition",
+      description: "Developed a Gmail replica and secured 1st place.",
+      achievements: [],
+      technologies: ["Web Development", "UI/UX", "React"],
+      icon: Award
+    },
+    {
+      id: 6,
+      company: "Drone Hackathon",
+      position: "Winner",
+      duration: "2025",
+      location: "",
+      type: "Competition",
+      description: "First place for Search and Rescue, UAV-Assisted Agriculture Monitoring.",
+      achievements: [],
+      technologies: ["Drones", "UAV", "Agriculture Monitoring"],
+      icon: Award
+    },
+    {
+      id: 7,
+      company: "Postman API Fundamentals Workshop",
+      position: "Participant",
+      duration: "2025",
+      location: "",
+      type: "Workshop",
+      description: "Completed workshop: REST APIs, HTTP Methods, Authentication, Automating Tests.",
+      achievements: [],
+      technologies: ["REST APIs", "Postman", "API Testing"],
+      icon: Award
+    },
+    {
+      id: 8,
+      company: "International Startup Festival 2024",
+      position: "Attendee",
+      duration: "2024",
+      location: "",
+      type: "Conference",
+      description: "Explored innovations in AI, FinTech, AgriTech, and Health Tech.",
+      achievements: [],
+      technologies: ["AI", "FinTech", "AgriTech", "Health Tech"],
+      icon: Award
+    },
+    {
+      id: 9,
+      company: "LLM Security Bootcamp",
+      position: "Participant",
+      duration: "2025",
+      location: "",
+      type: "Bootcamp",
+      description: "Hands-on experience in GenAI, MLOps, LangChain, RAG, and cybersecurity.",
+      achievements: [],
+      technologies: ["GenAI", "MLOps", "LangChain", "RAG", "Cybersecurity"],
+      icon: Award
+    },
+    {
+      id: 10,
+      company: "TechtoGreen",
+      position: "Project Contributor",
+      duration: "2025",
+      location: "",
+      type: "Project",
+      description: "Worked on Agri Drone innovation for precision farming as part of TechtoGreen's product portfolio.",
+      achievements: [],
+      technologies: ["Drones", "Precision Farming", "AI/ML"],
+      icon: Award
+    },
+    {
+      id: 11,
+      company: "HACKSAGON 2025 (ABV-IIITM, Gwalior)",
+      position: "Project Contributor",
+      duration: "2025",
+      location: "",
+      type: "Project",
+      description: "Worked on smart wearable project 'SafeFit' for health, fitness, and safety.",
+      achievements: [],
+      technologies: ["Wearables", "Health Tech", "IoT"],
+      icon: Award
     }
   ];
 

@@ -76,7 +76,7 @@ const Navigation = ({ currentSection, setCurrentSection }: NavigationProps) => {
           <div className="fixed top-0 right-0 h-full w-64 glass-card border-l border-white/20 p-6 animate-slide-in-right">
             <div className="flex justify-between items-center mb-8">
               <div className="text-xl font-space font-bold text-neon-purple animate-glow logo-hover">
-                &lt;Rev.dev/&gt;
+                &lt;rev.dev/&gt;
               </div>
               <Button
                 variant="ghost"

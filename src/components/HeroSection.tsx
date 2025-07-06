@@ -47,8 +47,8 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
   };
 
   const handleResumeDownload = () => {
-    // Replace with your actual resume file path
-    const resumeUrl = '/resume.pdf'; // Place your resume.pdf in the public folder
+    // Use the correct case for the resume file
+    const resumeUrl = '/Resume.pdf';
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.download = 'Revanth_Resume.pdf';
@@ -112,6 +112,19 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
               <span className="text-neon-purple text-glow block sm:inline mt-2 sm:mt-0">REVANTH</span>
             </h1>
             <div className="h-1 bg-gradient-to-r from-neon-purple via-neon-cyan to-neon-green rounded-full mt-6 animate-pulse max-w-2xl mx-auto"></div>
+          </div>
+          
+          {/* Social Icons */}
+          <div className="flex justify-center gap-4 mt-6">
+            <a href="https://github.com/revanthm1902" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 glass-card rounded-lg hover:text-neon-purple transition-all duration-300 hover:scale-110 border border-white/10 hover:border-neon-cyan/30">
+              <Github className="h-6 w-6" />
+            </a>
+            <a href="https://www.linkedin.com/in/modalavalasa-revanth/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 glass-card rounded-lg hover:text-neon-cyan transition-all duration-300 hover:scale-110 border border-white/10 hover:border-neon-cyan/30">
+              <Linkedin className="h-6 w-6" />
+            </a>
+            <a href="mailto:revanthm051@gmail.com" aria-label="Mail" className="p-2 glass-card rounded-lg hover:text-neon-green transition-all duration-300 hover:scale-110 border border-white/10 hover:border-neon-cyan/30">
+              <Mail className="h-6 w-6" />
+            </a>
           </div>
           
           <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-mono text-muted-foreground animate-slide-in-left min-h-[3rem] flex items-center justify-center px-4">

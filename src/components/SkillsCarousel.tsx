@@ -67,6 +67,22 @@ const SkillsCarousel = () => {
   // Duplicate the skills array to create seamless infinite scroll
   const duplicatedSkills = [...skills, ...skills];
 
+  // Detect mobile and set animation duration
+  const [animationDuration, setAnimationDuration] = useState(30); // default 30s
+
+  useEffect(() => {
+    const updateDuration = () => {
+      if (window.innerWidth <= 768) {
+        setAnimationDuration(12); // much faster for mobile
+      } else {
+        setAnimationDuration(30); // desktop default
+      }
+    };
+    updateDuration();
+    window.addEventListener('resize', updateDuration);
+    return () => window.removeEventListener('resize', updateDuration);
+  }, []);
+
   return (
     <div className="relative overflow-hidden w-full pt-24 pb-16">
       {/* Gradient overlays for smooth fade effect */}
@@ -74,7 +90,10 @@ const SkillsCarousel = () => {
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
       
       {/* Auto-sliding carousel container */}
-      <div className="flex animate-scroll-x">
+      <div
+        className="flex animate-scroll-x"
+        style={{ animationDuration: `${animationDuration}s` }}
+      >
         {duplicatedSkills.map((skill, index) => (
           <div
             key={`${skill.name}-${index}`}

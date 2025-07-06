@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -182,11 +181,14 @@ const ProjectsSection = () => {
           <Button 
             size="lg" 
             className="ui-btn bg-gradient-to-r from-neon-purple to-neon-cyan text-white border-0 neon-glow transition-all duration-300 hover:scale-105"
+            asChild
           >
-            <span className="flex items-center gap-2">
-              <Github className="h-5 w-5" />
-              View All on GitHub
-            </span>
+            <a href="https://github.com/revanthm1902" target="_blank" rel="noopener noreferrer">
+              <span className="flex items-center gap-2">
+                <Github className="h-5 w-5" />
+                View All on GitHub
+              </span>
+            </a>
           </Button>
         </div>
       </div>
