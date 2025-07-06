@@ -16,7 +16,7 @@ export interface ContactFormData {
 }
 
 // Send contact form email
-export const sendContactEmail = async (formData: ContactFormData): Promise<any> => {
+export const sendContactEmail = async (formData: ContactFormData): Promise<unknown> => {
   // Validate configuration first
   if (!validateEmailJSConfig()) {
     throw new Error('EmailJS configuration is incomplete. Please check your environment variables.');

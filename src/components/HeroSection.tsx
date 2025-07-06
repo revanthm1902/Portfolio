@@ -59,6 +59,12 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
 
   return (
     <section className="min-h-screen flex items-center justify-center hero-gradient bg-grid relative overflow-hidden px-4 sm:px-6 lg:px-8 pb-20">
+      {/* Premium Animated Gradient Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute left-1/4 top-1/4 w-[60vw] h-[60vw] max-w-2xl max-h-2xl bg-gradient-to-tr from-neon-purple via-neon-cyan to-neon-green opacity-30 blur-3xl animate-pulse-glow rounded-full" style={{ filter: 'blur(80px)' }} />
+        <div className="absolute right-1/4 bottom-1/4 w-[40vw] h-[40vw] max-w-xl max-h-xl bg-gradient-to-br from-neon-cyan via-neon-green to-neon-purple opacity-20 blur-2xl animate-pulse-glow rounded-full" style={{ filter: 'blur(60px)' }} />
+      </div>
+
       {/* Floating Background Shapes */}
       <div className="floating-shapes">
         {[...Array(20)].map((_, i) => (
@@ -109,7 +115,18 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
           <div className="inline-block">
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-space font-bold animate-fade-in leading-tight">
               <span className="text-foreground block sm:inline">Hello, I'm </span>
-              <span className="text-neon-purple text-glow block sm:inline mt-2 sm:mt-0">REVANTH</span>
+              <span
+                className="text-neon-purple block sm:inline mt-2 sm:mt-0"
+                style={{
+                  textShadow:
+                    '0 0 12px rgba(168,85,247,0.5), 0 0 24px rgba(34,211,238,0.3)' +
+                    (typeof window !== 'undefined' && document.documentElement.classList.contains('dark')
+                      ? ', 0 0 8px rgba(168,85,247,0.3)'
+                      : ', 0 0 24px rgba(168,85,247,0.7)')
+                }}
+              >
+                REVANTH
+              </span>
             </h1>
             <div className="h-1 bg-gradient-to-r from-neon-purple via-neon-cyan to-neon-green rounded-full mt-6 animate-pulse max-w-2xl mx-auto"></div>
           </div>

@@ -1,4 +1,3 @@
-
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
@@ -25,7 +24,9 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, subject, message, to }: ContactEmailRequest = await req.json();
+    const data: Record<string, unknown> = await req.json();
+
+    const { name, email, subject, message, to }: ContactEmailRequest = data;
 
     // Send email to the portfolio owner
     const emailResponse = await resend.emails.send({

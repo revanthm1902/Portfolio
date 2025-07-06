@@ -46,7 +46,7 @@ const AboutSection = () => {
         <div className="relative z-10 p-1 rounded-full bg-gradient-to-tr from-neon-purple via-neon-cyan to-neon-green shadow-2xl">
           <div className="bg-white/10 backdrop-blur-lg rounded-full p-2">
             <img
-              src="./public/rev2.0.jpg"
+              src="/rev2.0.jpg"
               alt="Profile"
               className="w-40 h-40 rounded-full object-cover shadow-xl border-4 border-white/20"
               style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)' }}

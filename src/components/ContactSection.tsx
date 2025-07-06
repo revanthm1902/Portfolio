@@ -49,7 +49,7 @@ const ContactSection = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: Record<string, unknown>) => {
     setIsSubmitting(true);
     setSubmissionStatus('idle');
     
@@ -66,13 +66,13 @@ const ContactSection = () => {
     }
     
     try {
-      console.log('Sending contact email with values:', values);
+      console.log('Sending contact email with values:', data);
       
       const response = await sendContactEmail({
-        name: values.name,
-        email: values.email,
-        subject: values.subject,
-        message: values.message,
+        name: data.name as string,
+        email: data.email as string,
+        subject: data.subject as string,
+        message: data.message as string,
       });
       console.log('EmailJS response:', response);
 
