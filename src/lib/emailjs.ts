@@ -31,12 +31,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<unkno
     time: new Date().toLocaleString(),
   };
 
-  console.log('EmailJS Config:', {
-    serviceId: EMAILJS_CONFIG.SERVICE_ID,
-    templateId: EMAILJS_CONFIG.TEMPLATE_ID,
-    publicKey: EMAILJS_CONFIG.PUBLIC_KEY ? '***' : 'NOT_SET',
-    templateParams
-  });
+  // EmailJS configuration validated successfully
 
   try {
     // Initialize EmailJS
@@ -49,15 +44,8 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<unkno
       EMAILJS_CONFIG.PUBLIC_KEY
     );
 
-    console.log('EmailJS Success Response:', response);
     return response;
   } catch (error: any) {
-    console.error('EmailJS Error Details:', {
-      error: error,
-      message: error.message,
-      text: error.text,
-      status: error.status
-    });
     
     // Provide more specific error messages
     if (error.status === 400) {
@@ -79,32 +67,20 @@ export const initializeEmailJS = () => {
   if (EMAILJS_CONFIG.PUBLIC_KEY && EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
     try {
       emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-      console.log('EmailJS initialized successfully');
     } catch (error) {
-      console.error('Failed to initialize EmailJS:', error);
+      // EmailJS initialization failed silently
     }
-  } else {
-    console.warn('EmailJS public key not configured');
   }
 };
 
 // Validate EmailJS configuration
 export const validateEmailJSConfig = (): boolean => {
-  const isValid = 
+  return !!(
     EMAILJS_CONFIG.SERVICE_ID &&
     EMAILJS_CONFIG.TEMPLATE_ID &&
     EMAILJS_CONFIG.PUBLIC_KEY &&
-    EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
-
-  if (!isValid) {
-    console.warn('EmailJS configuration is incomplete:', {
-      serviceId: EMAILJS_CONFIG.SERVICE_ID,
-      templateId: EMAILJS_CONFIG.TEMPLATE_ID,
-      hasPublicKey: !!EMAILJS_CONFIG.PUBLIC_KEY && EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY'
-    });
-  }
-
-  return isValid;
+    EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY'
+  );
 };
 
 // Test EmailJS connection

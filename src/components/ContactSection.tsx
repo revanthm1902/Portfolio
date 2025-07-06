@@ -49,7 +49,14 @@ const ContactSection = () => {
     },
   });
 
-  const onSubmit = async (data: Record<string, unknown>) => {
+  interface ContactFormData {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  }
+
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     setSubmissionStatus('idle');
     
@@ -74,9 +81,9 @@ const ContactSection = () => {
         subject: data.subject as string,
         message: data.message as string,
       });
-      console.log('EmailJS response:', response);
+      // EmailJS response received successfully
 
-      if (response.status === 200) {
+      if (response && typeof response === 'object' && 'status' in response && response.status === 200) {
         setSubmissionStatus('success');
         toast({
           title: "Message sent successfully! 🚀",
@@ -88,26 +95,21 @@ const ContactSection = () => {
         throw new Error('Failed to send email');
       }
 
-    } catch (error: any) {
-      console.error('Error sending message:', error);
+    } catch (error: unknown) {
+      // Error handling for contact form submission
       setSubmissionStatus('error');
       
       // Show more detailed error information
-      const errorMessage = error.message || "Something went wrong. Please try again or contact me directly.";
+      let errorMessage = "Something went wrong. Please try again or contact me directly.";
+      
+      if (error && typeof error === 'object' && 'message' in error && typeof error.message === 'string') {
+        errorMessage = error.message;
+      }
       
       toast({
         title: "Failed to send message",
         description: errorMessage,
         variant: "destructive",
-      });
-
-      // Log additional debugging info
-      console.log('EmailJS Debug Info:', {
-        serviceId: 'service_qixofr6',
-        templateId: 'template_m73d3jg',
-        hasPublicKey: !!import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-        publicKeyLength: import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.length || 0,
-        error: error
       });
     } finally {
       setIsSubmitting(false);
@@ -139,27 +141,16 @@ const ContactSection = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/username',
+      href: 'https://github.com/revanthm1902',
       color: 'hover:text-neon-purple'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/username',
+      href: 'https://www.linkedin.com/in/modalavalasa-revanth/',
       color: 'hover:text-neon-cyan'
     },
-    {
-      icon: Twitter,
-      label: 'Twitter',
-      href: 'https://twitter.com/username',
-      color: 'hover:text-neon-green'
-    },
-    {
-      icon: MessageCircle,
-      label: 'Discord',
-      href: 'https://discord.com/users/username',
-      color: 'hover:text-neon-purple'
-    }
+    
   ];
 
   return (

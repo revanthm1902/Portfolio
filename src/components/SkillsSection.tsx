@@ -23,13 +23,13 @@ const SkillsSection = () => {
       skills: [
         { name: 'React/Next.js', level: 95, description: 'Advanced component architecture & state management' },
         { name: 'TypeScript', level: 90, description: 'Type-safe development & complex type definitions' },
-        { name: 'Tailwind CSS', level: 88, description: 'Responsive design & custom component systems' },
+        { name: 'Tailwind CSS', level: 95, description: 'Responsive design & custom component systems' },
         { name: 'Vue.js', level: 75, description: 'Component composition & reactive systems' }
       ],
       chartData: [
         { name: 'React/Next.js', value: 95, color: '#8b5cf6' },
         { name: 'TypeScript', value: 90, color: '#06b6d4' },
-        { name: 'Tailwind CSS', value: 88, color: '#10b981' },
+        { name: 'Tailwind CSS', value: 95, color: '#10b981' },
         { name: 'Vue.js', value: 75, color: '#f59e0b' }
       ]
     },
@@ -38,16 +38,14 @@ const SkillsSection = () => {
       title: 'Backend Development',
       color: 'neon-cyan',
       skills: [
-        { name: 'Node.js', level: 92, description: 'RESTful APIs & microservices architecture' },
-        { name: 'Python', level: 85, description: 'Django, FastAPI & data processing' },
-        { name: 'GraphQL', level: 80, description: 'Schema design & query optimization' },
-        { name: 'Java', level: 70, description: 'Spring Boot & enterprise applications' }
+        { name: 'Node.js', level: 90, description: 'RESTful APIs & microservices architecture' },
+        { name: 'Python', level: 90, description: 'Django, FastAPI & data processing' },
+        { name: 'GraphQL', level: 75, description: 'Schema design & query optimization' },
       ],
       chartData: [
-        { name: 'Node.js', value: 92, color: '#8b5cf6' },
-        { name: 'Python', value: 85, color: '#06b6d4' },
-        { name: 'GraphQL', value: 80, color: '#10b981' },
-        { name: 'Java', value: 70, color: '#f59e0b' }
+        { name: 'Node.js', value: 90, color: '#8b5cf6' },
+        { name: 'Python', value: 90, color: '#06b6d4' },
+        { name: 'GraphQL', value: 75, color: '#10b981' },
       ]
     },
     {
@@ -55,16 +53,16 @@ const SkillsSection = () => {
       title: 'Database & Storage',
       color: 'neon-green',
       skills: [
-        { name: 'PostgreSQL', level: 88, description: 'Complex queries & performance optimization' },
-        { name: 'MongoDB', level: 82, description: 'Document modeling & aggregation pipelines' },
-        { name: 'Redis', level: 78, description: 'Caching strategies & session management' },
-        { name: 'Supabase', level: 85, description: 'Real-time features & authentication' }
+        { name: 'PostgreSQL', level: 95, description: 'Complex queries & performance optimization' },
+        { name: 'MongoDB', level: 95, description: 'Document modeling & aggregation pipelines' },
+        { name: 'Redis', level: 75, description: 'Caching strategies & session management' },
+        { name: 'Supabase', level: 95, description: 'Real-time features & authentication' }
       ],
       chartData: [
-        { name: 'PostgreSQL', value: 88, color: '#8b5cf6' },
-        { name: 'MongoDB', value: 82, color: '#06b6d4' },
-        { name: 'Redis', value: 78, color: '#10b981' },
-        { name: 'Supabase', value: 85, color: '#f59e0b' }
+        { name: 'PostgreSQL', value: 95, color: '#8b5cf6' },
+        { name: 'MongoDB', value: 95, color: '#06b6d4' },
+        { name: 'Redis', value: 75, color: '#10b981' },
+        { name: 'Supabase', value: 95, color: '#f59e0b' }
       ]
     },
     {
@@ -72,16 +70,16 @@ const SkillsSection = () => {
       title: 'DevOps & Cloud',
       color: 'neon-purple',
       skills: [
-        { name: 'AWS', level: 83, description: 'EC2, S3, Lambda & CloudFormation' },
-        { name: 'Docker', level: 87, description: 'Containerization & multi-stage builds' },
-        { name: 'Kubernetes', level: 72, description: 'Container orchestration & scaling' },
-        { name: 'CI/CD', level: 80, description: 'GitHub Actions & automated deployments' }
+        { name: 'AWS', level: 90, description: 'EC2, S3, Lambda & CloudFormation' },
+        { name: 'Docker', level: 80, description: 'Containerization & multi-stage builds' },
+        { name: 'Kubernetes', level: 70, description: 'Container orchestration & scaling' },
+        { name: 'CI/CD', level: 85, description: 'GitHub Actions & automated deployments' }
       ],
       chartData: [
-        { name: 'AWS', value: 83, color: '#8b5cf6' },
-        { name: 'Docker', value: 87, color: '#06b6d4' },
-        { name: 'Kubernetes', value: 72, color: '#10b981' },
-        { name: 'CI/CD', value: 80, color: '#f59e0b' }
+        { name: 'AWS', value: 90, color: '#8b5cf6' },
+        { name: 'Docker', value: 80, color: '#06b6d4' },
+        { name: 'Kubernetes', value: 70, color: '#10b981' },
+        { name: 'CI/CD', value: 85, color: '#f59e0b' }
       ]
     }
   ];
@@ -113,7 +111,18 @@ const SkillsSection = () => {
     }
   ];
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  interface TooltipProps {
+    active?: boolean;
+    payload?: Array<{
+      value: number;
+      payload: {
+        name: string;
+        value: number;
+      };
+    }>;
+  }
+
+  const CustomTooltip = ({ active, payload }: TooltipProps) => {
     if (active && payload && payload.length) {
       const data = payload[0];
       return (

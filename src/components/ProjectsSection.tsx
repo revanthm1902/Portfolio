@@ -1,3 +1,8 @@
+// TEMPORARILY DISABLED - Using UnderDevelopment component instead
+// This component has been temporarily disabled and replaced with the UnderDevelopment component
+// To re-enable, uncomment the code below and update the Index.tsx file
+
+/*
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -75,7 +80,6 @@ const ProjectsSection = () => {
 
   return (
     <section className="min-h-screen py-24 px-4 hero-gradient bg-grid relative overflow-hidden">
-      {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(30)].map((_, i) => (
           <div
@@ -94,7 +98,6 @@ const ProjectsSection = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-16 space-y-6">
           <h2 className="text-5xl md:text-6xl font-space font-bold animate-fade-in">
             <span className="text-foreground">My </span>
@@ -106,7 +109,6 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-scale-in">
           {projects.map((project, index) => (
             <Card 
@@ -130,7 +132,6 @@ const ProjectsSection = () => {
               </CardHeader>
               
               <CardContent className="space-y-6">
-                {/* Technologies */}
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span 
@@ -142,7 +143,6 @@ const ProjectsSection = () => {
                   ))}
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex gap-3">
                   <Button 
                     size="sm" 
@@ -176,7 +176,6 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* View More Button */}
         <div className="text-center mt-16">
           <Button 
             size="lg" 
@@ -196,4 +195,9 @@ const ProjectsSection = () => {
   );
 };
 
+export default ProjectsSection;
+*/
+
+// Placeholder export to prevent import errors
+const ProjectsSection = () => null;
 export default ProjectsSection;

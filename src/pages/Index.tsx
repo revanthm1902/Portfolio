@@ -6,22 +6,36 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
-import ProjectsSection from '@/components/ProjectsSection';
+// import ProjectsSection from '@/components/ProjectsSection'; // Commented out for now
+import UnderDevelopment from '@/components/UnderDevelopment';
 import ExperienceSection from '@/components/ExperienceSection';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
 import InProcessSection from '@/components/InProcessSection';
 import Footer from '@/components/Footer';
+import ScrollProgress from '@/components/ScrollProgress';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentSection, setCurrentSection] = useState('home');
 
   useEffect(() => {
-    // Simulate initial loading
+    // Simulate initial loading with proper cleanup
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+
+    // Preload critical resources
+    const preloadResources = () => {
+      // Preload fonts
+      const fontLink = document.createElement('link');
+      fontLink.rel = 'preload';
+      fontLink.href = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap';
+      fontLink.as = 'style';
+      document.head.appendChild(fontLink);
+    };
+
+    preloadResources();
 
     return () => clearTimeout(timer);
   }, []);
@@ -39,7 +53,11 @@ const Index = () => {
       case 'skills':
         return <SkillsSection />;
       case 'projects':
-        return <ProjectsSection />;
+        return <UnderDevelopment 
+          title="Projects Section" 
+          showBackButton={true} 
+          onBack={() => setCurrentSection('home')} 
+        />;
       case 'experience':
         return <ExperienceSection />;
       case 'blog':
@@ -77,6 +95,9 @@ const Index = () => {
       
       {/* Footer */}
       <Footer />
+      
+      {/* Scroll Progress Indicator */}
+      <ScrollProgress />
     </div>
   );
 };

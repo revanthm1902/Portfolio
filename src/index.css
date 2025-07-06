@@ -295,11 +295,22 @@
     box-shadow: 0 0 12px hsl(var(--neon-cyan) / 0.2);
   }
 
-  /* Hide cursor trail on mobile devices */
-  @media (max-width: 768px), (hover: none) {
+  /* Hide cursor trail on mobile devices and reduce motion */
+  @media (max-width: 768px), (hover: none), (prefers-reduced-motion: reduce) {
     .cursor-trail,
     .cursor-trail-secondary {
       display: none !important;
+    }
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
 
@@ -307,6 +318,7 @@
   .cursor-trail,
   .cursor-trail-secondary {
     will-change: transform, opacity;
+    contain: layout style paint;
   }
 
   /* Smooth scaling for cursor trail */
@@ -372,14 +384,17 @@
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
+    will-change: transform;
   }
 
   .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    will-change: opacity;
   }
 
   .animate-glow {
     animation: glow 3s ease-in-out infinite alternate;
+    will-change: text-shadow, box-shadow;
   }
 
   /* Enhanced dark mode glow animation */

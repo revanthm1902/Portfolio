@@ -1,15 +1,16 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Building, Calendar, MapPin, Award } from 'lucide-react';
 
 const ExperienceSection = () => {
-  const experiences = [
+  const workExperiences = [
     {
       id: 1,
       company: "Purple Techno Solutions",
       position: "Intern",
       duration: "Jan 2025 – Apr 2025",
-      location: "",
+      location: "Vijayawada, India",
       type: "Internship",
       description: "Worked on Full Stack Development and AI/ML-based solutions. and practical deployment of applications.",
       achievements: [
@@ -25,26 +26,40 @@ const ExperienceSection = () => {
       company: "TechtoGreen",
       position: "R&D Intern",
       duration: "Aug 2024 – Present",
-      location: "",
+      location: "VIT-AP University",
       type: "Internship",
       description: "Research and Development intern at TechtoGreen, a VIT-AP university-backed startup.",
       achievements: [
         "Contributed to Agri Drone innovation for precision farming (see: AI Autonomous Hackathon post)",
-        "Worked on smart wearable project 'SafeFit' for health, fitness, and safety (see: HACKSAGON 2025 post)",
-        "Participated in LLM Security Bootcamp, gaining hands-on experience in GenAI, MLOps, LangChain, RAG, and cybersecurity."
+        "Worked on Intelligent Safety Helmet project 'Crown Shield (CS-1)' for multipurpose helmet usage. (see: HackAP 2024 post)",
       ],
-      technologies: ["IoT", "Drones", "AI/ML", "GenAI", "LangChain", "MLOps", "Python", "React"],
+      technologies: ["IoT", "Drones", "AI/ML", "GenAI", "LangChain", "Web Dev", "Mobile App Dev"],
       icon: Building
+    }
+  ];
+
+  const achievements = [
+    {
+      id: 10,
+      company: "HACKSAGON 2025 (ABV-IIITM, Gwalior)",
+      position: "Top-Performer",
+      duration: "2025",
+      location: "ABV-IIITM, Gwalior",
+      type: "Competition",
+      description: "Worked on smart wearable project 'SafeFit' for health, fitness, and safety.",
+      achievements: ["Best social project idea.","Top-Performers"],
+      technologies: ["Wearables", "Health Tech", "IoT"],
+      icon: Award
     },
     {
       id: 3,
       company: "HackAP Hackathon 2024",
       position: "Winner",
       duration: "2024",
-      location: "",
+      location: "Vishakapatnam, India",
       type: "Competition",
       description: "Secured 1st place for developing a portable safety device (helmet) for MEWP operators.",
-      achievements: [],
+      achievements: ["1st off-campus Hackathon win"],
       technologies: ["IoT", "Embedded Systems", "Safety Devices"],
       icon: Award
     },
@@ -53,10 +68,10 @@ const ExperienceSection = () => {
       company: "NASA Space Apps Challenge 2024",
       position: "Global Nominee",
       duration: "2024",
-      location: "",
+      location: "Remote Hackathon",
       type: "Competition",
       description: "Contributed to real-world space problem-solving as a global nominee.",
-      achievements: [],
+      achievements: ["Qualied as a Global Nominee standing at top 3% globally."],
       technologies: ["Problem Solving", "Space Tech", "Collaboration"],
       icon: Award
     },
@@ -65,10 +80,10 @@ const ExperienceSection = () => {
       company: "AppFusion Hackathon",
       position: "Winner",
       duration: "2024",
-      location: "",
+      location: "VIT-AP University",
       type: "Competition",
       description: "Developed a Gmail replica and secured 1st place.",
-      achievements: [],
+      achievements: ["Achieved 1st place among 300+ participants."],
       technologies: ["Web Development", "UI/UX", "React"],
       icon: Award
     },
@@ -77,22 +92,22 @@ const ExperienceSection = () => {
       company: "Drone Hackathon",
       position: "Winner",
       duration: "2025",
-      location: "",
+      location: "Chalapathi Institue of Technology, Guntur",
       type: "Competition",
       description: "First place for Search and Rescue, UAV-Assisted Agriculture Monitoring.",
-      achievements: [],
-      technologies: ["Drones", "UAV", "Agriculture Monitoring"],
+      achievements: ["1st and 2nd place both goes to our Startup Interns team."],
+      technologies: ["IOT","Drones", "UAV", "Agriculture Monitoring"],
       icon: Award
     },
     {
       id: 7,
       company: "Postman API Fundamentals Workshop",
-      position: "Participant",
+      position: "Certified",
       duration: "2025",
-      location: "",
+      location: "Remote",
       type: "Workshop",
       description: "Completed workshop: REST APIs, HTTP Methods, Authentication, Automating Tests.",
-      achievements: [],
+      achievements: ["Got enough experience regarding APIs with certification."],
       technologies: ["REST APIs", "Postman", "API Testing"],
       icon: Award
     },
@@ -101,50 +116,116 @@ const ExperienceSection = () => {
       company: "International Startup Festival 2024",
       position: "Attendee",
       duration: "2024",
-      location: "",
+      location: "ESCI, Hyderabad, India",
       type: "Conference",
       description: "Explored innovations in AI, FinTech, AgriTech, and Health Tech.",
-      achievements: [],
+      achievements: ["Experience on Startups, Mentorship and Guidance"],
       technologies: ["AI", "FinTech", "AgriTech", "Health Tech"],
       icon: Award
     },
     {
       id: 9,
       company: "LLM Security Bootcamp",
-      position: "Participant",
+      position: "Certified",
       duration: "2025",
-      location: "",
+      location: "VIT-AP University",
       type: "Bootcamp",
-      description: "Hands-on experience in GenAI, MLOps, LangChain, RAG, and cybersecurity.",
-      achievements: [],
+      description: "In collab with IIT-Madras.",
+      achievements: ["Hands-on experience in GenAI, MLOps, LangChain, RAG, and cybersecurity."],
       technologies: ["GenAI", "MLOps", "LangChain", "RAG", "Cybersecurity"],
       icon: Award
     },
-    {
-      id: 10,
-      company: "TechtoGreen",
-      position: "Project Contributor",
-      duration: "2025",
-      location: "",
-      type: "Project",
-      description: "Worked on Agri Drone innovation for precision farming as part of TechtoGreen's product portfolio.",
-      achievements: [],
-      technologies: ["Drones", "Precision Farming", "AI/ML"],
-      icon: Award
-    },
-    {
-      id: 11,
-      company: "HACKSAGON 2025 (ABV-IIITM, Gwalior)",
-      position: "Project Contributor",
-      duration: "2025",
-      location: "",
-      type: "Project",
-      description: "Worked on smart wearable project 'SafeFit' for health, fitness, and safety.",
-      achievements: [],
-      technologies: ["Wearables", "Health Tech", "IoT"],
-      icon: Award
-    }
+    
   ];
+
+  interface ExperienceItem {
+    id: number;
+    company: string;
+    position: string;
+    duration: string;
+    location: string;
+    type: string;
+    description: string;
+    achievements: string[];
+    technologies: string[];
+    icon: React.ComponentType<{ className?: string }>;
+  }
+
+  const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) => (
+    <Card 
+      className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-[1.02] group"
+      style={{ animationDelay: `${index * 0.2}s` }}
+    >
+      <CardHeader className="pb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-start gap-4">
+            <div className="p-3 glass-card">
+              <exp.icon className="h-6 w-6 text-neon-cyan group-hover:animate-bounce-slow" />
+            </div>
+            <div>
+              <CardTitle className="text-2xl font-space text-foreground group-hover:text-neon-purple transition-colors">
+                {exp.position}
+              </CardTitle>
+              <CardDescription className="text-lg text-neon-cyan font-mono">
+                {exp.company}
+              </CardDescription>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:items-end gap-2">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Calendar className="h-4 w-4" />
+              <span className="font-mono">{exp.duration}</span>
+            </div>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <MapPin className="h-4 w-4" />
+              <span>{exp.location}</span>
+            </div>
+            <Badge variant="outline" className="text-neon-green border-neon-green/50">
+              {exp.type}
+            </Badge>
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardContent className="space-y-6">
+        <p className="text-muted-foreground leading-relaxed">
+          {exp.description}
+        </p>
+
+        {/* Achievements */}
+        <div>
+          <h4 className="text-lg font-semibold text-neon-cyan mb-3 flex items-center gap-2">
+            <Award className="h-5 w-5" />
+            Key Achievements
+          </h4>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {exp.achievements.map((achievement: string, i: number) => (
+              <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                <span className="text-neon-green mt-1">▸</span>
+                <span>{achievement}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Technologies */}
+        <div>
+          <h4 className="text-lg font-semibold text-neon-cyan mb-3">Technologies Used</h4>
+          <div className="flex flex-wrap gap-2">
+            {exp.technologies.map((tech: string) => (
+              <span 
+                key={tech}
+                className="px-3 py-1 text-sm font-mono bg-neon-purple/20 text-neon-cyan rounded-full border border-neon-purple/30"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
 
   return (
     <section className="min-h-screen py-24 px-4 hero-gradient bg-grid relative overflow-hidden">
@@ -179,85 +260,39 @@ const ExperienceSection = () => {
           </p>
         </div>
 
-        {/* Experience Timeline */}
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <Card 
-              key={exp.id}
-              className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-[1.02] group"
-              style={{ animationDelay: `${index * 0.2}s` }}
+        {/* Tabs for Work Experience and Achievements */}
+        <Tabs defaultValue="work" className="w-full">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 glass-card">
+            <TabsTrigger 
+              value="work" 
+              className="data-[state=active]:bg-neon-green/20 data-[state=active]:text-neon-green data-[state=active]:border-neon-green/50"
             >
-              <CardHeader className="pb-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 glass-card">
-                      <exp.icon className="h-6 w-6 text-neon-cyan group-hover:animate-bounce-slow" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-2xl font-space text-foreground group-hover:text-neon-purple transition-colors">
-                        {exp.position}
-                      </CardTitle>
-                      <CardDescription className="text-lg text-neon-cyan font-mono">
-                        {exp.company}
-                      </CardDescription>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col md:items-end gap-2">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      <span className="font-mono">{exp.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <MapPin className="h-4 w-4" />
-                      <span>{exp.location}</span>
-                    </div>
-                    <Badge variant="outline" className="text-neon-green border-neon-green/50">
-                      {exp.type}
-                    </Badge>
-                  </div>
-                </div>
-              </CardHeader>
+              Work Experience
+            </TabsTrigger>
+            <TabsTrigger 
+              value="achievements" 
+              className="data-[state=active]:bg-neon-purple/20 data-[state=active]:text-neon-purple data-[state=active]:border-neon-purple/50"
+            >
+              Achievements
+            </TabsTrigger>
+          </TabsList>
 
-              <CardContent className="space-y-6">
-                <p className="text-muted-foreground leading-relaxed">
-                  {exp.description}
-                </p>
+          <TabsContent value="work" className="mt-8">
+            <div className="space-y-8">
+              {workExperiences.map((exp, index) => (
+                <ExperienceCard key={exp.id} exp={exp} index={index} />
+              ))}
+            </div>
+          </TabsContent>
 
-                {/* Achievements */}
-                <div>
-                  <h4 className="text-lg font-semibold text-neon-cyan mb-3 flex items-center gap-2">
-                    <Award className="h-5 w-5" />
-                    Key Achievements
-                  </h4>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                        <span className="text-neon-green mt-1">▸</span>
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Technologies */}
-                <div>
-                  <h4 className="text-lg font-semibold text-neon-cyan mb-3">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech) => (
-                      <span 
-                        key={tech}
-                        className="px-3 py-1 text-sm font-mono bg-neon-purple/20 text-neon-cyan rounded-full border border-neon-purple/30"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+          <TabsContent value="achievements" className="mt-8">
+            <div className="space-y-8">
+              {achievements.map((exp, index) => (
+                <ExperienceCard key={exp.id} exp={exp} index={index} />
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );

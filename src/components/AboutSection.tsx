@@ -31,13 +31,38 @@ const AboutSection = () => {
   ];
 
   const journey = [
-    { year: '2020', event: 'Started Programming Journey', description: 'Fell in love with code during college' },
-    { year: '2021', event: 'First Internship', description: 'Frontend Developer at TechStart Inc.' },
-    { year: '2022', event: 'Full Stack Developer', description: 'Joined InnovateCorp as a full-time developer' },
-    { year: '2023', event: 'Tech Lead', description: 'Led a team of 5 developers on major projects' },
-    { year: '2024', event: 'Freelance & Consulting', description: 'Started helping startups build amazing products' }
+    {
+      year: '2023',
+      event: 'Began B.Tech at VIT-AP University',
+      description: 'Enrolled in VIT-AP to pursue a Bachelor’s in Technology (CSE).'
+    },
+    {
+      year: '2023',
+      event: 'Discovered Passion for Programming',
+      description: 'Started exploring core programming concepts and fell in love with problem solving and building things.'
+    },
+    {
+      year: '2024',
+      event: 'Joined Innovation & Entrepreneurship Cell (IIEC)',
+      description: 'Got exposed to startup culture, mentorship, and early product ideation.'
+    },
+    {
+      year: '2024',
+      event: '1st Internship – R&D Intern',
+      description: 'Worked at TechtoGreen Drone & Robotics Pvt. Ltd. as a Research & Development Intern on real-world drone tech.'
+    },
+    {
+      year: '2024',
+      event: 'Joined NULL Chapter (Cybersecurity Club)',
+      description: 'Collaborated on technical security projects as part of the technical team.'
+    },
+    {
+      year: '2025',
+      event: '2nd Internship – Full Stack Developer',
+      description: 'Joined Purple Techno Solutions as a Full Stack Developer Intern, building scalable web apps.'
+    }
   ];
-
+  
   return (
     <section className="min-h-screen py-20 px-4 hero-gradient bg-grid relative overflow-hidden">
       {/* Profile Image */}
@@ -78,7 +103,7 @@ const AboutSection = () => {
             About Me
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            I'm a passionate full-stack developer who loves turning complex problems into simple, beautiful solutions. 
+            I'm a passionate full-stack developer who thrives on turning complex challenges into elegant, user-friendly solutions. 
             With a strong foundation in modern web technologies and a keen eye for design.
           </p>
         </div>
@@ -89,20 +114,19 @@ const AboutSection = () => {
           <div className="space-y-8">
             <Card className="glass-card border-neon-purple/30 hover:border-neon-purple/50 transition-all duration-300">
               <CardHeader>
-                <CardTitle className="text-2xl text-neon-purple">My Story</CardTitle>
+                <CardTitle className="text-2xl text-neon-purple"><span className="text-white italic font-bold tracking-wide">Revanth Modalavalasa</span>{' '} - My Story</CardTitle>
                 <CardDescription className="text-lg">
                   From curious beginner to passionate developer
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
-                <p>
-                  My journey into the world of programming started during my computer science studies, 
-                  where I discovered the magic of bringing ideas to life through code. What began as 
-                  curiosity quickly evolved into a deep passion for creating digital experiences.
+              <p>
+                  My journey into programming began during my computer science studies, where I discovered the thrill of turning ideas into reality through code. 
+                  What started as curiosity soon became a driving passion for building meaningful digital experiences.
                 </p>
                 <p>
-                  Today, I specialize in building modern web applications using cutting-edge technologies. 
-                  I'm particularly fascinated by the intersection of great UX design and robust backend architecture.
+                  Today, I specialize in crafting modern, responsive web applications using cutting-edge technologies. 
+                  I'm deeply inspired by the synergy between intuitive UX design and powerful backend systems — where creativity meets logic.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-4">
                   <Badge variant="secondary" className="bg-neon-purple/20 text-neon-purple border-neon-purple/30">
@@ -175,18 +199,24 @@ const AboutSection = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div className="space-y-2">
-                <div className="text-3xl">🎮</div>
-                <p className="text-muted-foreground">Gaming enthusiast who finds inspiration in game mechanics for web UX</p>
-              </div>
-              <div className="space-y-2">
-                <div className="text-3xl">☕</div>
-                <p className="text-muted-foreground">Coffee aficionado - I believe the best code is written with the perfect brew</p>
-              </div>
-              <div className="space-y-2">
-                <div className="text-3xl">🌱</div>
-                <p className="text-muted-foreground">Always learning something new - currently exploring AI/ML integration in web apps</p>
-              </div>
+            <div className="space-y-2">
+              <div className="text-3xl">🎮</div>
+              <p className="text-muted-foreground">
+                Passionate gamer who draws creative UX inspiration from immersive game mechanics and dynamics.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl">☕</div>
+              <p className="text-muted-foreground">
+                Coffee-fueled coder — firmly believe the cleanest code starts with the perfect brew.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl">🌱</div>
+              <p className="text-muted-foreground">
+                Lifelong learner — currently diving deep into AI/ML to bring smarter experiences to the web.
+              </p>
+            </div>
             </div>
           </CardContent>
         </Card>
