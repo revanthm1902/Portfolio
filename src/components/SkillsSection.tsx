@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Code, Server, Palette, Database, Cloud, Zap } from 'lucide-react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import { Code, Server, Palette, Database, Cloud, Zap, PieChart } from 'lucide-react';
+import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import Modal from './Modal';
 import SkillsCarousel from './SkillsCarousel';
 
@@ -16,6 +16,19 @@ const SkillsSection = () => {
   } | null>(null);
 
   const skillCategories = [
+    {
+      icon: Code,
+      title: 'Programming languages',
+      color: 'neon-purple',
+      skills: [
+        { name: 'JAVA', level: 95, description: 'Object-oriented programming, DSA, and enterprise-level application development.' },
+        { name: 'Python', level: 95, description: 'Backend development with Django/FastAPI and scripting for automation and AI/ML tasks.' },
+      ],
+      chartData: [
+        { name: 'JAVA', value: 95, color: '#8b5cf6' },
+        { name: 'Python', value: 95, color: '#06b6d4' },
+      ]
+    },
     {
       icon: Code,
       title: 'Frontend Development',
@@ -81,6 +94,45 @@ const SkillsSection = () => {
         { name: 'Kubernetes', value: 70, color: '#10b981' },
         { name: 'CI/CD', value: 85, color: '#f59e0b' }
       ]
+    },
+    {
+      icon: Zap,
+      title: 'AI / ML',
+      color: 'neon-purple',
+      skills: [
+        { name: 'Scikit-learn', level: 90, description: 'Building and evaluating ML models with pipelines, GridSearchCV, and preprocessing tools.' },
+        { name: 'TensorFlow', level: 90, description: 'Training deep learning models for image and text classification using Keras API.' },
+        { name: 'PyTorch', level: 90, description: 'Hands-on with dynamic computational graphs for building neural networks.' },
+        { name: 'Keras', level: 85, description: 'Rapid prototyping of neural networks with a user-friendly interface over TensorFlow.' },
+        { name: 'Pandas', level: 90, description: 'Data manipulation and preprocessing for machine learning workflows.' },
+        { name: 'NumPy', level: 90, description: 'Efficient numerical computation and array operations in ML pipelines.' },
+        { name: 'OpenCV', level: 90, description: 'Image processing and computer vision tasks such as object detection and filtering.' }
+      ],
+      chartData: [
+        { name: 'Scikit-learn', value: 90, color: '#8b5cf6' },
+        { name: 'TensorFlow', value: 90, color: '#06b6d4' },
+        { name: 'PyTorch', value: 90, color: '#10b981' },
+        { name: 'Keras', value: 85, color: '#f59e0b' },
+        { name: 'NumPy', value: 90, color: '#10b981' },
+        { name: 'OpenCV', value: 90, color: '#f59e0b' }
+      ]
+    },
+    {
+      icon: PieChart,
+      title: 'Data Visualization',
+      color: 'neon-purple',
+      skills: [
+        { name: 'Tableau', level: 90, description: 'Building interactive dashboards and visual storytelling from complex datasets.' },
+        { name: 'Power BI', level: 90, description: 'Creating business insights and reports using real-time and historical data.' },
+        { name: 'Excel', level: 85, description: 'Advanced formulas, pivot tables, and charting for quick data analysis.' },
+        { name: 'Matplotlib', level: 85, description: 'Creating custom static visualizations for data exploration in Python.' }
+      ],
+      chartData: [
+        { name: 'Tableau', value: 90, color: '#8b5cf6' },
+        { name: 'Power BI', value: 90, color: '#06b6d4' },
+        { name: 'Matplotlib', value: 85, color: '#10b981' },
+        { name: 'Excel', value: 85, color: '#f59e0b' }
+      ]
     }
   ];
 
@@ -127,9 +179,9 @@ const SkillsSection = () => {
       const data = payload[0];
       return (
         <div className="glass-card p-3 border border-white/20">
-          <p className="text-neon-cyan font-mono">{data.name}</p>
+          <p className="text-neon-cyan font-mono">{data.payload.name}</p>
           <p className="text-white">
-            <span className="text-neon-green">{data.value}%</span> proficiency
+            <span className="text-neon-green">{data.payload.value}%</span> proficiency
           </p>
         </div>
       );
@@ -185,7 +237,7 @@ const SkillsSection = () => {
                 {/* Interactive Pie Chart */}
                 <div className="h-64 w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
+                    <RechartsPieChart>
                       <Pie
                         data={category.chartData}
                         cx="50%"
@@ -213,7 +265,7 @@ const SkillsSection = () => {
                           fontFamily: 'monospace'
                         }}
                       />
-                    </PieChart>
+                    </RechartsPieChart>
                   </ResponsiveContainer>
                 </div>
 

@@ -17,7 +17,21 @@ import ScrollProgress from '@/components/ScrollProgress';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [themeReady, setThemeReady] = useState(false);
   const [currentSection, setCurrentSection] = useState('home');
+
+  useEffect(() => {
+    // Set theme as early as possible
+    const setInitialTheme = () => {
+      const userTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = userTheme || (systemPrefersDark ? 'dark' : 'light');
+      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.add(theme);
+      setThemeReady(true);
+    };
+    setInitialTheme();
+  }, []);
 
   useEffect(() => {
     // Simulate initial loading with proper cleanup
@@ -69,7 +83,8 @@ const Index = () => {
     }
   };
 
-  if (isLoading) {
+  // Only show the app when both loading and theme are ready
+  if (isLoading || !themeReady) {
     return <LoadingAnimation onComplete={() => setIsLoading(false)} />;
   }
 

@@ -131,19 +131,6 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
             <div className="h-1 bg-gradient-to-r from-neon-purple via-neon-cyan to-neon-green rounded-full mt-6 animate-pulse max-w-2xl mx-auto"></div>
           </div>
           
-          {/* Social Icons */}
-          <div className="flex justify-center gap-4 mt-6">
-            <a href="https://github.com/revanthm1902" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 glass-card rounded-lg hover:text-neon-purple transition-all duration-300 hover:scale-110 border border-white/10 hover:border-neon-cyan/30">
-              <Github className="h-6 w-6" />
-            </a>
-            <a href="https://www.linkedin.com/in/modalavalasa-revanth/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 glass-card rounded-lg hover:text-neon-cyan transition-all duration-300 hover:scale-110 border border-white/10 hover:border-neon-cyan/30">
-              <Linkedin className="h-6 w-6" />
-            </a>
-            <a href="mailto:revanthm051@gmail.com" aria-label="Mail" className="p-2 glass-card rounded-lg hover:text-neon-green transition-all duration-300 hover:scale-110 border border-white/10 hover:border-neon-cyan/30">
-              <Mail className="h-6 w-6" />
-            </a>
-          </div>
-          
           <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-mono text-muted-foreground animate-slide-in-left min-h-[3rem] flex items-center justify-center px-4">
             <span className="text-neon-cyan mr-2 hidden sm:inline">&gt;</span>
             <TypingAnimation 
@@ -166,16 +153,8 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
                 A future-maker, in full-stack mode.
               </span>
               <span className="block">
-                With logic and vision, I architect change,<br className="hidden sm:inline" />
-                Designing systems that scale and range.
-              </span>
-              <span className="block">
                 Ideas to apps, I bring them alive,<br className="hidden sm:inline" />
                 Fuelled by purpose, I build to thrive.
-              </span>
-              <span className="block">
-                Pixels or pipelines, I make them align,<br className="hidden sm:inline" />
-                Turning raw thoughts into flawless design.
               </span>
               <span className="block">
                 Tech isn't just code — it's the art I unfold,<br className="hidden sm:inline" />
