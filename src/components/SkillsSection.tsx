@@ -136,32 +136,31 @@ const SkillsSection = () => {
     }
   ];
 
-  const certifications = [
-    { 
-      name: 'AWS Certified Developer', 
-      org: 'Amazon Web Services', 
-      year: '2023',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&crop=center'
-    },
-    { 
-      name: 'React Developer Certificate', 
-      org: 'Meta', 
-      year: '2022',
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&crop=center'
-    },
-    { 
-      name: 'MongoDB University', 
-      org: 'MongoDB Inc.', 
-      year: '2023',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center'
-    },
-    { 
-      name: 'Google Cloud Platform', 
-      org: 'Google', 
-      year: '2024',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center'
-    }
-  ];
+  // const certifications = [
+  //   { 
+  //     name: 'AWS Certified Developer', 
+  //     org: 'Amazon Web Services', 
+  //     year: '2023',
+  //     image: ''
+  //   { 
+  //     name: 'React Developer Certificate', 
+  //     org: 'Meta', 
+  //     year: '2022',
+  //     image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&crop=center'
+  //   },
+  //   { 
+  //     name: 'MongoDB University', 
+  //     org: 'MongoDB Inc.', 
+  //     year: '2023',
+  //     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center'
+  //   },
+  //   { 
+  //     name: 'Google Cloud Platform', 
+  //     org: 'Google', 
+  //     year: '2024',
+  //     image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center'
+  //   }
+  // ];
 
   interface TooltipProps {
     active?: boolean;
@@ -304,7 +303,7 @@ const SkillsSection = () => {
           </div>
         </div>
 
-        {/* Certifications */}
+        {/* Certifications
         <div className="space-y-8">
           <h3 className="text-3xl font-space font-bold text-center text-neon-purple">
             Certifications & Achievements
@@ -328,7 +327,7 @@ const SkillsSection = () => {
               </Card>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Experience Highlight */}
         <Card className="glass-card border-neon-green/30 hover:border-neon-green/50 transition-all duration-300">
