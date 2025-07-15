@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
-// import ProjectsSection from '@/components/ProjectsSection'; // Commented out for now
+import ProjectsSection from '@/components/ProjectsSection';
 import UnderDevelopment from '@/components/UnderDevelopment';
 import ExperienceSection from '@/components/ExperienceSection';
 import BlogSection from '@/components/BlogSection';
@@ -67,11 +67,10 @@ const Index = () => {
       case 'skills':
         return <SkillsSection />;
       case 'projects':
-        return <UnderDevelopment 
-          title="Projects Section" 
-          showBackButton={true} 
-          onBack={() => setCurrentSection('home')} 
-        />;
+        return <ProjectsSection />;
+          // title="Projects Section" 
+          // showBackButton={true} 
+          // onBack={() => setCurrentSection('home')} 
       case 'experience':
         return <ExperienceSection />;
       case 'blog':

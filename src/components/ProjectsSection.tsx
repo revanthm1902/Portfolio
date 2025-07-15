@@ -1,8 +1,3 @@
-// TEMPORARILY DISABLED - Using UnderDevelopment component instead
-// This component has been temporarily disabled and replaced with the UnderDevelopment component
-// To re-enable, uncomment the code below and update the Index.tsx file
-
-/*
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,70 +7,71 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce platform with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.",
+      title: "Safe Fit",
+      description: "A native mobile app for an IOT device - SafeFit : Smart Bracelet.",
       image: "/placeholder.svg",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "TailwindCSS"],
-      githubUrl: "https://github.com/username/ecommerce-platform",
-      demoUrl: "https://ecommerce-demo.vercel.app",
-      category: "Full Stack",
-      icon: Database
+      technologies: ["React NAtive", "TypeScript", "Supabase", "Node.js", "TailwindCSS","Chart.js", "Framer Motion"],
+      githubUrl: "https://github.com/revanthm1902/safe-fit.git",
+      demoUrl: null,
+      category: "Native App",
+      icon: Smartphone
     },
     {
       id: 2,
-      title: "AI Chat Application",
-      description: "Real-time chat application with AI integration using OpenAI API. Features include message encryption, file sharing, and smart replies.",
+      title: "School Website",
+      description: "A full-stack school website for St. G. D. Convent School",
       image: "/placeholder.svg",
-      technologies: ["Next.js", "OpenAI", "Socket.io", "PostgreSQL", "Redis"],
-      githubUrl: "https://github.com/username/ai-chat-app",
-      demoUrl: "https://ai-chat-demo.vercel.app",
-      category: "AI/ML",
-      icon: Zap
+      technologies: ["React", "Supabase", "Chart.js", "TypeScript", "Framer Motion"],
+      githubUrl: "https://github.com/revanthm1902/StgdSchool.git",
+      demoUrl: "https://stgdconventschool.com/",
+      category: "Website",
+      icon: Code
     },
     {
       id: 3,
-      title: "Task Management Dashboard",
-      description: "A comprehensive project management tool with team collaboration features, time tracking, and analytics dashboard.",
+      title: "Portfolio Website",
+      description: "My personal portfolio website showcasing my skills, projects, and experience.",
       image: "/placeholder.svg",
-      technologies: ["React", "TypeScript", "Supabase", "Chart.js", "Framer Motion"],
-      githubUrl: "https://github.com/username/task-manager",
-      demoUrl: "https://task-manager-demo.vercel.app",
-      category: "Productivity",
+      technologies: ["React", "TypeScript", "TailwindCSS", "Framer Motion"],
+      githubUrl: "https://github.com/revanthm1902/Portfolio",
+      demoUrl: "https://revanthm.vercel.app/",
+      category: "Website", 
       icon: Code
     },
     {
       id: 4,
-      title: "Mobile Fitness App",
-      description: "Cross-platform mobile app for fitness tracking with workout plans, nutrition tracking, and social features.",
+      title: "Ydhya AI",
+      description: "An open-access tool for all the medical needs. A one-stop solution for all your medical queries.",
       image: "/placeholder.svg",
-      technologies: ["React Native", "Firebase", "Redux", "Expo", "Chart.js"],
-      githubUrl: "https://github.com/username/fitness-app",
-      demoUrl: "https://fitness-app-demo.vercel.app",
-      category: "Mobile",
-      icon: Smartphone
+      technologies: ["React", "Javascript","Supabase", "Chart.js", "OpenAI API"],
+      githubUrl: "https://github.com/revanthm1902/Ydhya.git",
+      demoUrl: null,
+      category: "Productivity",
+      icon: Zap
     },
     {
       id: 5,
-      title: "Blockchain Voting System",
-      description: "Decentralized voting platform built on Ethereum with smart contracts ensuring transparency and security.",
+      title: "RealEstate Management System",
+      description: "A comprehensive real estate management system for tracking properties, clients, and transactions for both landlords and tenants.",
       image: "/placeholder.svg",
-      technologies: ["Solidity", "Web3.js", "React", "Ethereum", "IPFS"],
-      githubUrl: "https://github.com/username/blockchain-voting",
-      demoUrl: "https://voting-demo.vercel.app",
-      category: "Blockchain",
+      technologies: ["TypeScript", "PostgreSQL", "Expo", "Chart.js"],
+      githubUrl: "https://github.com/revanthm1902/Real-Estate-Management-System.git",
+      demoUrl: null,
+      category: "Productivity",
       icon: Database
     },
     {
       id: 6,
-      title: "Weather Analytics Dashboard",
-      description: "Real-time weather data visualization with predictive analytics and interactive maps using multiple APIs.",
+      title: "Laundry Management System",
+      description: "A comprehensive laundry management system for tracking orders, and customer interactions for producitivty and easy balancing of the records.",
       image: "/placeholder.svg",
-      technologies: ["Vue.js", "D3.js", "Python", "FastAPI", "Docker"],
-      githubUrl: "https://github.com/username/weather-dashboard",
-      demoUrl: "https://weather-demo.vercel.app",
-      category: "Data Science",
-      icon: Zap
-    }
+      technologies: ["Javascript", "PostgreSQL", "Expo", "Chart.js"],
+      githubUrl: "https://github.com/revanthm1902/laundry-management-system",
+      demoUrl: null,
+      category: "Productivity",
+      icon: Database
+    },
+    
   ];
 
   return (
@@ -144,19 +140,21 @@ const ProjectsSection = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  <Button 
-                    size="sm" 
-                    className="ui-btn flex-1 bg-neon-purple hover:bg-neon-purple/80 text-white border border-neon-purple/50 transition-all duration-300 hover:scale-105"
-                    asChild
-                  >
-                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                      <span className="flex items-center gap-2">
-                        <ExternalLink className="h-4 w-4" />
-                        Live Demo
-                      </span>
-                    </a>
-                  </Button>
-                  
+                  {project.demoUrl && (
+                    <Button 
+                      size="sm" 
+                      className="ui-btn flex-1 bg-neon-purple hover:bg-neon-purple/80 text-white border border-neon-purple/50 transition-all duration-300 hover:scale-105"
+                      asChild
+                    >
+                      <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                        <span className="flex items-center gap-2">
+                          <ExternalLink className="h-4 w-4" />
+                          Live Demo
+                        </span>
+                      </a>
+                    </Button>
+                  )}
+
                   <Button 
                     size="sm" 
                     variant="outline" 
@@ -166,7 +164,7 @@ const ProjectsSection = () => {
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                       <span className="flex items-center gap-2">
                         <Github className="h-4 w-4" />
-                        Code
+                        View Code
                       </span>
                     </a>
                   </Button>
@@ -196,8 +194,5 @@ const ProjectsSection = () => {
 };
 
 export default ProjectsSection;
-*/
 
-// Placeholder export to prevent import errors
-const ProjectsSection = () => null;
-export default ProjectsSection;
+

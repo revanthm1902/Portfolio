@@ -5,8 +5,23 @@ import { Building, Calendar, MapPin, Award } from 'lucide-react';
 
 const ExperienceSection = () => {
   const workExperiences = [
-    {
+      {
       id: 1,
+      company: "TechtoGreen",
+      position: "R&D Intern",
+      duration: "Aug 2024 – Present",
+      location: "VIT-AP University",
+      type: "Internship",
+      description: "Research and Development intern at TechtoGreen, a VIT-AP university-backed startup.",
+      achievements: [
+        "Contributed to Agri Drone innovation for precision farming (see: AI Autonomous Hackathon post)",
+        "Worked on Intelligent Safety Helmet project 'Crown Shield (CS-1)' for multipurpose helmet usage. (see: HackAP 2024 post)",
+      ],
+      technologies: ["IoT", "Drones", "AI/ML", "GenAI", "LangChain", "Web Dev", "Mobile App Dev"],
+      icon: Building
+    },
+    {
+      id: 2,
       company: "Purple Techno Solutions",
       position: "Intern",
       duration: "Jan 2025 – Apr 2025",
@@ -21,21 +36,7 @@ const ExperienceSection = () => {
       technologies: ["React", "Node.js", "Python", "Machine Learning", "MongoDB", "REST APIs"],
       icon: Building
     },
-    {
-      id: 2,
-      company: "TechtoGreen",
-      position: "R&D Intern",
-      duration: "Aug 2024 – Present",
-      location: "VIT-AP University",
-      type: "Internship",
-      description: "Research and Development intern at TechtoGreen, a VIT-AP university-backed startup.",
-      achievements: [
-        "Contributed to Agri Drone innovation for precision farming (see: AI Autonomous Hackathon post)",
-        "Worked on Intelligent Safety Helmet project 'Crown Shield (CS-1)' for multipurpose helmet usage. (see: HackAP 2024 post)",
-      ],
-      technologies: ["IoT", "Drones", "AI/ML", "GenAI", "LangChain", "Web Dev", "Mobile App Dev"],
-      icon: Building
-    }
+
   ];
 
   const achievements = [

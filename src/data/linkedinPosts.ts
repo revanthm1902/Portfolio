@@ -38,7 +38,7 @@ export const linkedinPosts: LinkedInPost[] = [
     title: 'Completed the Postman API Fundamentals Workshop',
     summary: 'Learning on REST APIs & HTTP Methods, Query & Path Parameters, Authentication & API Keys, Status Codes & Error Handling, Automating Tests in Postman',
     date: '2025-02-15',
-    image: 'https://media.licdn.com/dms/image/sync/v2/D4D27AQH7QjuBJe-rIA/articleshare-shrink_800/articleshare-shrink_800/0/1741169357012?e=1752372000&v=beta&t=rodfqzSKoyS3BoOHMo81hOO0LnqMxDPknPosPWCnQQQ',
+    image: 'https://cc.sj-cdn.net/instructor/3d8458f2k85sh-postman/courses/1a8b8cdxvqjxq/promo-image.1676069333.png',
   },
   {
     id: '5',
