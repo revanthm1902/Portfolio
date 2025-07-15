@@ -21,7 +21,7 @@ const ProjectsSection = () => {
       title: "School Website",
       description: "A full-stack school website for St. G. D. Convent School",
       image: "/placeholder.svg",
-      technologies: ["React", "Supabase", "Chart.js", "TypeScript", "Framer Motion"],
+      technologies: ["React", "Supabase", "Firebase", "TypeScript", "Framer Motion"],
       githubUrl: "https://github.com/revanthm1902/StgdSchool.git",
       demoUrl: "https://stgdconventschool.com/",
       category: "Website",
