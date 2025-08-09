@@ -15,7 +15,7 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
     color: 'neon-purple'
   }, {
     icon: Zap,
-    value: '2+',
+    value: '3+',
     label: 'Years Experience',
     color: 'neon-cyan'
   }, {
