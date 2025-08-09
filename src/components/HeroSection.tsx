@@ -20,7 +20,7 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
     color: 'neon-cyan'
   }, {
     icon: Award,
-    value: '15+',
+    value: '10+',
     label: 'Certifications',
     color: 'neon-green'
   }, {
@@ -46,15 +46,47 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
     }
   };
 
-  const handleResumeDownload = () => {
-    // Use the correct case for the resume file
+  const handleResumeDownload = async () => {
     const resumeUrl = '/Resume.pdf';
-    const link = document.createElement('a');
-    link.href = resumeUrl;
-    link.download = 'Revanth_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    
+    try {
+      // Method 1: Try direct download
+      const response = await fetch(resumeUrl);
+      
+      if (response.ok) {
+        // File exists and is accessible
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Revanth_Resume.pdf';
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      } else {
+        throw new Error('File not accessible via fetch');
+      }
+    } catch (error) {
+      console.warn('Primary download method failed, trying fallback:', error);
+      
+      try {
+        // Method 2: Direct link approach
+        const link = document.createElement('a');
+        link.href = resumeUrl;
+        link.download = 'Revanth_Resume.pdf';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (fallbackError) {
+        console.error('All download methods failed, opening in new tab:', fallbackError);
+        // Final fallback: open in new tab
+        window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
   };
 
   return (

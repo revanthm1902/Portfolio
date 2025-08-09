@@ -1,0 +1,25 @@
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "routes": [
+    {
+      "src": "/Resume.pdf",
+      "dest": "/Resume.pdf",
+      "headers": {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "attachment; filename=\"Revanth_Resume.pdf\""
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "functions": {
+    "src/pages/api/*.ts": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}

@@ -43,7 +43,7 @@ const ExperienceSection = () => {
     {
       id: 10,
       company: "HACKSAGON 2025 (ABV-IIITM, Gwalior)",
-      position: "Top-Performer",
+      position: "Runner up",
       duration: "2025",
       location: "ABV-IIITM, Gwalior",
       type: "Competition",
