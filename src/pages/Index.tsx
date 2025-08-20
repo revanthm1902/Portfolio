@@ -9,6 +9,8 @@ import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import UnderDevelopment from '@/components/UnderDevelopment';
 import ExperienceSection from '@/components/ExperienceSection';
+import ExperienceDetailPage from '@/components/ExperienceDetailPage';
+import ResumeSection from '@/components/ResumeSection';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
 import InProcessSection from '@/components/InProcessSection';
@@ -19,6 +21,7 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [themeReady, setThemeReady] = useState(false);
   const [currentSection, setCurrentSection] = useState('home');
+  const [selectedExperience, setSelectedExperience] = useState<any>(null);
 
   useEffect(() => {
     // Set theme as early as possible
@@ -56,7 +59,29 @@ const Index = () => {
 
   const handleNavigateToContact = () => {
     setCurrentSection('contact');
+    // Scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const handleExperienceSelect = (experience: any) => {
+    setSelectedExperience(experience);
+    setCurrentSection('experience-detail');
+    // Scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToExperience = () => {
+    setSelectedExperience(null);
+    setCurrentSection('experience');
+    // Scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Add effect to scroll to top when section changes
+  useEffect(() => {
+    // Scroll to top whenever section changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentSection]);
 
   const renderSection = () => {
     switch (currentSection) {
@@ -72,7 +97,16 @@ const Index = () => {
           // showBackButton={true} 
           // onBack={() => setCurrentSection('home')} 
       case 'experience':
-        return <ExperienceSection />;
+        return <ExperienceSection onExperienceSelect={handleExperienceSelect} />;
+      case 'experience-detail':
+        return selectedExperience ? (
+          <ExperienceDetailPage 
+            experience={selectedExperience} 
+            onBack={handleBackToExperience} 
+          />
+        ) : <ExperienceSection onExperienceSelect={handleExperienceSelect} />;
+      case 'resume':
+        return <ResumeSection onBack={() => setCurrentSection('home')} />;
       case 'blog':
         return <BlogSection />;
       case 'contact':

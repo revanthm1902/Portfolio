@@ -1,9 +1,14 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Building, Calendar, MapPin, Award } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Building, Calendar, MapPin, Award, FileText, Users, ArrowRight } from 'lucide-react';
 
-const ExperienceSection = () => {
+interface ExperienceSectionProps {
+  onExperienceSelect: (experience: any) => void;
+}
+
+const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
   const workExperiences = [
       {
       id: 1,
@@ -18,7 +23,45 @@ const ExperienceSection = () => {
         "Worked on Intelligent Safety Helmet project 'Crown Shield (CS-1)' for multipurpose helmet usage. (see: HackAP 2024 post)",
       ],
       technologies: ["IoT", "Drones", "AI/ML", "GenAI", "LangChain", "Web Dev", "Mobile App Dev"],
-      icon: Building
+      icon: Building,
+      projects: [
+        {
+          name: "Agri Drone - Precision Farming",
+          description: "Developed an autonomous drone system for precision agriculture with AI-powered crop monitoring, pest detection, and automated spraying capabilities.",
+          techStack: ["Python", "OpenCV", "TensorFlow", "ArduPilot", "IoT Sensors", "React", "Node.js"],
+          features: [
+            "Real-time crop health monitoring using computer vision",
+            "Automated pest and disease detection with 92% accuracy",
+            "GPS-guided autonomous flight patterns",
+            "Mobile app for farmer dashboard and controls",
+            "Cloud-based data analytics and reporting"
+          ],
+          achievements: [
+            "Reduced pesticide usage by 35% through targeted application",
+            "Increased crop yield monitoring efficiency by 80%",
+            "Won AI Autonomous Hackathon for innovation"
+          ],
+          certificate: "/certificates/techtogreen-agri-drone.pdf"
+        },
+        {
+          name: "Crown Shield (CS-1) - Intelligent Safety Helmet",
+          description: "Multipurpose smart helmet with integrated IoT sensors for construction and industrial worker safety monitoring.",
+          techStack: ["Arduino", "ESP32", "Sensors", "React Native", "Firebase", "Machine Learning"],
+          features: [
+            "Real-time vital signs monitoring (heart rate, temperature)",
+            "Gas leak detection and air quality monitoring",
+            "Fall detection with automatic emergency alerts",
+            "Location tracking and geofencing",
+            "Voice commands and hands-free communication"
+          ],
+          achievements: [
+            "Won 1st place at HackAP 2024 Hackathon",
+            "Reduced workplace accidents by 45% in pilot testing",
+            "Patent application filed for innovative sensor integration"
+          ],
+          certificate: "/certificates/hackap-2024-winner.pdf"
+        }
+      ]
     },
     {
       id: 2,
@@ -34,7 +77,45 @@ const ExperienceSection = () => {
         "Enhanced backend and frontend integration for seamless user experience."
       ],
       technologies: ["React", "Node.js", "Python", "Machine Learning", "MongoDB", "REST APIs"],
-      icon: Building
+      icon: Building,
+      projects: [
+        {
+          name: "AI-Powered E-commerce Platform",
+          description: "Full-stack e-commerce solution with AI-powered recommendation engine and intelligent inventory management.",
+          techStack: ["React", "Node.js", "Express", "MongoDB", "Python", "TensorFlow", "AWS"],
+          features: [
+            "Personalized product recommendations using collaborative filtering",
+            "Real-time inventory tracking and automated restocking alerts",
+            "Advanced search with natural language processing",
+            "Payment gateway integration with multiple providers",
+            "Admin dashboard with analytics and reporting"
+          ],
+          achievements: [
+            "Improved customer engagement by 60% with AI recommendations",
+            "Reduced inventory costs by 25% through predictive analytics",
+            "Deployed on AWS with 99.9% uptime"
+          ],
+          certificate: "/certificates/purple-techno-completion.pdf"
+        },
+        {
+          name: "Smart Home Automation System",
+          description: "IoT-based smart home system with machine learning for predictive automation and energy optimization.",
+          techStack: ["React Native", "Python", "Raspberry Pi", "MQTT", "Machine Learning", "PostgreSQL"],
+          features: [
+            "Voice-controlled device management",
+            "Predictive automation based on user behavior",
+            "Energy consumption optimization with ML algorithms",
+            "Security system with facial recognition",
+            "Mobile app for remote monitoring and control"
+          ],
+          achievements: [
+            "Reduced energy consumption by 30% through ML optimization",
+            "99.2% accuracy in facial recognition security system",
+            "Integrated with 15+ different IoT device types"
+          ],
+          certificate: "/certificates/smart-home-project.pdf"
+        }
+      ]
     },
 
   ];
@@ -139,6 +220,15 @@ const ExperienceSection = () => {
     
   ];
 
+  interface ProjectDetails {
+    name: string;
+    description: string;
+    techStack: string[];
+    features: string[];
+    achievements: string[];
+    certificate?: string;
+  }
+
   interface ExperienceItem {
     id: number;
     company: string;
@@ -150,11 +240,12 @@ const ExperienceSection = () => {
     achievements: string[];
     technologies: string[];
     icon: React.ComponentType<{ className?: string }>;
+    projects?: ProjectDetails[];
   }
 
   const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) => (
     <Card 
-      className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-[1.02] group"
+      className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-[1.02] group cursor-pointer"
       style={{ animationDelay: `${index * 0.2}s` }}
     >
       <CardHeader className="pb-6">
@@ -224,6 +315,48 @@ const ExperienceSection = () => {
             ))}
           </div>
         </div>
+
+        {/* Projects Section */}
+        {exp.projects && exp.projects.length > 0 && (
+          <div>
+            <h4 className="text-lg font-semibold text-neon-cyan mb-3 flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              Projects Worked On ({exp.projects.length})
+            </h4>
+            <div className="space-y-3">
+              {exp.projects.map((project, i) => (
+                <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 glass-card rounded-lg hover:bg-white/10 transition-colors">
+                  <div>
+                    <h5 className="font-semibold text-neon-purple">{project.name}</h5>
+                    <p className="text-sm text-muted-foreground mt-1">{project.description.substring(0, 100)}...</p>
+                  </div>
+                  <div className="flex gap-2 mt-2 sm:mt-0">
+                    {project.certificate && (
+                      <Badge variant="outline" className="text-neon-green border-neon-green/50 text-xs">
+                        <FileText className="h-3 w-3 mr-1" />
+                        Certificate
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* View Details Button */}
+        <div className="pt-4 border-t border-white/10">
+          <Button 
+            onClick={() => onExperienceSelect(exp)}
+            className="w-full bg-neon-purple/20 border-neon-purple/50 text-neon-purple hover:bg-neon-purple/30 border transition-all duration-300 hover:scale-[1.02] group"
+            size="lg"
+          >
+            <span className="flex items-center gap-2">
+              View Full Details & Certificates
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
@@ -289,7 +422,80 @@ const ExperienceSection = () => {
           <TabsContent value="achievements" className="mt-8">
             <div className="space-y-8">
               {achievements.map((exp, index) => (
-                <ExperienceCard key={exp.id} exp={exp} index={index} />
+                <Card 
+                  key={exp.id}
+                  className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-[1.02] group"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  <CardHeader className="pb-6">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 glass-card">
+                          <exp.icon className="h-6 w-6 text-neon-cyan group-hover:animate-bounce-slow" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-2xl font-space text-foreground group-hover:text-neon-purple transition-colors">
+                            {exp.position}
+                          </CardTitle>
+                          <CardDescription className="text-lg text-neon-cyan font-mono">
+                            {exp.company}
+                          </CardDescription>
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-col md:items-end gap-2">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <Calendar className="h-4 w-4" />
+                          <span className="font-mono">{exp.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <MapPin className="h-4 w-4" />
+                          <span>{exp.location}</span>
+                        </div>
+                        <Badge variant="outline" className="text-neon-green border-neon-green/50">
+                          {exp.type}
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardHeader>
+
+                  <CardContent className="space-y-6">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {exp.description}
+                    </p>
+
+                    {/* Achievements */}
+                    <div>
+                      <h4 className="text-lg font-semibold text-neon-cyan mb-3 flex items-center gap-2">
+                        <Award className="h-5 w-5" />
+                        Key Achievements
+                      </h4>
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {exp.achievements.map((achievement: string, i: number) => (
+                          <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                            <span className="text-neon-green mt-1">▸</span>
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Technologies */}
+                    <div>
+                      <h4 className="text-lg font-semibold text-neon-cyan mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.technologies.map((tech: string) => (
+                          <span 
+                            key={tech}
+                            className="px-3 py-1 text-sm font-mono bg-neon-purple/20 text-neon-cyan rounded-full border border-neon-purple/30"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </TabsContent>

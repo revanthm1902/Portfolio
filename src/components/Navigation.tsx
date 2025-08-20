@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Home, User, Code, Briefcase, BookOpen, Mail } from 'lucide-react';
+import { Menu, X, Home, User, Code, Briefcase, BookOpen, Mail, FileText } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 interface NavigationProps {
@@ -17,6 +17,7 @@ const Navigation = ({ currentSection, setCurrentSection }: NavigationProps) => {
     { id: 'skills', label: 'Skills', icon: Code },
     { id: 'projects', label: 'Projects', icon: Briefcase },
     { id: 'experience', label: 'Experience', icon: Briefcase },
+    { id: 'resume', label: 'Resume', icon: FileText },
     { id: 'blog', label: 'Blog', icon: BookOpen },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
@@ -37,7 +38,11 @@ const Navigation = ({ currentSection, setCurrentSection }: NavigationProps) => {
               {navItems.map((item, index) => (
                 <button
                   key={item.id}
-                  onClick={() => setCurrentSection(item.id)}
+                  onClick={() => {
+                    setCurrentSection(item.id);
+                    // Scroll to top when navigating
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                   className={`px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg relative group ${
                     currentSection === item.id
                       ? 'text-neon-purple bg-neon-purple/10 border border-neon-purple/30'
@@ -95,6 +100,8 @@ const Navigation = ({ currentSection, setCurrentSection }: NavigationProps) => {
                   onClick={() => {
                     setCurrentSection(item.id);
                     setIsOpen(false);
+                    // Scroll to top when navigating
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300 ${
                     currentSection === item.id
