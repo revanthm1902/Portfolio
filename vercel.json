@@ -3,18 +3,19 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-  "routes": [
+  "headers": [
     {
-      "src": "/Resume.pdf",
-      "dest": "/Resume.pdf",
-      "headers": {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": "inline; filename=\"Resume.pdf\""
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/Resume.pdf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"Revanth_M_Resume.pdf\""
+        }
+      ]
     }
   ]
 }

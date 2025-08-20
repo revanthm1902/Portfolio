@@ -47,7 +47,7 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
   };
 
   const handleViewResume = () => {
-    window.open('/resume', '_blank', 'noopener,noreferrer');
+    window.open('/#/resume', '_blank', 'noopener,noreferrer');
   };
 
   return (
