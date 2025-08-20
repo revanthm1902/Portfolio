@@ -9,17 +9,12 @@
       "dest": "/Resume.pdf",
       "headers": {
         "Content-Type": "application/pdf",
-        "Content-Disposition": "attachment; filename=\"Revanth_Resume.pdf\""
+        "Content-Disposition": "inline; filename=\"Revanth_Resume.pdf\""
       }
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/index.html"
     }
-  ],
-  "functions": {
-    "src/pages/api/*.ts": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }
