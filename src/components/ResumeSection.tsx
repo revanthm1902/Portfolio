@@ -79,21 +79,7 @@ const ResumeSection = ({ onBack }: ResumeSectionProps) => {
       {/* Header Section */}
       <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-neon-purple/10 rounded-full mb-6">
-              <FileText className="h-10 w-10 text-neon-purple" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              My Resume
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              View and download my professional resume showcasing my skills, experience, and achievements in software development.
-            </p>
-          </motion.div>
+          
 
           {/* Action Buttons */}
           <motion.div

@@ -17,7 +17,6 @@ const Navigation = ({ currentSection, setCurrentSection }: NavigationProps) => {
     { id: 'skills', label: 'Skills', icon: Code },
     { id: 'projects', label: 'Projects', icon: Briefcase },
     { id: 'experience', label: 'Experience', icon: Briefcase },
-    { id: 'resume', label: 'Resume', icon: FileText },
     { id: 'blog', label: 'Blog', icon: BookOpen },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];

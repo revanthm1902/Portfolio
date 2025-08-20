@@ -10,7 +10,6 @@ import ProjectsSection from '@/components/ProjectsSection';
 import UnderDevelopment from '@/components/UnderDevelopment';
 import ExperienceSection from '@/components/ExperienceSection';
 import ExperienceDetailPage from '@/components/ExperienceDetailPage';
-import ResumeSection from '@/components/ResumeSection';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
 import InProcessSection from '@/components/InProcessSection';
@@ -105,8 +104,7 @@ const Index = () => {
             onBack={handleBackToExperience} 
           />
         ) : <ExperienceSection onExperienceSelect={handleExperienceSelect} />;
-      case 'resume':
-        return <ResumeSection onBack={() => setCurrentSection('home')} />;
+
       case 'blog':
         return <BlogSection />;
       case 'contact':

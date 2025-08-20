@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail, Download, Code, Zap, Award, Coffee } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, Code, Zap, Award, Coffee, FileText } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
 import SkillsCarousel from './SkillsCarousel';
 
@@ -46,47 +46,8 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
     }
   };
 
-  const handleResumeDownload = async () => {
-    const resumeUrl = '/Resume.pdf';
-    
-    try {
-      // Method 1: Try direct download
-      const response = await fetch(resumeUrl);
-      
-      if (response.ok) {
-        // File exists and is accessible
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'Revanth_Resume.pdf';
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-      } else {
-        throw new Error('File not accessible via fetch');
-      }
-    } catch (error) {
-      console.warn('Primary download method failed, trying fallback:', error);
-      
-      try {
-        // Method 2: Direct link approach
-        const link = document.createElement('a');
-        link.href = resumeUrl;
-        link.download = 'Revanth_Resume.pdf';
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } catch (fallbackError) {
-        console.error('All download methods failed, opening in new tab:', fallbackError);
-        // Final fallback: open in new tab
-        window.open(resumeUrl, '_blank', 'noopener,noreferrer');
-      }
-    }
+  const handleViewResume = () => {
+    window.open('/resume', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -233,11 +194,11 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
             size="lg" 
             variant="outline" 
             className="ui-btn border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300 hover:scale-[1.02] group px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg"
-            onClick={handleResumeDownload}
+            onClick={handleViewResume}
           >
             <span className="flex items-center gap-2 sm:gap-3">
-              <Download className="h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-bounce-slow" />
-              Download Resume
+              <FileText className="h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-bounce-slow" />
+              View Resume
             </span>
           </Button>
         </div>

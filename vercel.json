@@ -9,7 +9,7 @@
       "dest": "/Resume.pdf",
       "headers": {
         "Content-Type": "application/pdf",
-        "Content-Disposition": "inline; filename=\"Revanth_Resume.pdf\""
+        "Content-Disposition": "inline; filename=\"Resume.pdf\""
       }
     },
     {
