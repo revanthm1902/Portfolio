@@ -47,7 +47,20 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
   };
 
   const handleViewResume = () => {
-    window.open('/#/resume', '_blank', 'noopener,noreferrer');
+    // Try to open resume page first
+    const resumeWindow = window.open('/#/resume', '_blank', 'noopener,noreferrer');
+    
+    // If popup blocked or failed, provide fallback
+    if (!resumeWindow) {
+      // Fallback: direct PDF download
+      const link = document.createElement('a');
+      link.href = '/Resume.pdf';
+      link.download = 'Revanth_M_Resume.pdf';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   return (
