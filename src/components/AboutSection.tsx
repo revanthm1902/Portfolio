@@ -114,7 +114,7 @@ const AboutSection = () => {
           <div className="space-y-8">
             <Card className="glass-card border-neon-purple/30 hover:border-neon-purple/50 transition-all duration-300">
               <CardHeader>
-                <CardTitle className="text-2xl text-neon-purple"><span className="text-white italic font-bold tracking-wide">Revanth Modalavalasa</span>{' '} - My Story</CardTitle>
+                <CardTitle className="text-2xl text-neon-purple"><span className="text-blue italic font-bold tracking-wide">Revanth Modalavalasa</span>{' '} - [My Story]</CardTitle>
                 <CardDescription className="text-lg">
                   From curious beginner to passionate developer
                 </CardDescription>

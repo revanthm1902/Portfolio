@@ -47,20 +47,8 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
   };
 
   const handleViewResume = () => {
-    // Try to open resume page first
-    const resumeWindow = window.open('/#/resume', '_blank', 'noopener,noreferrer');
-    
-    // If popup blocked or failed, provide fallback
-    if (!resumeWindow) {
-      // Fallback: direct PDF download
-      const link = document.createElement('a');
-      link.href = '/Resume.pdf';
-      link.download = 'Revanth_M_Resume.pdf';
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    // Navigate to resume page without auto-downloading
+    window.open('/#/resume', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -148,26 +136,6 @@ const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
             />
           </div>
           
-          <div className="max-w-5xl mx-auto px-4">
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed animate-fade-in space-y-4">
-              <span className="block">
-                From backend brains to frontend flair,<br className="hidden sm:inline" />
-                I code solutions beyond compare.
-              </span>
-              <span className="block">
-                I debug, I build, I think in flow —<br className="hidden sm:inline" />
-                A future-maker, in full-stack mode.
-              </span>
-              <span className="block">
-                Ideas to apps, I bring them alive,<br className="hidden sm:inline" />
-                Fuelled by purpose, I build to thrive.
-              </span>
-              <span className="block">
-                Tech isn't just code — it's the art I unfold,<br className="hidden sm:inline" />
-                Crafting bold futures in frameworks of gold.
-              </span>
-            </p>
-          </div>
         </div>
 
         {/* Skills Carousel */}

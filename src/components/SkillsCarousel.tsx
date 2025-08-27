@@ -64,18 +64,22 @@ const SkillsCarousel = () => {
     { name: 'Power BI', logo: 'https://cdn.simpleicons.org/powerbi' },
   ];
 
-  // Duplicate the skills array to create seamless infinite scroll
-  const duplicatedSkills = [...skills, ...skills];
+  // Create multiple copies for seamless infinite scroll
+  const duplicatedSkills = [...skills, ...skills, ...skills];
 
   // Detect mobile and set animation duration
-  const [animationDuration, setAnimationDuration] = useState(30); // default 30s
+  const [animationDuration, setAnimationDuration] = useState(40); // default 40s
 
   useEffect(() => {
     const updateDuration = () => {
-      if (window.innerWidth <= 768) {
-        setAnimationDuration(12); // much faster for mobile
+      if (window.innerWidth <= 480) {
+        setAnimationDuration(15); // faster for small mobile
+      } else if (window.innerWidth <= 768) {
+        setAnimationDuration(20); // medium speed for mobile
+      } else if (window.innerWidth <= 1024) {
+        setAnimationDuration(30); // tablet
       } else {
-        setAnimationDuration(30); // desktop default
+        setAnimationDuration(40); // desktop default
       }
     };
     updateDuration();
@@ -84,12 +88,12 @@ const SkillsCarousel = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden w-full pt-24 pb-16">
-      {/* Gradient overlays for smooth fade effect */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
+    <div className="relative overflow-hidden w-full pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16">
+      {/* Enhanced gradient overlays for smooth fade effect */}
+      <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 lg:w-20 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 lg:w-20 bg-gradient-to-l from-background via-background/80 to-transparent z-10 pointer-events-none"></div>
       
-      {/* Auto-sliding carousel container */}
+      {/* Auto-sliding carousel container with improved responsiveness */}
       <div
         className="flex animate-scroll-x"
         style={{ animationDuration: `${animationDuration}s` }}
@@ -97,32 +101,36 @@ const SkillsCarousel = () => {
         {duplicatedSkills.map((skill, index) => (
           <div
             key={`${skill.name}-${index}`}
-            className="flex-shrink-0 mx-2 p-3 glass-card rounded-xl hover:bg-white/15 transition-all duration-500 hover:scale-110 group relative border border-white/10 hover:border-neon-cyan/50"
+            className="flex-shrink-0 mx-1 sm:mx-2 lg:mx-3 p-2 sm:p-3 lg:p-4 glass-card rounded-lg sm:rounded-xl hover:bg-white/15 transition-all duration-500 hover:scale-105 sm:hover:scale-110 group relative border border-white/10 hover:border-neon-cyan/50"
           >
-            <div className="w-14 h-14 flex items-center justify-center relative">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center relative">
               <img 
                 src={skill.logo} 
                 alt={skill.name}
-                className="w-10 h-10 object-contain filter dark:invert group-hover:scale-125 transition-transform duration-500 group-hover:drop-shadow-lg"
+                className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 object-contain filter dark:invert group-hover:scale-125 transition-transform duration-500 group-hover:drop-shadow-lg"
                 loading="lazy"
+                onError={(e) => {
+                  // Fallback for broken images
+                  e.currentTarget.style.display = 'none';
+                }}
               />
               
-              {/* Glow effect on hover */}
+              {/* Enhanced glow effect on hover */}
               <div className="absolute inset-0 bg-neon-cyan/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
             
-            {/* Skill name tooltip */}
-            <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-black/95 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-mono opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50 whitespace-nowrap border border-neon-cyan/30 shadow-xl">
+            {/* Responsive skill name tooltip */}
+            <div className="absolute -top-16 sm:-top-20 left-1/2 transform -translate-x-1/2 bg-black/95 backdrop-blur-sm text-white px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg text-xs sm:text-sm font-mono opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50 whitespace-nowrap border border-neon-cyan/30 shadow-xl">
               {skill.name}
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/95"></div>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 sm:border-l-4 border-r-2 sm:border-r-4 border-t-2 sm:border-t-4 border-transparent border-t-black/95"></div>
             </div>
             
-            {/* Floating particles effect */}
-            <div className="absolute inset-0 overflow-hidden rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            {/* Enhanced floating particles effect */}
+            <div className="absolute inset-0 overflow-hidden rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="absolute w-1 h-1 bg-neon-cyan rounded-full animate-ping"
+                  className="absolute w-0.5 sm:w-1 h-0.5 sm:h-1 bg-neon-cyan rounded-full animate-ping"
                   style={{
                     left: `${Math.random() * 100}%`,
                     top: `${Math.random() * 100}%`,

@@ -9,7 +9,6 @@ interface ProjectDetails {
   techStack: string[];
   features: string[];
   achievements: string[];
-  certificate?: string;
 }
 
 interface ExperienceItem {
@@ -172,20 +171,7 @@ const ExperienceDetailPage = ({ experience, onBack }: ExperienceDetailPageProps)
                       </CardDescription>
                     </div>
                     
-                    {/* Certificate Button */}
-                    {project.certificate && (
-                      <div className="flex flex-col items-center gap-3">
-                        <Button
-                          onClick={() => handleCertificateView(project.certificate!)}
-                          className="bg-neon-green/20 border-neon-green/50 text-neon-green hover:bg-neon-green/30 border transition-all duration-300 hover:scale-[1.05] px-6 py-3 text-lg"
-                          size="lg"
-                        >
-                          <FileText className="h-5 w-5 mr-2" />
-                          View Certificate
-                        </Button>
-                        <p className="text-sm text-muted-foreground">Project Completion Certificate</p>
-                      </div>
-                    )}
+
                   </div>
                 </CardHeader>
 
@@ -250,7 +236,7 @@ const ExperienceDetailPage = ({ experience, onBack }: ExperienceDetailPageProps)
           <CardHeader>
             <CardTitle className="text-2xl font-space text-neon-cyan flex items-center gap-3">
               <FileText className="h-6 w-6" />
-              Experience Certificates
+              Internship Certificate
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -264,7 +250,19 @@ const ExperienceDetailPage = ({ experience, onBack }: ExperienceDetailPageProps)
                 </p>
               </div>
               <Button
-                onClick={() => handleCertificateView(`/certificates/${experience.company.toLowerCase().replace(/\s+/g, '-')}-completion.pdf`)}
+                onClick={() => {
+                  // Use specific Google Drive links for each company
+                  let certificateUrl = '';
+                  if (experience.company.toLowerCase().includes('purple techno')) {
+                    certificateUrl = 'https://drive.google.com/file/d/1aebxxGao391Rvz30HM5mKOQpvk2q2riV/view?usp=sharing';
+                  } else if (experience.company.toLowerCase().includes('techtogreen')) {
+                    certificateUrl = 'https://drive.google.com/file/d/1s4RK2mLhfST7w9egxwEy7TPO719OMYY4/view?usp=sharing';
+                  } else {
+                    // Fallback for other companies
+                    certificateUrl = `/certificates/${experience.company.toLowerCase().replace(/\s+/g, '-')}-completion.pdf`;
+                  }
+                  handleCertificateView(certificateUrl);
+                }}
                 className="bg-neon-cyan/20 border-neon-cyan/50 text-neon-cyan hover:bg-neon-cyan/30 border transition-all duration-300 hover:scale-[1.05] px-6 py-3 text-lg"
                 size="lg"
               >

@@ -590,9 +590,9 @@
     }
   }
 
-  /* Horizontal auto-scrolling animation */
+  /* Horizontal auto-scrolling animation - seamless infinite loop */
   .animate-scroll-x {
-    animation: scroll-x 30s linear infinite;
+    animation: scroll-x 40s linear infinite;
   }
 
   @keyframes scroll-x {
@@ -600,7 +600,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-33.333%);
     }
   }
 

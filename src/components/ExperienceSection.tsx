@@ -14,7 +14,7 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
       id: 1,
       company: "TechtoGreen",
       position: "R&D Intern",
-      duration: "Aug 2024 – Present",
+      duration: "Aug 2024 – Aug 2025",
       location: "VIT-AP University",
       type: "Internship",
       description: "Research and Development intern at TechtoGreen, a VIT-AP university-backed startup.",
@@ -122,7 +122,19 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
 
   const achievements = [
     {
-      id: 10,
+      id: 1,
+      company: "GirlScript Summer of Code (GsSOC 2k25)",
+      position: "Contributor",
+      duration: "2025",
+      location: "Remote",
+      type: "Contribution",
+      description: "Worked on multiple projects under GsSOC 2k25 to help towards open source contributions.",
+      achievements: ["Open-Source Contributions","Bug-Fixing","Code-Review"],
+      technologies: ["MERN", "Web-Dev","App-Dev","AI/ML"],
+      icon: Award
+    },
+    {
+      id: 2,
       company: "HACKSAGON 2025 (ABV-IIITM, Gwalior)",
       position: "Runner up",
       duration: "2025",
@@ -220,6 +232,8 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
     
   ];
 
+
+
   interface ProjectDetails {
     name: string;
     description: string;
@@ -316,34 +330,6 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
           </div>
         </div>
 
-        {/* Projects Section */}
-        {exp.projects && exp.projects.length > 0 && (
-          <div>
-            <h4 className="text-lg font-semibold text-neon-cyan mb-3 flex items-center gap-2">
-              <Users className="h-5 w-5" />
-              Projects Worked On ({exp.projects.length})
-            </h4>
-            <div className="space-y-3">
-              {exp.projects.map((project, i) => (
-                <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 glass-card rounded-lg hover:bg-white/10 transition-colors">
-                  <div>
-                    <h5 className="font-semibold text-neon-purple">{project.name}</h5>
-                    <p className="text-sm text-muted-foreground mt-1">{project.description.substring(0, 100)}...</p>
-                  </div>
-                  <div className="flex gap-2 mt-2 sm:mt-0">
-                    {project.certificate && (
-                      <Badge variant="outline" className="text-neon-green border-neon-green/50 text-xs">
-                        <FileText className="h-3 w-3 mr-1" />
-                        Certificate
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* View Details Button */}
         <div className="pt-4 border-t border-white/10">
           <Button 
@@ -394,9 +380,9 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
           </p>
         </div>
 
-        {/* Tabs for Work Experience and Achievements */}
+        {/* Tabs for Work Experience, Achievements, and Certifications */}
         <Tabs defaultValue="work" className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 glass-card">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 glass-card">
             <TabsTrigger 
               value="work" 
               className="data-[state=active]:bg-neon-green/20 data-[state=active]:text-neon-green data-[state=active]:border-neon-green/50"
@@ -408,6 +394,12 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
               className="data-[state=active]:bg-neon-purple/20 data-[state=active]:text-neon-purple data-[state=active]:border-neon-purple/50"
             >
               Achievements
+            </TabsTrigger>
+            <TabsTrigger 
+              value="certifications" 
+              className="data-[state=active]:bg-neon-cyan/20 data-[state=active]:text-neon-cyan data-[state=active]:border-neon-cyan/50"
+            >
+              Certifications
             </TabsTrigger>
           </TabsList>
 
@@ -494,9 +486,46 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
                         ))}
                       </div>
                     </div>
+
+                    {/* View Certificate Button */}
+                    {/* <div className="pt-4 border-t border-white/10">
+                      <Button 
+                        onClick={() => window.open('https://drive.google.com/file/d/1s4RK2mLhfST7w9egxwEy7TPO719OMYY4/view?usp=sharing', '_blank', 'noopener,noreferrer')}
+                        className="w-full bg-neon-green/20 border-neon-green/50 text-neon-green hover:bg-neon-green/30 border transition-all duration-300 hover:scale-[1.02] group"
+                        size="lg"
+                      >
+                        <span className="flex items-center gap-2">
+                          <FileText className="h-4 w-4" />
+                          View Certificate
+                        </span>
+                      </Button>
+                    </div> */}
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="certifications" className="mt-8">
+            <div className="flex flex-col items-center justify-center py-16 px-8">
+              <div className="text-center space-y-6 max-w-2xl">
+                <div className="p-6 glass-card rounded-full mx-auto w-fit">
+                  <FileText className="h-16 w-16 text-neon-cyan animate-pulse" />
+                </div>
+                <h3 className="text-3xl font-space text-foreground">
+                  Certifications Section
+                </h3>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  This section is currently under development. 
+                  <br />
+                  <span className="text-neon-cyan">Coming soon with all my professional certifications!</span>
+                </p>
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                  <div className="w-2 h-2 bg-neon-cyan rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-neon-cyan rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-2 h-2 bg-neon-cyan rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                </div>
+              </div>
             </div>
           </TabsContent>
         </Tabs>

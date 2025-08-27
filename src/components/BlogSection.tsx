@@ -18,10 +18,23 @@ const BlogSection = () => {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-scale-in">
           {linkedinPosts.map((post) => (
-            <div key={post.id} className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-105 group overflow-hidden flex flex-col">
-              {post.image && (
-                <img src={post.image} alt={post.title} className="w-full h-40 object-cover rounded-t-xl" />
-              )}
+            <div 
+              key={post.id} 
+              className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-105 group overflow-hidden flex flex-col cursor-pointer"
+              onClick={() => window.open(post.url, '_blank', 'noopener,noreferrer')}
+            >
+              {/* Replace thumbnail with click to view more text */}
+              <div className="w-full h-40 bg-gradient-to-br from-neon-purple/20 to-neon-cyan/20 flex items-center justify-center rounded-t-xl border-b border-white/10">
+                <div className="text-center space-y-2">
+                  <div className="text-2xl font-space text-neon-purple group-hover:text-neon-cyan transition-colors">
+                    Click to view more
+                  </div>
+                  <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                    Read full post on LinkedIn
+                  </div>
+                </div>
+              </div>
+              
               <div className="flex-1 flex flex-col p-6">
                 <h3 className="text-lg font-space text-foreground group-hover:text-neon-purple transition-colors mb-2">
                   {post.title}
@@ -29,18 +42,7 @@ const BlogSection = () => {
                 <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{post.summary}</p>
                 <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
                   <span>{new Date(post.date).toLocaleDateString()}</span>
-                  
                 </div>
-                <Button
-                  className="ui-btn w-full bg-neon-purple hover:bg-neon-purple/80 text-white border border-neon-purple/50 transition-all duration-300 hover:scale-105 group mt-auto"
-                  asChild
-                >
-                  <a href={post.url} target="_blank" rel="noopener noreferrer">
-                    <span className="flex items-center gap-2">
-                      Read More
-                    </span>
-                  </a>
-                </Button>
               </div>
             </div>
           ))}
