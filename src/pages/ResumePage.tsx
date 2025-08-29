@@ -16,18 +16,18 @@ const ResumePage = () => {
 
   const handleDownload = async () => {
     try {
-      // Open Google Drive link for download
-      window.open('https://drive.google.com/file/d/1bX87o05Gqx_KVmR-sH60sVloPZprLHdm/view?usp=drive_link', '_blank');
+      // Open Google Drive file for download
+      window.open('https://drive.google.com/file/d/1mxMMyTykpjjpGR3BRejpFjfCTWD0ViMj/view?usp=drive_link', '_blank');
     } catch (error) {
       console.error('Download failed:', error);
       // Fallback: try direct link
-      window.open('https://drive.google.com/file/d/1bX87o05Gqx_KVmR-sH60sVloPZprLHdm/view?usp=drive_link', '_blank');
+      window.open('https://drive.google.com/file/d/1mxMMyTykpjjpGR3BRejpFjfCTWD0ViMj/view?usp=drive_link', '_blank');
     }
   };
 
   const handleViewInDrive = () => {
-    // Open Google Drive folder view
-    window.open('https://drive.google.com/file/d/1bX87o05Gqx_KVmR-sH60sVloPZprLHdm/view?usp=drive_link', '_blank');
+    // Open Google Drive file view
+    window.open('https://drive.google.com/file/d/1mxMMyTykpjjpGR3BRejpFjfCTWD0ViMj/view?usp=sharing', '_blank');
   };
 
   const handlePdfLoad = () => {
@@ -135,14 +135,14 @@ const ResumePage = () => {
                       </div>
                     </div>
                   )}
-                  <iframe
-                    src="https://drive.google.com/file/d/1bX87o05Gqx_KVmR-sH60sVloPZprLHdm/preview"
-                    className={`w-full h-[400px] sm:h-[600px] lg:h-[800px] border border-border rounded-lg ${pdfLoading ? 'hidden' : ''}`}
-                    title="Resume PDF"
-                    onLoad={handlePdfLoad}
-                    onError={handlePdfError}
-                    allow="fullscreen"
-                  />
+                                     <iframe
+                     src="https://drive.google.com/file/d/1mxMMyTykpjjpGR3BRejpFjfCTWD0ViMj/preview"
+                     className={`w-full h-[400px] sm:h-[600px] lg:h-[800px] border border-border rounded-lg ${pdfLoading ? 'hidden' : ''}`}
+                     title="Resume PDF"
+                     onLoad={handlePdfLoad}
+                     onError={handlePdfError}
+                     allow="fullscreen"
+                   />
                 </>
               )}
             </div>
