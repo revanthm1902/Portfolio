@@ -17,17 +17,17 @@ const ResumePage = () => {
   const handleDownload = async () => {
     try {
       // Open Google Drive file for download
-      window.open('https://drive.google.com/file/d/1mxMMyTykpjjpGR3BRejpFjfCTWD0ViMj/view?usp=drive_link', '_blank');
+      window.open('https://drive.google.com/file/d/1klIKGEtIvxDn1sQsTxPL0Vc7FBwwxtWB/view', '_blank');
     } catch (error) {
       console.error('Download failed:', error);
       // Fallback: try direct link
-      window.open('https://drive.google.com/file/d/1mxMMyTykpjjpGR3BRejpFjfCTWD0ViMj/view?usp=drive_link', '_blank');
+      window.open('https://drive.google.com/file/d/1klIKGEtIvxDn1sQsTxPL0Vc7FBwwxtWB/view', '_blank');
     }
   };
 
   const handleViewInDrive = () => {
     // Open Google Drive file view
-    window.open('https://drive.google.com/file/d/1mxMMyTykpjjpGR3BRejpFjfCTWD0ViMj/view?usp=sharing', '_blank');
+    window.open('https://drive.google.com/file/d/1klIKGEtIvxDn1sQsTxPL0Vc7FBwwxtWB/view', '_blank');
   };
 
   const handlePdfLoad = () => {
@@ -47,7 +47,7 @@ const ResumePage = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Responsive Header */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-white/10 dark:border-white/10 border-gray-200/30">
+  <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b dark:border-white/10 border-gray-200/30">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
           <div className="flex justify-between items-center h-14 sm:h-16">
             <div className="flex items-center space-x-2 sm:space-x-4">
@@ -136,7 +136,7 @@ const ResumePage = () => {
                     </div>
                   )}
                                      <iframe
-                     src="https://drive.google.com/file/d/1mxMMyTykpjjpGR3BRejpFjfCTWD0ViMj/preview"
+                     src="https://drive.google.com/file/d/1klIKGEtIvxDn1sQsTxPL0Vc7FBwwxtWB/preview"
                      className={`w-full h-[400px] sm:h-[600px] lg:h-[800px] border border-border rounded-lg ${pdfLoading ? 'hidden' : ''}`}
                      title="Resume PDF"
                      onLoad={handlePdfLoad}
