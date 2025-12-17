@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import LoadingAnimation from '@/components/LoadingAnimation';
 import CursorTrail from '@/components/CursorTrail';
@@ -7,14 +7,39 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
-import UnderDevelopment from '@/components/UnderDevelopment';
 import ExperienceSection from '@/components/ExperienceSection';
 import ExperienceDetailPage from '@/components/ExperienceDetailPage';
 import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
-import InProcessSection from '@/components/InProcessSection';
 import Footer from '@/components/Footer';
 import ScrollProgress from '@/components/ScrollProgress';
+
+// Page transition variants for smoother animations
+const pageVariants = {
+  initial: { 
+    opacity: 0, 
+    y: 30,
+    scale: 0.98
+  },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.4, 0, 0.2, 1]
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    y: -20,
+    scale: 0.98,
+    transition: {
+      duration: 0.3,
+      ease: [0.4, 0, 1, 1]
+    }
+  }
+};
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,51 +61,38 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // Simulate initial loading with proper cleanup
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
 
-    // Preload critical resources
-    const preloadResources = () => {
-      // Preload fonts
-      const fontLink = document.createElement('link');
-      fontLink.rel = 'preload';
-      fontLink.href = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap';
-      fontLink.as = 'style';
-      document.head.appendChild(fontLink);
-    };
-
-    preloadResources();
-
     return () => clearTimeout(timer);
   }, []);
 
-  const handleNavigateToContact = () => {
-    setCurrentSection('contact');
-    // Scroll to top when navigating
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
 
-  const handleExperienceSelect = (experience: any) => {
+  const handleNavigateToContact = useCallback(() => {
+    setCurrentSection('contact');
+    scrollToTop();
+  }, [scrollToTop]);
+
+  const handleExperienceSelect = useCallback((experience: any) => {
     setSelectedExperience(experience);
     setCurrentSection('experience-detail');
-    // Scroll to top when navigating
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    scrollToTop();
+  }, [scrollToTop]);
 
-  const handleBackToExperience = () => {
+  const handleBackToExperience = useCallback(() => {
     setSelectedExperience(null);
     setCurrentSection('experience');
-    // Scroll to top when navigating
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    scrollToTop();
+  }, [scrollToTop]);
 
-  // Add effect to scroll to top when section changes
+  // Scroll to top on section change
   useEffect(() => {
-    // Scroll to top whenever section changes
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentSection]);
+    scrollToTop();
+  }, [currentSection, scrollToTop]);
 
   const renderSection = () => {
     switch (currentSection) {
@@ -92,9 +104,6 @@ const Index = () => {
         return <SkillsSection />;
       case 'projects':
         return <ProjectsSection />;
-          // title="Projects Section" 
-          // showBackButton={true} 
-          // onBack={() => setCurrentSection('home')} 
       case 'experience':
         return <ExperienceSection onExperienceSelect={handleExperienceSelect} />;
       case 'experience-detail':
@@ -104,7 +113,6 @@ const Index = () => {
             onBack={handleBackToExperience} 
           />
         ) : <ExperienceSection onExperienceSelect={handleExperienceSelect} />;
-
       case 'blog':
         return <BlogSection />;
       case 'contact':
@@ -114,35 +122,31 @@ const Index = () => {
     }
   };
 
-  // Only show the app when both loading and theme are ready
   if (isLoading || !themeReady) {
     return <LoadingAnimation onComplete={() => setIsLoading(false)} />;
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <CursorTrail />
       <Navigation currentSection={currentSection} setCurrentSection={setCurrentSection} />
       
-      {/* Main Content with proper spacing for fixed nav */}
-      <div className="pt-20">
-        <AnimatePresence mode="wait" initial={false}>
+      {/* Main Content */}
+      <main className="pt-16 sm:pt-20">
+        <AnimatePresence mode="wait">
           <motion.div
             key={currentSection}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
           >
             {renderSection()}
           </motion.div>
         </AnimatePresence>
-      </div>
+      </main>
       
-      {/* Footer */}
       <Footer />
-      
-      {/* Scroll Progress Indicator */}
       <ScrollProgress />
     </div>
   );

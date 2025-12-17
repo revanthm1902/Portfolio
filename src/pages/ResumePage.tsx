@@ -17,17 +17,17 @@ const ResumePage = () => {
   const handleDownload = async () => {
     try {
       // Open Google Drive file for download
-      window.open('https://drive.google.com/file/d/1klIKGEtIvxDn1sQsTxPL0Vc7FBwwxtWB/view', '_blank');
+      window.open('https://drive.google.com/file/d/1AzZ8LE9B6So3RJFd4YtSxmZcxtjTfiPp/view?usp=sharing', '_blank');
     } catch (error) {
       console.error('Download failed:', error);
       // Fallback: try direct link
-      window.open('https://drive.google.com/file/d/1klIKGEtIvxDn1sQsTxPL0Vc7FBwwxtWB/view', '_blank');
+      window.open('https://drive.google.com/file/d/1AzZ8LE9B6So3RJFd4YtSxmZcxtjTfiPp/view?usp=sharing', '_blank');
     }
   };
 
   const handleViewInDrive = () => {
     // Open Google Drive file view
-    window.open('https://drive.google.com/file/d/1klIKGEtIvxDn1sQsTxPL0Vc7FBwwxtWB/view', '_blank');
+    window.open('https://drive.google.com/file/d/1AzZ8LE9B6So3RJFd4YtSxmZcxtjTfiPp/view?usp=sharing', '_blank');
   };
 
   const handlePdfLoad = () => {
@@ -135,14 +135,14 @@ const ResumePage = () => {
                       </div>
                     </div>
                   )}
-                                     <iframe
-                     src="https://drive.google.com/file/d/1klIKGEtIvxDn1sQsTxPL0Vc7FBwwxtWB/preview"
-                     className={`w-full h-[400px] sm:h-[600px] lg:h-[800px] border border-border rounded-lg ${pdfLoading ? 'hidden' : ''}`}
-                     title="Resume PDF"
-                     onLoad={handlePdfLoad}
-                     onError={handlePdfError}
-                     allow="fullscreen"
-                   />
+                  <iframe
+                    src="https://drive.google.com/file/d/1AzZ8LE9B6So3RJFd4YtSxmZcxtjTfiPp/preview"
+                    className={`w-full h-[400px] sm:h-[600px] lg:h-[800px] border border-border rounded-lg ${pdfLoading ? 'hidden' : ''}`}
+                    title="Resume PDF"
+                    onLoad={handlePdfLoad}
+                    onError={handlePdfError}
+                    allow="autoplay"
+                  />
                 </>
               )}
             </div>

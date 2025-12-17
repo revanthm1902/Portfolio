@@ -24,9 +24,15 @@ export default defineConfig(({ mode }) => ({
   build: {
     assetsDir: 'assets',
     copyPublicDir: true,
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: {
+          // Vendor chunks for better caching
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-ui': ['framer-motion', 'recharts', 'lucide-react'],
+          'vendor-forms': ['react-hook-form', 'zod', '@hookform/resolvers'],
+        },
       },
     },
   },

@@ -7,9 +7,10 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle, CheckCircle, AlertCircle, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageCircle, CheckCircle, AlertCircle, ExternalLink } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { sendContactEmail, initializeEmailJS, validateEmailJSConfig } from '@/lib/emailjs';
+import { sendContactEmail, initializeEmailJS } from '@/lib/emailjs';
+import { motion } from 'framer-motion';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -156,46 +157,58 @@ const ContactSection = () => {
   return (
     <section className="min-h-screen py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 hero-gradient bg-grid relative overflow-hidden">
       {/* Background Animation */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <div
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(12)].map((_, i) => (
+          <motion.div
             key={i}
-            className="absolute rounded-full bg-neon-green/20 animate-float"
+            className="absolute rounded-full bg-neon-green/20"
             style={{
-              width: `${Math.random() * 10 + 5}px`,
-              height: `${Math.random() * 10 + 5}px`,
+              width: `${Math.random() * 8 + 4}px`,
+              height: `${Math.random() * 8 + 4}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 15}s`,
-              animationDuration: `${12 + Math.random() * 18}s`
             }}
+            animate={{ y: [0, -20, 0], opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 8 + Math.random() * 6, repeat: Infinity, delay: Math.random() * 2 }}
           />
         ))}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16 space-y-4 sm:space-y-6">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-space font-bold animate-fade-in">
+        <motion.div 
+          className="text-center mb-10 sm:mb-12 lg:mb-16 space-y-4 sm:space-y-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-space font-bold">
             <span className="text-foreground">Let's </span>
             <span className="text-neon-green text-glow animate-glow">Connect</span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-in-left px-4">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
             Have a project in mind or just want to chat about technology? 
             I'd love to hear from you. Let's build something amazing together!
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <Card className="glass-card hover:bg-white/20 transition-all duration-500 border border-white/20">
-              <CardHeader className="space-y-4">
-                <CardTitle className="text-2xl sm:text-3xl font-space text-foreground flex items-center gap-3">
-                  <Send className="h-6 w-6 sm:h-8 sm:w-8 text-neon-cyan" />
+          <motion.div 
+            className="lg:col-span-2"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <Card className="glass-card border border-white/20">
+              <CardHeader className="space-y-3 sm:space-y-4">
+                <CardTitle className="text-xl sm:text-2xl lg:text-3xl font-space text-foreground flex items-center gap-2 sm:gap-3">
+                  <Send className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-neon-cyan" />
                   Send me a message
                 </CardTitle>
-                <CardDescription className="text-base sm:text-lg text-muted-foreground">
+                <CardDescription className="text-sm sm:text-base lg:text-lg text-muted-foreground">
                   Fill out the form below and I'll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
@@ -352,46 +365,54 @@ const ContactSection = () => {
                 </Form>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
           {/* Contact Info & Social Links */}
-          <div className="space-y-6 sm:space-y-8">
+          <motion.div 
+            className="space-y-4 sm:space-y-6"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             {/* Contact Information */}
-            <Card className="glass-card hover:bg-white/20 transition-all duration-500 border border-white/20">
-              <CardHeader>
-                <CardTitle className="text-xl sm:text-2xl font-space text-foreground flex items-center gap-3">
-                  <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-neon-cyan" />
+            <Card className="glass-card border border-white/20">
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="text-lg sm:text-xl lg:text-2xl font-space text-foreground flex items-center gap-2 sm:gap-3">
+                  <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-neon-cyan" />
                   Get in Touch
                 </CardTitle>
               </CardHeader>
               
-              <CardContent className="space-y-4 sm:space-y-6">
+              <CardContent className="space-y-3 sm:space-y-4">
                 {contactInfo.map((item, index) => (
-                  <a
+                  <motion.a
                     key={index}
                     href={item.href}
-                    className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 glass-card hover:bg-white/20 transition-all duration-300 hover:scale-105 group rounded-lg"
+                    className="flex items-center gap-3 p-3 sm:p-4 glass-card group rounded-lg"
+                    whileHover={{ scale: 1.02, backgroundColor: 'rgba(255,255,255,0.1)' }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="p-2 sm:p-3 glass-card rounded-lg">
-                      <item.icon className="h-4 w-4 sm:h-5 sm:w-5 text-neon-cyan group-hover:animate-bounce-slow" />
+                      <item.icon className="h-4 w-4 sm:h-5 sm:w-5 text-neon-cyan" />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="font-mono text-neon-cyan text-xs sm:text-sm">{item.label}</div>
-                      <div className="text-foreground font-medium text-sm sm:text-base">{item.value}</div>
+                      <div className="text-foreground font-medium text-sm sm:text-base truncate">{item.value}</div>
                     </div>
-                    <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </a>
+                    <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                  </motion.a>
                 ))}
               </CardContent>
             </Card>
 
             {/* Social Links */}
-            <Card className="glass-card hover:bg-white/20 transition-all duration-500 border border-white/20">
-              <CardHeader>
-                <CardTitle className="text-xl sm:text-2xl font-space text-foreground">
+            <Card className="glass-card border border-white/20">
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="text-lg sm:text-xl lg:text-2xl font-space text-foreground">
                   Follow Me
                 </CardTitle>
-                <CardDescription className="text-sm sm:text-base">
+                <CardDescription className="text-xs sm:text-sm">
                   Connect with me on social media
                 </CardDescription>
               </CardHeader>
@@ -399,32 +420,41 @@ const ContactSection = () => {
               <CardContent>
                 <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   {socialLinks.map((social, index) => (
-                    <a
+                    <motion.a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 sm:p-4 glass-card ${social.color} transition-all duration-300 hover:scale-110 group flex flex-col items-center gap-2 rounded-lg border border-white/10 hover:border-neon-cyan/30`}
+                      className={`p-3 sm:p-4 glass-card ${social.color} group flex flex-col items-center gap-2 rounded-lg border border-white/10 hover:border-neon-cyan/30`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <social.icon className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground group-hover:text-current transition-colors duration-300" />
+                      <social.icon className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground group-hover:text-current transition-colors" />
                       <span className="text-xs sm:text-sm font-mono">{social.label}</span>
-                    </a>
+                    </motion.a>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
             {/* Quick Response Time */}
-            <Card className="glass-card hover:bg-white/20 transition-all duration-500 border border-white/20">
-              <CardContent className="p-4 sm:p-6 text-center space-y-3 sm:space-y-4">
-                <div className="text-3xl sm:text-4xl font-bold text-neon-green">{"< 24h"}</div>
-                <div className="text-base sm:text-lg font-space text-foreground">Response Time</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">
-                  I typically respond to all messages within 24 hours.
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+            >
+              <Card className="glass-card border border-white/20">
+                <CardContent className="p-4 sm:p-6 text-center space-y-2 sm:space-y-3">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-neon-green">{"< 24h"}</div>
+                  <div className="text-sm sm:text-base lg:text-lg font-space text-foreground">Response Time</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    I typically respond to all messages within 24 hours.
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

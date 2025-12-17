@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Building, Calendar, MapPin, Award, FileText, Users, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ExperienceSectionProps {
   onExperienceSelect: (experience: any) => void;
@@ -12,29 +14,30 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
   const workExperiences = [
       {
       id: 1,
-      company: "TechtoGreen",
+      company: "TechtoGreen Drone & Robotics Pvt. Ltd.",
       position: "R&D Intern",
       duration: "Aug 2024 – Aug 2025",
-      location: "VIT-AP University",
+      location: "Hyderabad, India",
       type: "Internship",
-      description: "Research and Development intern at TechtoGreen, a VIT-AP university-backed startup.",
+      description: "Research and Development intern focused on IoT, AI/ML pipelines, and autonomous drone systems.",
       achievements: [
-        "Contributed to Agri Drone innovation for precision farming (see: AI Autonomous Hackathon post)",
-        "Worked on Intelligent Safety Helmet project 'Crown Shield (CS-1)' for multipurpose helmet usage. (see: HackAP 2024 post)",
+        "Designed firmware for Intelligent Safety Helmet (CS-1), integrating 360° cameras and IoT sensors, reducing incident response latency by 90%",
+        "Engineered AI/ML pipelines for predictive decision-making in industrial IoT ecosystems with high accuracy in anomaly detection",
+        "Collaborated on Autonomous Multi-Spraying Drone, optimizing GPS navigation and real-time telemetry for precision agriculture across 5+ test sites",
       ],
-      technologies: ["IoT", "Drones", "AI/ML", "GenAI", "LangChain", "Web Dev", "Mobile App Dev"],
+      technologies: ["IoT", "Drones", "AI/ML", "Arduino", "ESP32", "Python", "TensorFlow", "React Native"],
       icon: Building,
       projects: [
         {
-          name: "Agri Drone - Precision Farming",
+          name: "Autonomous Multi-Spraying Drone",
           description: "Developed an autonomous drone system for precision agriculture with AI-powered crop monitoring, pest detection, and automated spraying capabilities.",
-          techStack: ["Python", "OpenCV", "TensorFlow", "ArduPilot", "IoT Sensors", "React", "Node.js"],
+          techStack: ["Python", "OpenCV", "TensorFlow", "ArduPilot", "IoT Sensors", "GPS", "React Native"],
           features: [
             "Real-time crop health monitoring using computer vision",
             "Automated pest and disease detection with 92% accuracy",
-            "GPS-guided autonomous flight patterns",
+            "GPS-guided autonomous flight patterns with real-time telemetry",
             "Mobile app for farmer dashboard and controls",
-            "Cloud-based data analytics and reporting"
+            "Optimized navigation for precision agriculture across 5+ test sites"
           ],
           achievements: [
             "Reduced pesticide usage by 35% through targeted application",
@@ -44,15 +47,15 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
           certificate: "/certificates/techtogreen-agri-drone.pdf"
         },
         {
-          name: "Crown Shield (CS-1) - Intelligent Safety Helmet",
-          description: "Multipurpose smart helmet with integrated IoT sensors for construction and industrial worker safety monitoring.",
-          techStack: ["Arduino", "ESP32", "Sensors", "React Native", "Firebase", "Machine Learning"],
+          name: "Intelligent Safety Helmet (CS-1)",
+          description: "Smart helmet with 360° cameras and IoT sensors for industrial worker safety monitoring with real-time incident response.",
+          techStack: ["Arduino", "ESP32", "360° Cameras", "IoT Sensors", "React Native", "Firebase", "Machine Learning"],
           features: [
-            "Real-time vital signs monitoring (heart rate, temperature)",
-            "Gas leak detection and air quality monitoring",
+            "360° camera integration for comprehensive coverage",
+            "Real-time vital signs and environmental monitoring",
             "Fall detection with automatic emergency alerts",
-            "Location tracking and geofencing",
-            "Voice commands and hands-free communication"
+            "AI-powered anomaly detection pipeline",
+            "90% reduction in incident response latency"
           ],
           achievements: [
             "Won 1st place at HackAP 2024 Hackathon",
@@ -66,54 +69,54 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
     {
       id: 2,
       company: "Purple Techno Solutions",
-      position: "Intern",
+      position: "Full Stack Intern",
       duration: "Jan 2025 – Apr 2025",
-      location: "Vijayawada, India",
+      location: "Remote/Hybrid",
       type: "Internship",
-      description: "Worked on Full Stack Development and AI/ML-based solutions. and practical deployment of applications.",
+      description: "Full Stack Development with MERN Stack, AI/ML-based solutions, and AWS deployment.",
       achievements: [
-        "Developed and deployed AI/ML-based solutions for real-world applications.",
-        "Collaborated with cross-functional teams to deliver production-ready features.",
-        "Enhanced backend and frontend integration for seamless user experience."
+        "Developed scalable full-stack web applications using MERN Stack, optimizing backend performance to handle 500+ concurrent users",
+        "Contributed to AI-driven predictive analytics tools, delivering actionable insights that improved client decision-making efficiency",
+        "Streamlined deployment workflows by implementing AWS services and establishing automated CI/CD pipelines via Git"
       ],
-      technologies: ["React", "Node.js", "Python", "Machine Learning", "MongoDB", "REST APIs"],
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Python", "AWS", "CI/CD", "REST APIs"],
       icon: Building,
       projects: [
         {
-          name: "AI-Powered E-commerce Platform",
-          description: "Full-stack e-commerce solution with AI-powered recommendation engine and intelligent inventory management.",
-          techStack: ["React", "Node.js", "Express", "MongoDB", "Python", "TensorFlow", "AWS"],
+          name: "Scalable Web Applications",
+          description: "Full-stack web applications using MERN Stack with optimized backend performance for high concurrency.",
+          techStack: ["React", "Node.js", "Express", "MongoDB", "AWS", "Git"],
           features: [
-            "Personalized product recommendations using collaborative filtering",
-            "Real-time inventory tracking and automated restocking alerts",
-            "Advanced search with natural language processing",
-            "Payment gateway integration with multiple providers",
-            "Admin dashboard with analytics and reporting"
+            "Scalable architecture handling 500+ concurrent users",
+            "Real-time data synchronization",
+            "Optimized database queries and caching",
+            "AWS deployment with auto-scaling",
+            "Automated CI/CD pipelines"
           ],
           achievements: [
-            "Improved customer engagement by 60% with AI recommendations",
-            "Reduced inventory costs by 25% through predictive analytics",
-            "Deployed on AWS with 99.9% uptime"
+            "Optimized backend to handle 500+ concurrent users",
+            "Deployed on AWS with 99.9% uptime",
+            "Established automated CI/CD pipelines"
           ],
           certificate: "/certificates/purple-techno-completion.pdf"
         },
         {
-          name: "Smart Home Automation System",
-          description: "IoT-based smart home system with machine learning for predictive automation and energy optimization.",
-          techStack: ["React Native", "Python", "Raspberry Pi", "MQTT", "Machine Learning", "PostgreSQL"],
+          name: "AI-Driven Predictive Analytics",
+          description: "AI-powered analytics tools for data-driven decision making and actionable insights.",
+          techStack: ["Python", "TensorFlow", "React", "Node.js", "PostgreSQL", "AWS Lambda"],
           features: [
-            "Voice-controlled device management",
-            "Predictive automation based on user behavior",
-            "Energy consumption optimization with ML algorithms",
-            "Security system with facial recognition",
-            "Mobile app for remote monitoring and control"
+            "Predictive analytics dashboard",
+            "Machine learning model integration",
+            "Real-time data visualization",
+            "Custom reporting and insights",
+            "API integration for external data sources"
           ],
           achievements: [
-            "Reduced energy consumption by 30% through ML optimization",
-            "99.2% accuracy in facial recognition security system",
-            "Integrated with 15+ different IoT device types"
+            "Improved client decision-making efficiency",
+            "Real-time analytics with low latency",
+            "Scalable ML model deployment"
           ],
-          certificate: "/certificates/smart-home-project.pdf"
+          certificate: "/certificates/ai-analytics-project.pdf"
         }
       ]
     },
@@ -369,18 +372,30 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16 space-y-6">
-          <h2 className="text-5xl md:text-6xl font-space font-bold animate-fade-in">
+        <motion.div 
+          className="text-center mb-16 space-y-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-5xl md:text-6xl font-space font-bold">
             <span className="text-foreground">My </span>
             <span className="text-neon-green text-glow animate-glow">Experience</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-in-left">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A journey through my professional career, showcasing growth, achievements, 
             and the impact I've made at each step along the way.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tabs for Work Experience, Achievements, and Certifications */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
         <Tabs defaultValue="work" className="w-full">
           <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 glass-card">
             <TabsTrigger 
@@ -529,6 +544,7 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
             </div>
           </TabsContent>
         </Tabs>
+        </motion.div>
       </div>
     </section>
   );
