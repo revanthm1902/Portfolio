@@ -37,10 +37,10 @@ const statVariants: Variants = {
 
 const HeroSection = ({ onNavigateToContact }: HeroSectionProps) => {
   const stats = [
-    { icon: Code, value: '13+', label: 'Projects Built', color: 'neon-purple' },
+    { icon: Code, value: '15+', label: 'Projects Built', color: 'neon-purple' },
     { icon: Zap, value: '2+', label: 'Internships', color: 'neon-cyan' },
     { icon: Award, value: '300+', label: 'DSA Problems', color: 'neon-green' },
-    { icon: Coffee, value: '5+', label: 'Hackathon Wins', color: 'neon-purple' }
+    { icon: Code, value: '5+', label: 'Hackathon Wins', color: 'neon-purple' }
   ];
 
   const typingTexts = [

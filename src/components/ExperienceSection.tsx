@@ -522,25 +522,120 @@ const ExperienceSection = ({ onExperienceSelect }: ExperienceSectionProps) => {
           </TabsContent>
 
           <TabsContent value="certifications" className="mt-8">
-            <div className="flex flex-col items-center justify-center py-16 px-8">
-              <div className="text-center space-y-6 max-w-2xl">
-                <div className="p-6 glass-card rounded-full mx-auto w-fit">
-                  <FileText className="h-16 w-16 text-neon-cyan animate-pulse" />
-                </div>
-                <h3 className="text-3xl font-space text-foreground">
-                  Certifications Section
-                </h3>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  This section is currently under development. 
-                  <br />
-                  <span className="text-neon-cyan">Coming soon with all my professional certifications!</span>
-                </p>
-                <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                  <div className="w-2 h-2 bg-neon-cyan rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 bg-neon-cyan rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                  <div className="w-2 h-2 bg-neon-cyan rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                </div>
-              </div>
+            <div className="space-y-8">
+              {[
+                {
+                  id: 'oci-genai',
+                  title: 'Oracle Cloud Infrastructure 2025 Certified Generative AI Professional',
+                  issuer: 'Oracle',
+                  date: '2025',
+                  description: 'Professional-level certification validating expertise in Generative AI concepts, Large Language Models, RAG architecture, and OCI AI services.',
+                  skills: ['Generative AI', 'LLMs', 'RAG', 'OCI AI Services', 'Prompt Engineering'],
+                  verifyUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=72674E2FF8ED27F7B5228B9D24C8F84A9978E3D24496BE990733E523BE1B4C45',
+                  certificateUrl: 'https://drive.google.com/file/d/1YTr2u8tW7E3QeqL54FC-NBF55_ewy4Bd/view?usp=sharing',
+                  color: 'neon-purple'
+                },
+                {
+                  id: 'oci-foundations',
+                  title: 'Oracle Cloud Infrastructure 2025 Certified Foundations Associate',
+                  issuer: 'Oracle',
+                  date: '2025',
+                  description: 'Foundational certification covering OCI core services including compute, storage, networking, identity, database, and security.',
+                  skills: ['OCI Compute', 'OCI Storage', 'OCI Networking', 'IAM', 'Cloud Security'],
+                  verifyUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=E0EBE9E66EF3522343C267D9DC298C20E8C09A2519C946E4893F70880BFC4EA1',
+                  certificateUrl: 'https://drive.google.com/file/d/1HD0HZJN5HvB1O8wnosahhsNhLPCocZfE/view?usp=sharing',
+                  color: 'neon-cyan'
+                },
+                {
+                  id: 'mckinsey-forward',
+                  title: 'McKinsey & Company Forward Program',
+                  issuer: 'McKinsey & Company',
+                  date: '2025',
+                  description: 'Completed McKinsey Forward — a selective program developing essential professional skills including problem-solving, communication, and leadership for the future of work.',
+                  skills: ['Problem Solving', 'Communication', 'Leadership', 'Adaptability', 'Strategic Thinking'],
+                  verifyUrl: 'https://www.credly.com/badges/7efca65a-3cfc-4a58-a827-63ef667e1219/linked_in_profile',
+                  certificateUrl: 'https://www.credly.com/badges/7efca65a-3cfc-4a58-a827-63ef667e1219/linked_in_profile',
+                  color: 'neon-green'
+                }
+              ].map((cert, index) => (
+                <motion.div
+                  key={cert.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                >
+                  <Card className="glass-card hover:bg-white/20 transition-all duration-500 hover:scale-[1.02] group">
+                    <CardHeader className="pb-6">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div className="flex items-start gap-4">
+                          <div className="p-3 glass-card">
+                            <Award className={`h-6 w-6 text-${cert.color} group-hover:animate-bounce-slow`} />
+                          </div>
+                          <div>
+                            <CardTitle className="text-xl sm:text-2xl font-space text-foreground group-hover:text-neon-purple transition-colors">
+                              {cert.title}
+                            </CardTitle>
+                            <CardDescription className="text-lg text-neon-cyan font-mono">
+                              {cert.issuer}
+                            </CardDescription>
+                          </div>
+                        </div>
+                        <div className="flex flex-col md:items-end gap-2">
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <Calendar className="h-4 w-4" />
+                            <span className="font-mono">{cert.date}</span>
+                          </div>
+                          <Badge variant="outline" className={`text-${cert.color} border-${cert.color}/50`}>
+                            Certified
+                          </Badge>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <p className="text-muted-foreground leading-relaxed">
+                        {cert.description}
+                      </p>
+                      <div>
+                        <h4 className="text-lg font-semibold text-neon-cyan mb-3">Skills Validated</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {cert.skills.map((skill: string) => (
+                            <span
+                              key={skill}
+                              className="px-3 py-1 text-sm font-mono bg-neon-purple/20 text-neon-cyan rounded-full border border-neon-purple/30"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row gap-3">
+                        <Button
+                          onClick={() => window.open(cert.certificateUrl, '_blank', 'noopener,noreferrer')}
+                          className={`flex-1 bg-${cert.color}/20 border-${cert.color}/50 text-${cert.color} hover:bg-${cert.color}/30 border transition-all duration-300 hover:scale-[1.02]`}
+                          size="lg"
+                        >
+                          <span className="flex items-center gap-2">
+                            <FileText className="h-4 w-4" />
+                            View Certificate
+                          </span>
+                        </Button>
+                        <Button
+                          onClick={() => window.open(cert.verifyUrl, '_blank', 'noopener,noreferrer')}
+                          variant="outline"
+                          className="flex-1 border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300 hover:scale-[1.02]"
+                          size="lg"
+                        >
+                          <span className="flex items-center gap-2">
+                            <Award className="h-4 w-4" />
+                            Verify Credential
+                          </span>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </TabsContent>
         </Tabs>
