@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Github, ExternalLink, Code, Zap, Database, Smartphone, Trophy, Cpu } from 'lucide-react';
+import { Github, ExternalLink, Code, Zap, Database, Smartphone, Trophy, Cpu, Brain, BarChart3, Compass } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const containerVariants = {
@@ -24,14 +24,14 @@ const cardVariants = {
 const ProjectsSection = () => {
   const projects = [
     {
-      id: 1,
-      title: "SafeFit – Smart Safety Bracelet",
-      description: "Screenless health wearable with SpO2, heart rate monitoring, fitness tracking, and fall detection with automated SOS. Custom PCB with GSM+GPS achieving <5s emergency alert latency.",
-      technologies: ["IoT", "React Native", "NodeMCU", "Custom PCB", "SIM800L", "MAX30102"],
-      githubUrl: "https://github.com/revanthm1902/safe-fit.git",
-      demoUrl: null,
-      category: "IoT & Hardware",
-      icon: Cpu
+      id: 7,
+      title: "Second Brain — AI Knowledge Manager",
+      description: "AI-powered personal knowledge management system with Gemini AI auto-tagging, smart summarization, command palette (Ctrl+K), public REST API, and embeddable widget. Neobrutalist UI.",
+      technologies: ["Next.js 16", "TypeScript", "Supabase", "Gemini AI", "Tailwind CSS", "Framer Motion"],
+      githubUrl: "https://github.com/revanthm1902/second-brain",
+      demoUrl: "http://second-brain-notes-ai.vercel.app/",
+      category: "AI/ML",
+      icon: Brain
     },
     {
       id: 2,
@@ -43,6 +43,27 @@ const ProjectsSection = () => {
       category: "Full Stack",
       icon: Database
     },
+    {
+      id: 1,
+      title: "SafeFit – Smart Safety Bracelet",
+      description: "Screenless health wearable with SpO2, heart rate monitoring, fitness tracking, and fall detection with automated SOS. Custom PCB with GSM+GPS achieving <5s emergency alert latency.",
+      technologies: ["IoT", "React Native", "NodeMCU", "Custom PCB", "SIM800L", "MAX30102"],
+      githubUrl: "https://github.com/revanthm1902/safe-fit.git",
+      demoUrl: null,
+      category: "IoT & Hardware",
+      icon: Cpu
+    },
+    {
+      id: 8,
+      title: "LeapPulse — Brand Intelligence Dashboard",
+      description: "Real-time brand health monitoring dashboard aggregating social media mentions, sentiment analysis (NLP), and competitive intelligence with Python scrapers and Supabase Realtime.",
+      technologies: ["React 19", "TypeScript", "FastAPI", "Python", "Supabase", "Recharts", "TextBlob"],
+      githubUrl: "https://github.com/revanthm1902/leap-pulse",
+      demoUrl: null,
+      category: "Data Analytics",
+      icon: BarChart3
+    },
+    
     {
       id: 3,
       title: "Gmail Replica",
@@ -82,6 +103,17 @@ const ProjectsSection = () => {
       demoUrl: null,
       category: "Full Stack",
       icon: Database
+    },
+    
+    {
+      id: 9,
+      title: "One Piece — Character Arcs Explorer",
+      description: "Premium interactive web app to explore iconic One Piece story arcs and characters with glass-style cards, animated modals, loading screens, and a dark navy premium UI.",
+      technologies: ["HTML5", "CSS3", "JavaScript", "Google Fonts"],
+      githubUrl: "https://github.com/revanthm1902/one-piece",
+      demoUrl: null,
+      category: "Website",
+      icon: Compass
     }
   ];
 
