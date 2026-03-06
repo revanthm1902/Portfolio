@@ -9,12 +9,14 @@
 ## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
+|-------|------------|
 | Framework | React 18 + Vite |
 | Language | TypeScript |
 | Styling | Tailwind CSS + shadcn/ui |
 | Animation | Framer Motion |
-| Backend | Supabase (contact form) |
+| Email | EmailJS |
+| Backend | Supabase (contact form, edge functions) |
+| Analytics | Vercel Analytics |
 | Deployment | Vercel |
 
 ---
@@ -26,8 +28,9 @@
 - **Projects Section** — 9 featured projects spanning IoT, AI/ML, Full Stack, and Data Analytics
 - **Skills Section** — Interactive pie charts and animated progress bars across 8 skill categories
 - **Experience Section** — Work experience, hackathon wins, and certifications with detail pages
-- **Contact Section** — EmailJS-powered contact form
-- **Dark/Light Mode** — Theme toggle with smooth transitions
+- **Blog / LinkedIn Posts** — Embedded LinkedIn articles and posts feed
+- **Contact Section** — EmailJS-powered contact form with Supabase edge function fallback
+- **Dark / Light Mode** — Theme toggle with smooth transitions
 - **Resume Page** — Dedicated resume viewer
 - **Cursor Trail** — Custom cursor effect for desktop
 - **Responsive** — Fully mobile-optimized design
@@ -55,18 +58,37 @@
 ```sh
 # Clone the repository
 git clone https://github.com/revanthm1902/Portfolio.git
-
-# Navigate to the project directory
 cd Portfolio
 
-# Install dependencies
+# Install dependencies (choose one)
 npm install
+# or
+bun install
 
 # Start the development server
 npm run dev
+# or
+bun dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+### Environment Variables
+
+Create a `.env.local` file in the project root and add the following:
+
+```env
+# Supabase
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# EmailJS
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+See [EMAILJS_SETUP.md](EMAILJS_SETUP.md) and [SETUP_EMAILJS.md](SETUP_EMAILJS.md) for detailed EmailJS configuration.
 
 ### Production Build
 
@@ -81,16 +103,34 @@ npm run preview
 
 ```
 src/
-├── components/       # All UI components (Hero, About, Projects, Skills, etc.)
-│   └── ui/           # shadcn/ui primitives
-├── data/             # Static data (LinkedIn posts)
-├── hooks/            # Custom hooks (theme, mobile, toast)
-├── integrations/     # Supabase client
-├── lib/              # Utilities (EmailJS, cn helper)
-├── pages/            # Route pages (Index, Resume, NotFound)
-public/               # Static assets, certificates
-supabase/             # Edge functions (contact email)
+├── components/         # All UI components
+│   ├── common/         # Reusable primitives (ExperienceCard, TechBadge, etc.)
+│   └── ui/             # shadcn/ui component library
+├── config/             # Site-wide config (navigation, animations, social links)
+├── data/               # Static content (projects, skills, experiences, etc.)
+├── hooks/              # Custom React hooks (useTheme, use-mobile, use-toast)
+├── integrations/       # Supabase client setup
+├── lib/                # Utilities (EmailJS helper, cn)
+├── pages/              # Route-level pages (Index, Resume, NotFound)
+├── types/              # Shared TypeScript types
+public/
+├── certificates/       # PDF certificates
+└── robots.txt
+supabase/
+└── functions/          # Supabase Edge Functions (send-contact-email)
 ```
+
+---
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start Vite dev server |
+| `npm run build` | Production build |
+| `npm run build:dev` | Development mode build |
+| `npm run preview` | Preview production build locally |
+| `npm run lint` | Run ESLint |
 
 ---
 
@@ -98,6 +138,7 @@ supabase/             # Edge functions (contact email)
 
 - **Email:** revanthmodalavalasa@gmail.com
 - **LinkedIn:** [linkedin.com/in/revanthm1902](https://linkedin.com/in/revanthm1902)
+- **GitHub:** [github.com/revanthm1902](https://github.com/revanthm1902)
 - **GitHub:** [github.com/revanthm1902](https://github.com/revanthm1902)
 
 ---
